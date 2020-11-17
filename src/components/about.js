@@ -122,7 +122,7 @@ const About = () => {
             <div className="col-sm-3 col-md-3">
               <div className="about-me-segment text-center">
                 <h5 className="text-uppercase">Email</h5>
-                <p className="mb-2">meghsohor@yahoo.com</p>
+                <p className="mb-2">meghsohor@gmail.com</p>
               </div>
             </div>
 
@@ -132,6 +132,13 @@ const About = () => {
                 <a href={cv} target="_blank" className="cv-link">
                   <i className="fa fa-lg fa-file-pdf-o"></i> View/Download
                 </a>
+              </div>
+            </div>
+
+            <div className="col-sm-3 col-md-3">
+              <div className="about-me-segment text-center">
+                <h5 className="text-uppercase">Phone</h5>
+                <p className="mb-2">+880 1771123333</p>
               </div>
             </div>
           </div>

@@ -1,4 +1,5 @@
 ---
+posttype: 'blog'
 title: 'Third Post - CSS'
 date: 2020-11-12 12:00:00
 author: 'Jane Doe'

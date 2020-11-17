@@ -10,7 +10,7 @@ const PaginationLinks = ({ currentPage, numberOfPages }) => {
     return (
       <Pagination className="page-navigation" aria-label="Page navigation">
         <PaginationItem disabled={isFirstPage}>
-          <PaginationLink href="/">
+          <PaginationLink href="/blog">
             <i className="fa fa-step-backward" aria-hidden="true"></i>
           </PaginationLink>
         </PaginationItem>

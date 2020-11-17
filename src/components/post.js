@@ -8,7 +8,7 @@ const Post = (props) => {
     const { title, author, path, date, body, image, tags } = props.post;
 
     return (
-        <Card>
+        <Card className="mb-5">
             <Link to={path}>
                 <Img className="card-img-top" fluid={image} />
             </Link>

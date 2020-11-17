@@ -27,22 +27,24 @@ exports.createPages = async ({actions, graphql}) => {
     };
 
     const res = await graphql(`
-        {
-            allMarkdownRemark{
-                edges{
-                    node{
-                        frontmatter{
-                            author
-                            tags
-                        }
-                        fields{
-                            slug
-                        }
-                    }
-                }
+      {
+        allMarkdownRemark(
+          filter: { frontmatter: { posttype: { eq: "blog" } } }
+        ) {
+          edges {
+            node {
+              frontmatter {
+                author
+                tags
+              }
+              fields {
+                slug
+              }
             }
+          }
         }
-    `);
+      }
+    `)
 
     if (res.errors) 
         return Promise.reject(res.errors);
@@ -52,13 +54,15 @@ exports.createPages = async ({actions, graphql}) => {
     // Create Single post page
     posts.forEach(({node}) => {
         createPage({
-            path: node.fields.slug,
-            component: templates.singlePost,
-            context: {
-                slug: node.fields.slug,
-                // Find author imageUrl from authors and pass to Single Post template
-                imageUrl: authors.find(author => author.name === node.frontmatter.author).imageUrl
-            }
+          path: "/blog/" + node.fields.slug,
+          component: templates.singlePost,
+          context: {
+            slug: node.fields.slug,
+            // Find author imageUrl from authors and pass to Single Post template
+            imageUrl: authors.find(
+              author => author.name === node.frontmatter.author
+            ).imageUrl,
+          },
         })
     });
 

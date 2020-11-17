@@ -21,7 +21,7 @@ const Hero = () => {
           <h1>
             <span>
               Shafiqul Islam
-              <span class="sub-span">
+              <span className="sub-span">
                 <span>Software Developer</span>
               </span>
             </span>

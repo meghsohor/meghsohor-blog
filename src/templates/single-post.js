@@ -13,6 +13,8 @@ import authors from '../utils/authors'
 
 
 const SinglePost = ({data, pageContext}) => {
+    console.log(data)
+    console.log(pageContext)
     const post = data.markdownRemark.frontmatter
     const author = authors.find(author => author.name === post.author)
 

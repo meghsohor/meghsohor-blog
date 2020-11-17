@@ -63,7 +63,7 @@ ul {
   margin-bottom: 3rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: #265971;
+  color: #151d2a;
   font-size: 2rem;
 }
 .section-heading span {
@@ -79,7 +79,7 @@ ul {
   right: 0;
   margin: 0 auto;
   width: 50%;
-  border: 8px solid currentColor;
+  border: 6px solid currentColor;
   border-bottom: 0;
   border-right-color: transparent;
   border-left-color: transparent;
@@ -104,7 +104,7 @@ ul {
   margin: 0 0.5rem;
 }
 .site-header .navbar .navbar-nav .nav-link {
-  color: #00abc1;
+  color: #2d9fd2;
   font-size: 1.15rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -163,7 +163,7 @@ ul {
 }
 .hero-container {
   position: relative;
-  background-color: rgba(0, 0, 0, 0.35);
+  background-color: rgba(0, 0, 0, 0.5);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -296,9 +296,9 @@ ul {
 
 /*-------- About Me Section ----------*/
 .about-me-container {
-    border-top: 2px solid #eee;
-    padding-top: 1rem;
-    margin-top: 1rem;
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: 2px solid #eee;
 }
 .about-me-segment {
   padding-left: 1rem;
@@ -322,10 +322,33 @@ ul {
   color: #212529;
   text-decoration: none;
 }
-/*------- Card Styles ---------*/
-.card {
-  margin-bottom: 30px;
+
+
+/*-------- Portfolio section ---------*/
+.portfolio-card {
+  height: 100%;
 }
+.portfolio-card .card-body {
+  border-top: 1px solid #eee;
+}
+.portfolio-card .card-title {
+  border-bottom: 1px solid #e6e6e6;
+  padding-bottom: 0.25rem;
+}
+.portfolio-tags {
+  display: flex;
+  margin-bottom: 1rem;
+}
+.portfolio-tags .badge {
+  font-size: 0.9rem;
+  margin-right: 0.25rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.75rem;
+}
+
+
+
+/*------- Card Styles ---------*/
 
 ul.post-tags {
   padding: 0;

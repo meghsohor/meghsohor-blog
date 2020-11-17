@@ -1,4 +1,5 @@
 ---
+posttype: 'blog'
 title: 'Second Post - HTML'
 date: 2020-11-12 10:00:00
 author: 'Jane Doe'

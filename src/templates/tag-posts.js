@@ -19,7 +19,7 @@ const TagPosts = ({ data, pageContext }) => {
                         ...node.frontmatter,
                         image: node.frontmatter.image.childImageSharp.fluid,
                         body: node.excerpt,
-                        path: node.fields.slug
+                        path: '/blog/' + node.fields.slug
                     }
                     return <Post key={node.id} post={post} />
                 })
@@ -29,36 +29,38 @@ const TagPosts = ({ data, pageContext }) => {
 }
 
 export const tagQuery = graphql`
-    query($tag:String!){
-        allMarkdownRemark(
-            sort: { fields: [frontmatter___date], order: DESC }
-            filter: { frontmatter: { tags: { in: [$tag] } } }
-        ){
-            totalCount
-            edges{
-                node{
-                    id
-                    frontmatter{
-                        title
-                        date(formatString: "MMM Do YYYY")
-                        author
-                        tags
-                        image{
-                            childImageSharp{
-                                fluid(maxWidth: 800){
-                                    ...GatsbyImageSharpFluid
-                                }
-                            }
-                        }
-                    }
-                    fields{
-                        slug
-                    }
-                    excerpt
+  query($tag: String!) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: {
+        frontmatter: { tags: { in: [$tag] }, posttype: { eq: "blog" } }
+      }
+    ) {
+      totalCount
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date(formatString: "MMM Do YYYY")
+            author
+            tags
+            image {
+              childImageSharp {
+                fluid(maxWidth: 800) {
+                  ...GatsbyImageSharpFluid
                 }
+              }
             }
+          }
+          fields {
+            slug
+          }
+          excerpt
         }
+      }
     }
+  }
 `
 
 export default TagPosts
