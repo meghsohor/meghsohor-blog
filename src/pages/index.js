@@ -7,6 +7,7 @@ import SEO from "../components/seo"
 import Hero from "../components/hero"
 import About from "../components/about"
 import Portfolio from "../components/portfolio"
+import Career from "../components/career"
 
 const IndexPage = () => (
   <Fragment>
@@ -17,6 +18,7 @@ const IndexPage = () => (
       <Hero />
       <About />
       <Portfolio />
+      <Career />
       <Footer />
     </main>
   </Fragment>

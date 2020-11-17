@@ -36,6 +36,13 @@ module.exports = {
         path: `${__dirname}/src/contents/projects`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `career`,
+        path: `${__dirname}/src/contents/jobs`,
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

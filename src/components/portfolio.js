@@ -3,8 +3,6 @@ import { graphql, StaticQuery } from "gatsby"
 import { Card, CardText, CardBody, CardTitle, Badge } from "reactstrap"
 import Img from "gatsby-image"
 
-import csm from "../images/csm.jpg"
-import multipurpose from "../images/multipurpose-email-template.jpg"
 
 const Portfolio = () => (
 
@@ -29,7 +27,7 @@ const Portfolio = () => (
                 }
 
                 return (
-                  <div className="col-md-6 col-sm-6" key={portfolio.id}>
+                  <div className="col-xl-4 col-md-6" key={portfolio.id}>
                     <Card className="portfolio-card">
                       <Img className="card-img-top" fluid={portfolio.fluid} />
                       <CardBody>
@@ -38,11 +36,15 @@ const Portfolio = () => (
                           dangerouslySetInnerHTML={{ __html: portfolio.html }}
                         />
 
-                        <div className="portfolio-tags">
+                        <div className="portfolio-tags mt-auto">
                           {portfolio.tags &&
                             portfolio.tags.length &&
                             portfolio.tags.map(tag => (
-                              <Badge key={tag} color="primary" className="text-capitalize">
+                              <Badge
+                                key={tag}
+                                className="text-capitalize"
+                                color="default"
+                              >
                                 {tag}
                               </Badge>
                             ))}

@@ -1,33 +1,45 @@
-@import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700&display=swap');
-@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
-
+@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700&display=swap");
+@import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap");
 
 /*-------- Base Styles ---------*/
-html, body {
+html,
+body {
   height: 100%;
 }
 
 body {
-  font-family: 'Bitter', serif;
+  font-family: "Bitter", serif;
   background-color: #f0f0f0;
 }
 
 a {
-    color: #0056b3;
+  color: #0056b3;
 }
 a:hover {
-    color: #007bff;
-    text-decoration: none;
+  color: #007bff;
+  text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
   font-weight: 600;
 }
 
-.badge, strong, b {
+.badge,
+strong,
+b {
   font-weight: 600;
 }
 .btn {
@@ -44,7 +56,8 @@ ul {
   padding: 0;
 }
 
-#___gatsby, #gatsby-focus-wrapper {
+#___gatsby,
+#gatsby-focus-wrapper {
   height: 100%;
 }
 #gatsby-focus-wrapper {
@@ -72,7 +85,7 @@ ul {
   padding-bottom: 0.5rem;
 }
 .section-heading span:before {
-  content: '';
+  content: "";
   position: absolute;
   top: 100%;
   left: 0;
@@ -87,7 +100,6 @@ ul {
 
 /*---------- Header Styles ------------*/
 .site-header {
-
 }
 
 .site-header .header-logo {
@@ -97,7 +109,7 @@ ul {
   background-color: white;
   border-bottom: 1px solid #e8e8e8;
   line-height: 1;
-  box-shadow: 0 1px 8px rgba(175,170,180,0.2);
+  box-shadow: 0 1px 8px rgba(175, 170, 180, 0.2);
 }
 
 .site-header .navbar .navbar-nav .nav-item {
@@ -112,7 +124,7 @@ ul {
   transition: all 0.25s ease-in-out;
 }
 .site-header .navbar .navbar-nav .nav-link:before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -137,7 +149,6 @@ ul {
 }
 
 @media screen and (max-width: 767px) {
-
   .site-header .navbar .navbar-nav {
     padding-top: 0.5rem;
   }
@@ -174,30 +185,31 @@ ul {
 }
 .hero-header h1 {
   font-size: 79.2px;
-  color: #FFF;
+  color: #fff;
   text-transform: uppercase;
   margin: 0;
 }
-.hero-header h1>span {
+.hero-header h1 > span {
   display: inline-block;
   position: relative;
   font-weight: 700;
 }
-.hero-header h1>span:before, .hero-header h1>span:after {
-    content: "";
-    position: absolute;
-    background: #fff;
-    height: 115%;
-    width: 4px;
-    top: 15px;
+.hero-header h1 > span:before,
+.hero-header h1 > span:after {
+  content: "";
+  position: absolute;
+  background: #fff;
+  height: 115%;
+  width: 4px;
+  top: 15px;
 }
-.hero-header h1>span:before {
+.hero-header h1 > span:before {
   left: -8%;
 }
-.hero-header h1>span:after {
+.hero-header h1 > span:after {
   right: -8%;
 }
-.hero-header h1>span .sub-span {
+.hero-header h1 > span .sub-span {
   position: absolute;
   top: 108%;
   left: -8%;
@@ -205,23 +217,24 @@ ul {
   overflow: hidden;
   height: 100%;
 }
-.hero-header h1>span .sub-span>span {
+.hero-header h1 > span .sub-span > span {
   font-size: 18px;
   position: relative;
   top: -50%;
 }
-.hero-header h1>span .sub-span>span:before, .hero-header h1>span .sub-span>span:after {
-    content: "";
-    position: absolute;
-    background: #fff;
-    width: 500%;
-    height: 4px;
-    top: 39%;
+.hero-header h1 > span .sub-span > span:before,
+.hero-header h1 > span .sub-span > span:after {
+  content: "";
+  position: absolute;
+  background: #fff;
+  width: 500%;
+  height: 4px;
+  top: 39%;
 }
-.hero-header h1>span .sub-span>span:before {
+.hero-header h1 > span .sub-span > span:before {
   right: 110%;
 }
-.hero-header h1>span .sub-span>span:after {
+.hero-header h1 > span .sub-span > span:after {
   left: 110%;
 }
 
@@ -230,40 +243,41 @@ ul {
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   transition: 0.3s;
   opacity: 1;
 }
 .hero-section .learn-more a {
-  color: #FFF;
+  color: #fff;
   font-weight: 600;
 }
 .hero-section .learn-more .text {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 .hero-section .learn-more .icon {
-    animation: moveDown 1.3s cubic-bezier(.07,.5,.58,1) infinite;
+  animation: moveDown 1.3s cubic-bezier(0.07, 0.5, 0.58, 1) infinite;
 }
 @keyframes moveDown {
-    0% {
-      transform: translateY(10px);
-    }
+  0% {
+    transform: translateY(10px);
+  }
 
-    50% {
-      transform: translateY(0);
-    }
+  50% {
+    transform: translateY(0);
+  }
 
-    100% {
-      transform: translateY(10px);
-    }
+  100% {
+    transform: translateY(10px);
+  }
 }
 
 @media screen and (max-width: 767px) {
   .hero-header h1 {
     font-size: 52px;
   }
-  .hero-header h1>span:before, .hero-header h1>span:after {
-    display: none
+  .hero-header h1 > span:before,
+  .hero-header h1 > span:after {
+    display: none;
   }
 
   .site-header .navbar .navbar-nav {
@@ -282,14 +296,15 @@ ul {
     font-size: 36px;
   }
 
-  .hero-header h1>span .sub-span {
+  .hero-header h1 > span .sub-span {
     width: 100%;
     left: 0;
   }
-  .hero-header h1>span .sub-span>span:before, .hero-header h1>span .sub-span>span:after {
+  .hero-header h1 > span .sub-span > span:before,
+  .hero-header h1 > span .sub-span > span:after {
     display: none;
   }
-  .hero-header h1>span .sub-span>span {
+  .hero-header h1 > span .sub-span > span {
     top: 0;
   }
 }
@@ -323,12 +338,14 @@ ul {
   text-decoration: none;
 }
 
-
 /*-------- Portfolio section ---------*/
 .portfolio-card {
   height: 100%;
 }
 .portfolio-card .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   border-top: 1px solid #eee;
 }
 .portfolio-card .card-title {
@@ -337,6 +354,7 @@ ul {
 }
 .portfolio-tags {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 1rem;
 }
 .portfolio-tags .badge {
@@ -344,10 +362,79 @@ ul {
   margin-right: 0.25rem;
   margin-bottom: 0.5rem;
   padding: 0.5rem 0.75rem;
+  white-space: nowrap;
+  color: #fff;
+  background: #0f5d9c;
+  border-radius: 1rem;
 }
 
+/*-------- Career section ---------*/
+.job-period {
+  background: #151d2a;
+  color: #fff;
+  font-weight: 500;
+  position: relative;
+  text-transform: uppercase;
+  padding: 0.75rem 1rem;
+  border-radius: 5px;
+  margin-bottom: 1.8rem;
+  text-align: center;
+}
 
+.job-period:before {
+  position: absolute;
+  content: "";
+  transform: rotate(45deg);
+  width: 20px;
+  height: 20px;
+  background: #151d2a;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
 
+.career-card {
+  height: 100%;
+}
+.career-card .card-body {
+  display: flex;
+  flex-direction: column;
+}
+.career-card .card-subtitle {
+  font-style: italic;
+  font-weight: 500;
+  color: #777;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #dadada;
+  margin-bottom: 0.5rem;
+}
+
+.check-list {
+  margin-bottom: 0;
+}
+.check-list li {
+  position: relative;
+  padding: 0.5rem;
+  padding-left: 0;
+  display: flex;
+}
+.check-list li:before {
+  content: "\F14A";
+  color: #2d9fd2;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: 1.25rem;
+  display: block;
+  margin-right: 0.5rem;
+  line-height: 2rem;
+}
+
+.career-card .portfolio-tags {
+  border-top: 1px solid #dadada;
+  padding-top: 0.75rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
 /*------- Card Styles ---------*/
 
 ul.post-tags {
@@ -468,7 +555,7 @@ ul.post-tags li .tag {
 }
 
 .snippet {
-  font-family: 'Fira Code', monospace;
+  font-family: "Fira Code", monospace;
   font-size: 1rem;
   padding: 0 1.5rem;
   background-color: #eef6fd;
@@ -477,5 +564,5 @@ ul.post-tags li .tag {
   border-radius: 6px;
 }
 .snippet code {
-  font-family: 'Fira Code', monospace;
+  font-family: "Fira Code", monospace;
 }
