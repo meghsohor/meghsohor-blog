@@ -23,22 +23,22 @@ const Sidebar = ({ postAuthor }) => {
                 <ul>
                   <li>
                     <a
-                      href="{postAuthor.facebook}"
+                      href="{postAuthor.linkedin}"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="facebook"
+                      className="linkedin"
                     >
-                      <i className="fa fa-facebook"></i>
+                      <i className="fa fa-linkedin"></i>
                     </a>
                   </li>
                   <li>
                     <a
-                      href="{postAuthor.instagram}"
+                      href="{postAuthor.github}"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="instagram"
                     >
-                      <i className="fa fa-instagram"></i>
+                      <i className="fa fa-github"></i>
                     </a>
                   </li>
                   <li>
@@ -53,22 +53,12 @@ const Sidebar = ({ postAuthor }) => {
                   </li>
                   <li>
                     <a
-                      href="{postAuthor.google}"
+                      href="{postAuthor.stackoverflow}"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="google"
                     >
-                      <i className="fa fa-google"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="{postAuthor.linkedin}"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="linkedin"
-                    >
-                      <i className="fa fa-linkedin"></i>
+                      <i className="fa fa-stack-overflow"></i>
                     </a>
                   </li>
                 </ul>
@@ -90,7 +80,12 @@ const Sidebar = ({ postAuthor }) => {
                   name="email"
                 />
               </FormGroup>
-              <button type="button" className="btn btn-outline-success btn-block">Subscribe</button>
+              <button
+                type="button"
+                className="btn btn-outline-success btn-block"
+              >
+                Subscribe
+              </button>
             </Form>
           </CardBody>
         </Card>

@@ -8,34 +8,38 @@ const Post = (props) => {
     const { title, author, path, date, body, image, tags } = props.post;
 
     return (
-        <Card className="mb-5">
-            <Link to={path}>
-                <Img className="card-img-top" fluid={image} />
+      <Card className="mb-5">
+        <Link to={path}>
+          <Img className="card-img-top" fluid={image} />
+        </Link>
+        <CardBody>
+          <CardTitle tag="h4">
+            <Link to={path}>{title}</Link>
+          </CardTitle>
+          <CardSubtitle className="text-muted">{date}</CardSubtitle>
+          <hr/>
+          <CardText>{body}</CardText>
+
+          <div className="d-flex align-items-center">
+            <ul className="post-tags">
+              {tags.map((tag, i) => (
+                <li key={i}>
+                  <Link
+                    className="badge badge-primary p-2 px-2 tag"
+                    to={`/tag/${slugify(tag)}`}
+                  >
+                    {tag}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <Link to={path} className="btn btn-outline-primary ml-auto">
+              Read More
             </Link>
-            <CardBody>
-                <CardTitle tag="h5">
-                    <Link to={path}>{title}</Link>
-                </CardTitle>
-                <CardSubtitle className="mb-2">
-                    <span className="text-info">{date}</span>
-                    &nbsp;by&nbsp;
-                    <strong className="text-info">{author}</strong>
-                </CardSubtitle>
-                <CardText>{body}</CardText>
-
-                <div className="d-flex align-items-center">
-                    <ul className="post-tags">
-                        {tags.map((tag, i) => (
-                            <li key={i}>
-                                <Link className="badge badge-primary p-2 px-2 tag" to={`/tag/${slugify(tag)}`}>{tag}</Link>
-                            </li>
-                        ))}
-                    </ul>
-
-                    <Link to={path} className="btn btn-outline-primary ml-auto">Read More</Link>
-                </div>
-            </CardBody>
-        </Card>
+          </div>
+        </CardBody>
+      </Card>
     )
 }
 

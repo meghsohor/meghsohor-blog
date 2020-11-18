@@ -2,7 +2,7 @@
 posttype: 'blog'
 title: 'First Post - Introduction'
 date: 2020-11-11 10:00:00
-author: 'John Doe'
+author: 'Shafiqul Islam Shuvo'
 image: '../../images/post.jpg'
 tags:
 - code

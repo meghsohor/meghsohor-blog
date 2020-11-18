@@ -44,8 +44,7 @@ export const postListQuery = graphql`
           id
           frontmatter {
             title
-            date(formatString: "MMM Do YYYY [at] hh:mm a")
-            author
+            date(formatString: "MMMM DD, YYYY")
             image {
               childImageSharp {
                 fluid(maxWidth: 600) {

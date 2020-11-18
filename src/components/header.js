@@ -35,11 +35,11 @@ const Header = ({ siteTitle }) => {
                   Blog
                 </NavLink>
               </NavItem>
-              <NavItem>
+              {/* <NavItem>
                 <NavLink href="/team" active={currentPage === "/team"}>
                   Team
                 </NavLink>
-              </NavItem>
+              </NavItem> */}
               <NavItem>
                 <NavLink href="/tags" active={currentPage === "/tags"}>
                   Tags

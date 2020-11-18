@@ -11,37 +11,26 @@ import JaneImg from '../images/jane.jpg'
 
 const TeamPage = () => (
   <Layout pageTitle="Team Page">
-    <SEO title="Our Team" keywords={['gatsby', 'react', 'tech', 'blog']} />
-    
-    <Row className="align-items-stretch mb-3">
-      <div className="col-md-3">
-        <img src={JohnImg} alt="John Profile"/>
-      </div>
-      <div className="col-md-8">
-        <Card className="mb-0" style={{height: '100%'}}>
-          <CardBody>
-            <CardTitle>{authors[0].name}</CardTitle>
-            <CardText>{authors[0].bio}</CardText>
-            <Button color="primary" href={`/author/${slugify(authors[0].name)}`}>View Posts</Button>
-          </CardBody>
-        </Card>
-      </div>
-    </Row>
+    <SEO title="Our Team" keywords={["gatsby", "react", "tech", "blog"]} />
 
-    <Row className="align-items-stretch mb-3">
-      <div className="col-md-3">
-        <img src={JaneImg} alt="Jane Profile" />
-      </div>
-      <div className="col-md-8">
-        <Card className="mb-0" style={{ height: '100%' }}>
-          <CardBody>
-            <CardTitle>{authors[1].name}</CardTitle>
-            <CardText>{authors[1].bio}</CardText>
-            <Button color="primary" href={`/author/${slugify(authors[1].name)}`}>View Posts</Button>
-          </CardBody>
-        </Card>
-      </div>
-    </Row>
+    {authors.map(author => (
+      <Row className="align-items-stretch mb-3">
+        <div className="col-md-3">
+          <img src={`images/${author.imageUrl}`} alt={author.name} />
+        </div>
+        <div className="col-md-8">
+          <Card className="mb-0" style={{ height: "100%" }}>
+            <CardBody>
+              <CardTitle>{author.name}</CardTitle>
+              <CardText>{author.bio}</CardText>
+              <Button color="primary" href={`/author/${slugify(author.name)}`}>
+                View Posts
+              </Button>
+            </CardBody>
+          </Card>
+        </div>
+      </Row>
+    ))}
   </Layout>
 )
 

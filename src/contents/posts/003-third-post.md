@@ -2,7 +2,7 @@
 posttype: 'blog'
 title: 'Third Post - CSS'
 date: 2020-11-12 12:00:00
-author: 'Jane Doe'
+author: 'Shafiqul Islam Shuvo'
 image: '../../images/post.jpg'
 tags:
 - design

@@ -1,24 +1,13 @@
 const authors = [
-    {
-        name: 'John Doe',
-        imageUrl: 'john.jpg',
-        bio: 'John is a Front-End Developer having 5 years experience',
-        facebook: 'https://www.facebook.com',
-        twitter: 'https://www.twitter.com',
-        instagram: 'https://www.instagram.com',
-        linkedin: 'https://www.linkedin.com',
-        google: 'https://www.google.com',
-    },
-    {
-        name: 'Jane Doe',
-        imageUrl: 'jane.jpg',
-        bio: 'Jane is a UI/UX Designer having 3 years experience',
-        facebook: 'https://www.facebook.com',
-        twitter: 'https://www.twitter.com',
-        instagram: 'https://www.instagram.com',
-        linkedin: 'https://www.linkedin.com',
-        google: 'https://www.google.com',
-    }
+  {
+    name: "Shafiqul Islam Shuvo",
+    imageUrl: "shuvo.jpg",
+    bio: `Software Developer focused and specialized on the Front-End stacks. Experienced with HTML, CSS/SCSS, JavaScript, Typescript, jQuery, Angular, React, WordPress & PHP. I am Passionate about building new things and solving logical and technical problems.`,
+    github: "https://github.com/meghsohor",
+    linkedin: "https://www.linkedin.com/in/meghsohor/",
+    stackoverflow: "https://stackoverflow.com/users/7646942/shuvo",
+    twitter: "https://www.twitter.com/meghsohor",
+  },
 ]
 
 module.exports = authors
