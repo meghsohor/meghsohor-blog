@@ -35,7 +35,7 @@ const Post = (props) => {
             </ul>
 
             <Link to={path} className="btn btn-outline-primary ml-auto">
-              Read More
+              Read Post
             </Link>
           </div>
         </CardBody>

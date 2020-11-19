@@ -33,31 +33,38 @@ const SinglePost = ({data, pageContext}) => {
       >
         <SEO title={post.title} />
 
-        <Card>
+        <Card className="single-post-card">
           <Img
             className="card-img-top"
             fluid={post.image.childImageSharp.fluid}
           />
           <CardBody>
-            <CardTitle tag="h4">{post.title}</CardTitle>
-            <CardSubtitle className="text-muted">{post.date}</CardSubtitle>
-            <hr />
+            <CardTitle tag="h3" className="mb-4">
+              {post.title}
+            </CardTitle>
+
+            <div className="single-post-date-and-tags">
+              <CardSubtitle className="text-muted">
+                <em>{post.date}</em>
+              </CardSubtitle>
+
+              <ul className="post-tags">
+                {post.tags.map((tag, i) => (
+                  <li key={i}>
+                    <Link
+                      className="badge badge-default p-2 px-2 tag"
+                      to={`/tag/${slugify(tag)}`}
+                    >
+                      {tag}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
             <div
               dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
             />
-
-            <ul className="post-tags">
-              {post.tags.map((tag, i) => (
-                <li key={i}>
-                  <Link
-                    className="badge badge-primary p-2 px-2 tag"
-                    to={`/tag/${slugify(tag)}`}
-                  >
-                    {tag}
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </CardBody>
         </Card>
 
