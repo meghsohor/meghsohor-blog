@@ -11,7 +11,7 @@ const Portfolio = () => (
     render={data => {
       const portfolios = data.allMarkdownRemark.edges;
       return (
-        <section className="portfolio-section py-5">
+        <section className="portfolio-section pt-5 pb-4">
           <div className="container">
             <h2 className="section-heading">
               <span>Portfolio</span>
@@ -27,7 +27,7 @@ const Portfolio = () => (
                 }
 
                 return (
-                  <div className="col-xl-4 col-md-6" key={portfolio.id}>
+                  <div className="col-xl-4 col-md-6 mb-4" key={portfolio.id}>
                     <Card className="portfolio-card">
                       <Img className="card-img-top" fluid={portfolio.fluid} />
                       <CardBody>
@@ -53,7 +53,7 @@ const Portfolio = () => (
                           href={portfolio.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="btn btn-outline-secondary"
+                          className="btn btn-outline-secondary ml-auto"
                         >
                           View Live
                         </a>

@@ -11,8 +11,8 @@ tasks:
 tags:
 - SASS
 - Bootstrap
+- Typescript
 - Angular
 - Angular-Material
-- Typescript
 ---
 

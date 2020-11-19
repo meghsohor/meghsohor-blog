@@ -30,7 +30,7 @@ const Layout = ({ children, pageTitle, postAuthor, hideSidebar }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata?.title || `MeghSohor`} />
-      <main id="page-content">
+      <main id="page-content" className="pt-4">
         <div className="container">
           {pageTitle && <h1 className="text-center mb-3">{pageTitle}</h1>}
 

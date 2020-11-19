@@ -5,9 +5,10 @@ import heroImg from "../images/hero-banner.jpeg"
 const Hero = () => {
     const gotoAboutSection = (e) => {
         e.preventDefault();
-        const aboutSection = document.querySelector('#about');
+        const positionY = document.querySelector('#about').offsetTop;
+        const headerHeight = document.querySelector('.site-header nav').clientHeight;
         window.scroll({
-          top: aboutSection.offsetTop,
+          top: positionY,
           behavior: "smooth",
         })
     }

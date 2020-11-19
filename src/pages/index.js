@@ -8,17 +8,19 @@ import Hero from "../components/hero"
 import About from "../components/about"
 import Portfolio from "../components/portfolio"
 import Career from "../components/career"
+import Blog from "../components/blog"
 
 const IndexPage = () => (
   <Fragment>
     <SEO title="Home" />
 
-    <main>
+    <main id="page-content">
       <Header siteTitle={`MeghSohor`} />
       <Hero />
       <About />
       <Portfolio />
       <Career />
+      <Blog />
       <Footer />
     </main>
   </Fragment>

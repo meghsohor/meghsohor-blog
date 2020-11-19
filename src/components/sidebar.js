@@ -23,7 +23,7 @@ const Sidebar = ({ postAuthor }) => {
                 <ul>
                   <li>
                     <a
-                      href="{postAuthor.linkedin}"
+                      href={postAuthor.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="linkedin"
@@ -33,7 +33,7 @@ const Sidebar = ({ postAuthor }) => {
                   </li>
                   <li>
                     <a
-                      href="{postAuthor.github}"
+                      href={postAuthor.github}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="instagram"
@@ -43,7 +43,7 @@ const Sidebar = ({ postAuthor }) => {
                   </li>
                   <li>
                     <a
-                      href="{postAuthor.twitter}"
+                      href={postAuthor.twitter}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="twitter"
@@ -53,7 +53,7 @@ const Sidebar = ({ postAuthor }) => {
                   </li>
                   <li>
                     <a
-                      href="{postAuthor.stackoverflow}"
+                      href={postAuthor.stackoverflow}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="google"

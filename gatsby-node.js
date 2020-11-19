@@ -83,14 +83,14 @@ exports.createPages = async ({actions, graphql}) => {
     tags = _.uniq(tags);
 
     // Create tags page where all the tags and the number of post count against each tag will be displayed
-    createPage({
+    /* createPage({
         path: '/tags',
         component: templates.tagsPage,
         context: {
             tags,
             tagPostCounts
         }
-    });
+    }); */
 
     // Create tag posts pages
     tags.forEach(tag => {

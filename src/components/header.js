@@ -22,7 +22,7 @@ const Header = ({ siteTitle }) => {
 
   return (
     <header className="site-header">
-      <Navbar fixed="top" light expand="md">
+      <Navbar light expand="md">
         <div className="container">
           <NavbarBrand className="header-logo" href="/">
             <img src={logo} alt={siteTitle} />
@@ -40,11 +40,11 @@ const Header = ({ siteTitle }) => {
                   Team
                 </NavLink>
               </NavItem> */}
-              <NavItem>
+              {/* <NavItem>
                 <NavLink href="/tags" active={currentPage === "/tags"}>
                   Tags
                 </NavLink>
-              </NavItem>
+              </NavItem> */}
               <NavItem>
                 <NavLink href="/about" active={currentPage === "/about"}>
                   About

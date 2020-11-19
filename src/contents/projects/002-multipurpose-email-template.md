@@ -2,7 +2,7 @@
 posttype: 'portfolio'
 title: 'MultiPurpose - Email Template'
 date: 2016-04-01 10:00:00
-link: 'http://www.meghsohor.com/portfolio-item/csm/'
+link: 'http://www.meghsohor.com/email/multipurpose/'
 image: '../../images/multipurpose-email-template.jpg'
 tags:
 - html

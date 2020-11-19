@@ -8,16 +8,16 @@ const Post = (props) => {
     const { title, author, path, date, body, image, tags } = props.post;
 
     return (
-      <Card className="mb-5">
+      <Card className={props.noMargin ? "" : "mb-5"}>
         <Link to={path}>
           <Img className="card-img-top" fluid={image} />
         </Link>
         <CardBody>
-          <CardTitle tag="h4">
+          <CardTitle tag="h5">
             <Link to={path}>{title}</Link>
           </CardTitle>
           <CardSubtitle className="text-muted">{date}</CardSubtitle>
-          <hr/>
+          <hr />
           <CardText>{body}</CardText>
 
           <div className="d-flex align-items-center">
@@ -25,7 +25,7 @@ const Post = (props) => {
               {tags.map((tag, i) => (
                 <li key={i}>
                   <Link
-                    className="badge badge-primary p-2 px-2 tag"
+                    className="badge badge-default p-2 px-2 tag"
                     to={`/tag/${slugify(tag)}`}
                   >
                     {tag}
