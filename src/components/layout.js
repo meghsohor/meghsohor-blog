@@ -40,8 +40,8 @@ const Layout = ({ children, pageTitle, postAuthor, hideSidebar }) => {
             </Row>
           ) : (
             <Row>
-              <Col md="8">{children}</Col>
-              <Col md="4">
+              <Col lg="8">{children}</Col>
+              <Col lg="4">
                 <Sidebar postAuthor={postAuthor} />
               </Col>
             </Row>

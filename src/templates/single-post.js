@@ -31,12 +31,17 @@ const SinglePost = ({data, pageContext}) => {
           authorImageFluid: data.file.childImageSharp.fluid,
         }}
       >
-        <SEO title={post.title} />
+        <SEO
+          title={post.title}
+          keyword={post.tags}
+          description={post.postdescription}
+        />
 
         <Card className="single-post-card">
           <Img
             className="card-img-top"
             fluid={post.image.childImageSharp.fluid}
+            alt={post.postdescription}
           />
           <CardBody>
             <CardTitle tag="h3" className="mb-4">
@@ -68,7 +73,7 @@ const SinglePost = ({data, pageContext}) => {
           </CardBody>
         </Card>
 
-        <h3 className="text-center mt-5">Share this post</h3>
+        <h3 className="text-center mt-4">Share this post</h3>
         <div className="text-center social-share-links">
           <ul>
             <li>
@@ -114,7 +119,7 @@ const SinglePost = ({data, pageContext}) => {
           </ul>
         </div>
 
-        <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
+        <DiscussionEmbed className="mb-4" shortname={disqusShortname} config={disqusConfig} />
       </Layout>
     )
 }
@@ -128,6 +133,7 @@ export const postQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         author
+        postdescription
         image {
           childImageSharp {
             fluid(maxWidth: 600) {

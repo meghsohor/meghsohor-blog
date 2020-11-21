@@ -5,7 +5,7 @@ import Img from 'gatsby-image'
 import { slugify } from '../utils/utilityFunctions'
 
 const Post = (props) => {
-    const { title, author, path, date, body, image, tags } = props.post;
+    const { title, path, date, body, image, tags } = props.post;
 
     return (
       <Card className={props.noMargin ? "" : "mb-5"}>

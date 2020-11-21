@@ -11,14 +11,16 @@ const About = () => {
           <span>About Me</span>
         </h2>
         <div className="row">
-          <div className="col-sm-4 col-md-4">
-            <img
-              className="img-thumbnail"
-              src={shuvo}
-              alt="Shafiqul Islam Shuvo"
-            />
+          <div className="col-md-12 col-lg-4">
+            <div className="text-center mb-4">
+              <img
+                className="img-thumbnail"
+                src={shuvo}
+                alt="Shafiqul Islam Shuvo"
+              />
+            </div>
           </div>
-          <div className="col-sm-8 col-md-8">
+          <div className="col-md-12 col-lg-8">
             <p>
               I am a Software Developer focused and specialized on the Front-End
               stacks. My journey began in 2016 after completing the{" "}
@@ -79,8 +81,8 @@ const About = () => {
       <div className="about-me-container">
         <div className="container">
           <div className="row">
-            <div className="col-sm-3 col-md-3">
-              <div className="about-me-segment">
+            <div className="col-sm-12 col-md-6 col-lg-3">
+              <div className="about-me-segment mb-3">
                 <h5 className="text-center text-uppercase">Socials</h5>
                 <div className="d-flex justify-content-center">
                   <a
@@ -119,24 +121,29 @@ const About = () => {
               </div>
             </div>
 
-            <div className="col-sm-3 col-md-3">
-              <div className="about-me-segment text-center">
+            <div className="col-sm-12 col-md-6 col-lg-3">
+              <div className="about-me-segment mb-3 text-center">
                 <h5 className="text-uppercase">Email</h5>
                 <p className="mb-2">meghsohor@gmail.com</p>
               </div>
             </div>
 
-            <div className="col-sm-3 col-md-3">
-              <div className="about-me-segment text-center">
+            <div className="col-sm-12 col-md-6 col-lg-3">
+              <div className="about-me-segment mb-3 text-center">
                 <h5 className="text-uppercase">Resume</h5>
-                <a href={cv} target="_blank" className="cv-link">
+                <a
+                  href={cv}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cv-link"
+                >
                   <i className="fa fa-lg fa-file-pdf-o"></i> View/Download
                 </a>
               </div>
             </div>
 
-            <div className="col-sm-3 col-md-3">
-              <div className="about-me-segment text-center">
+            <div className="col-sm-12 col-md-6 col-lg-3">
+              <div className="about-me-segment mb-3 text-center">
                 <h5 className="text-uppercase">Phone</h5>
                 <p className="mb-2">+880 1771123333</p>
               </div>

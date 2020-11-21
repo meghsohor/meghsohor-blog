@@ -4,6 +4,7 @@ title: 'Third Post - CSS'
 date: 2020-11-12 12:00:00
 author: 'Shafiqul Islam Shuvo'
 image: '../../images/post.jpg'
+postdescription: "Thirdly"
 tags:
 - design
 - tutorial

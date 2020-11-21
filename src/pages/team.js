@@ -6,8 +6,6 @@ import SEO from "../components/seo"
 
 import authors from '../utils/authors'
 import { slugify } from '../utils/utilityFunctions'
-import JohnImg from '../images/john.jpg'
-import JaneImg from '../images/jane.jpg'
 
 const TeamPage = () => (
   <Layout pageTitle="Team Page">

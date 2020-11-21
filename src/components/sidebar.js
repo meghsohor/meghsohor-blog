@@ -2,7 +2,6 @@ import React from 'react'
 import { graphql, Link, StaticQuery } from 'gatsby'
 import Img from 'gatsby-image'
 import { Card, CardBody, CardTitle, Form, FormGroup, Input, CardText } from 'reactstrap'
-import authors from '../utils/authors'
 
 const Sidebar = ({ postAuthor }) => {
     return (

@@ -6,7 +6,6 @@ const Hero = () => {
     const gotoAboutSection = (e) => {
         e.preventDefault();
         const positionY = document.querySelector('#about').offsetTop;
-        const headerHeight = document.querySelector('.site-header nav').clientHeight;
         window.scroll({
           top: positionY,
           behavior: "smooth",
@@ -30,7 +29,7 @@ const Hero = () => {
         </div>
 
         <div className="learn-more">
-          <a href="#" onClick={gotoAboutSection}>
+          <a href="/" onClick={gotoAboutSection}>
             <div className="text">Learn More</div>
             <div className="icon">
               <i className="fa fa-chevron-down"></i>

@@ -8,7 +8,6 @@ import {
   Badge,
   CardSubtitle,
 } from "reactstrap"
-import Img from "gatsby-image"
 
 const Career = () => (
   <StaticQuery
