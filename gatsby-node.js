@@ -107,24 +107,25 @@ exports.createPages = async ({actions, graphql}) => {
     const postPerPage = 2;
     const numberOfPages = Math.ceil(posts.length / postPerPage);
 
-    Array.from({length: numberOfPages}).forEach((_, index) => {
-        const isFirstPage = index === 0;
-        const currentPage = index + 1;
+    if (numberOfPages > 1) {
+      Array.from({ length: numberOfPages }).forEach((_, index) => {
+        const isFirstPage = index === 0
+        const currentPage = index + 1
 
-        if (isFirstPage)
-            return;
+        if (isFirstPage) return
 
         createPage({
-            path: `blog/page/${currentPage}`,
-            component: templates.postList,
-            context: {
-                limit: postPerPage,
-                skip: index * postPerPage,
-                currentPage,
-                numberOfPages
-            }
+          path: `blog/page/${currentPage}`,
+          component: templates.postList,
+          context: {
+            limit: postPerPage,
+            skip: index * postPerPage,
+            currentPage,
+            numberOfPages,
+          },
         })
-    });
+      })
+    }
 
     // Create author pages
     authors.forEach(author => {

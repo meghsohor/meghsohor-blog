@@ -45,11 +45,11 @@ const Header = ({ siteTitle }) => {
                   Tags
                 </NavLink>
               </NavItem> */}
-              <NavItem>
+              {/* <NavItem>
                 <NavLink href="/about" active={currentPage === "/about"}>
                   About
                 </NavLink>
-              </NavItem>
+              </NavItem> */}
             </Nav>
           </Collapse>
         </div>

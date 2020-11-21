@@ -12,7 +12,8 @@ const BlogPage = () => (
     <StaticQuery
       query={blogQuery}
       render={data => {
-        const numberOfPages = Math.ceil(data.allMarkdownRemark.totalCount / 2)
+        const numberOfPages = Math.ceil(data.allMarkdownRemark.totalCount / 2);
+        console.log(numberOfPages)
 
         return (
           <Fragment>
@@ -26,7 +27,9 @@ const BlogPage = () => (
               return <Post key={node.id} post={post} />
             })}
 
-            <PaginationLinks currentPage={1} numberOfPages={numberOfPages} />
+            {numberOfPages > 1 && (
+              <PaginationLinks currentPage={1} numberOfPages={numberOfPages} />
+            )}
           </Fragment>
         )
       }}
