@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `MeghSohor`,
@@ -69,6 +73,12 @@ module.exports = {
             },
           },
         ],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-mailchimp",
+      options: {
+        endpoint: process.env.MAILCHIMP_ENDPOINT,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

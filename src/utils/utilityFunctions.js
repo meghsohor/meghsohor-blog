@@ -9,4 +9,11 @@ const slugify = function(text) {
         .replace(/-+$/, '')         // Trim - from end of text
 }
 
-module.exports = { slugify }
+const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+
+const emailValidator = email => {
+  return EMAIL_REGEX.test(email)
+}
+
+module.exports = { slugify, emailValidator }
