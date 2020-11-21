@@ -1,5 +1,6 @@
 import React, { Fragment } from "react"
 
+import "../styles/main.css"
 
 import Header from "../components/header"
 import Footer from "../components/footer"

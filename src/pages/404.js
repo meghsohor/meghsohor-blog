@@ -1,5 +1,7 @@
 import React from "react"
 
+import "../styles/main.css"
+
 import SEO from "../components/seo"
 
 const NotFoundPage = () => (
