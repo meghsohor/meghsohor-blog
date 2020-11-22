@@ -5,11 +5,36 @@
 [![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/meghsohor/meghsohor-blog#readme)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/meghsohor/meghsohor-blog/graphs/commit-activity)
 [![License: 0BSD](https://img.shields.io/github/license/meghsohor/meghsohor-blog)](https://github.com/meghsohor/meghsohor-blog/blob/master/LICENSE)
-[![Twitter: meghsohoror](https://img.shields.io/twitter/follow/meghsohoror.svg?style=social)](https://twitter.com/meghsohoror)
+[![Twitter: meghsohor](https://img.shields.io/twitter/follow/meghsohoror.svg?style=social)](https://twitter.com/meghsohor)
 
-### 🏠 [Homepage](https://github.com/meghsohor/meghsohor-blog#readme)
+![](https://github.com/meghsohor/meghsohor-blog/homepage.jpg)
 
+Hi, I am a Software Developer focused and specialized on the Front-End stacks. Experienced with HTML, CSS/SCSS, JavaScript, Typescript, jQuery, Angular, React, WordPress & PHP. I have created this blog to write posts on the Software Development things. I am also going to showcase my projects and my career here.
+Checkout the live site here:
 ### ✨ [Live](https://meghsohor.netlify.app/)
+
+The site is developed in **gatsby** and here are some of the highlighted features:
+- Homepage: showcases my portfolios, job experiences and a few popular posts from my blog
+- Blog page: All the posts can be found in this page.
+- Single Post page: Clicking on a blog post will take to the single post page
+- Post category page: Clicking on a tag from a post will show the list of the posts under the same category
+- Newsletter Subscription:  Mailchimp newsletter subscription integrated
+
+### The project is open!
+And I would like to help you if you want to use this project to build your personal blog and portfolio site. 
+
+#### What are the benifits?
+- Multiple post types: blog, portfolio, job
+- Newsletter subscription integrated (You can easily add your mailchimp subscription endpoint)
+- Easy to create posts using **markdown** language (you can use this [**online editor**](https://pandao.github.io/editor.md/en.html) to write post in markdown language)
+- Mobile Responsive
+- SEO friendly
+- Easy to deploy (It is really easy to deploy the app in **netlify** from **github** repo and it is **free**)
+
+The workflow is very simple. Once you deploy the app in netlify, you can publish new posts very easily:
+Create a post in your local project -> commit the changes -> push the changes to git repo -> netlify will automatically pull the latest content from the repo and publish the changes to live
+
+
 
 ## Prerequisites
 
