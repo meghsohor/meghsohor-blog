@@ -1,7 +1,7 @@
 ---
 posttype: "blog"
 title: "CSS Shapes 101"
-date: 2020-11-12 10:00:00
+date: 2019-09-26 10:00:00
 author: "Shafiqul Islam Shuvo"
 image: "../../images/css-shapes-hero-image.jpg"
 postdescription: "This article describes styles of different shapes: triangles, parallelograms, diamonds, comic bubbles, and more using CSS only"

@@ -7,12 +7,12 @@ import Post from "../components/post"
 import PaginationLinks from "../components/pagination"
 
 const BlogPage = () => (
-  <Layout pageTitle="MeghSohor Blog">
-    <SEO title="Blog" />
+  <Layout>
+    <SEO title="MeghSohor Blog" />
     <StaticQuery
       query={blogQuery}
       render={data => {
-        const numberOfPages = Math.ceil(data.allMarkdownRemark.totalCount / 2);
+        const numberOfPages = Math.ceil(data.allMarkdownRemark.totalCount / 5) // How many posts to be shown in the first page
         console.log(numberOfPages)
 
         return (
@@ -41,7 +41,7 @@ export const blogQuery = graphql`
   query {
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
-      limit: 2
+      limit: 5
       filter: { frontmatter: { posttype: { eq: "blog" } } }
     ) {
       totalCount

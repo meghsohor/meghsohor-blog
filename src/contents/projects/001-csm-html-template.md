@@ -2,7 +2,7 @@
 posttype: 'portfolio'
 title: 'HTML Template for Business Showcase'
 date: 2016-03-01 10:00:00
-link: 'http://www.meghsohor.com/csm/'
+link: 'https://meghsohor.github.io/portfolio/csm/'
 image: '../../images/csm.jpg'
 tags:
 - html

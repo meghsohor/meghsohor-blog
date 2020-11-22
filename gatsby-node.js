@@ -104,7 +104,7 @@ exports.createPages = async ({actions, graphql}) => {
     });
 
     // Create Blog posts pages
-    const postPerPage = 2;
+    const postPerPage = 5; // How many posts to be shown in each page
     const numberOfPages = Math.ceil(posts.length / postPerPage);
 
     if (numberOfPages > 1) {
@@ -128,7 +128,7 @@ exports.createPages = async ({actions, graphql}) => {
     }
 
     // Create author pages
-    authors.forEach(author => {
+    /* authors.forEach(author => {
         createPage({
             path: `/author/${slugify(author.name)}`,
             component: templates.authorPosts,
@@ -137,5 +137,5 @@ exports.createPages = async ({actions, graphql}) => {
                 authorImg: author.imageUrl
             }
         })
-    })
+    }) */
 }

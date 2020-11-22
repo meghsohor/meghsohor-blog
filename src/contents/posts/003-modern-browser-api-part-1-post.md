@@ -1,7 +1,7 @@
 ---
 posttype: 'blog'
 title: 'Modern Browser APIs - Part 1'
-date: 2020-11-12 12:00:00
+date: 2020-10-03 12:00:00
 author: 'Shafiqul Islam Shuvo'
 image: '../../images/modern-browser-api.jpg'
 postdescription: "The modern browsers have created a handful of APIs which can help the developers to build applications that can perform better, work offline, and provide a better user experience."
