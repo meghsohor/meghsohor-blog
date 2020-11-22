@@ -1,4 +1,4 @@
-# Welcome to meghsohor-blog 👋
+# Welcome to my Blog and Portfolio
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
 ![Prerequisite](https://img.shields.io/badge/npm-%3E%3D6.9.0-blue.svg)
 ![Prerequisite](https://img.shields.io/badge/node-%3E%3D10.16.0-blue.svg)
@@ -7,7 +7,7 @@
 [![License: 0BSD](https://img.shields.io/github/license/meghsohor/meghsohor-blog)](https://github.com/meghsohor/meghsohor-blog/blob/master/LICENSE)
 [![Twitter: meghsohor](https://img.shields.io/twitter/follow/meghsohoror.svg?style=social)](https://twitter.com/meghsohor)
 
-![](https://github.com/meghsohor/meghsohor-blog/homepage.jpg)
+![](https://github.com/meghsohor/meghsohor-blog/src/images/homepage.jpg)
 
 Hi, I am a Software Developer focused and specialized on the Front-End stacks. Experienced with HTML, CSS/SCSS, JavaScript, Typescript, jQuery, Angular, React, WordPress & PHP. I have created this blog to write posts on the Software Development things. I am also going to showcase my projects and my career here.
 Checkout the live site here:
