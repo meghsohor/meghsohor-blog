@@ -27,6 +27,7 @@ module.exports = {
       },
     },
     {
+      // path added for Blog posts
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `posts`,
@@ -34,6 +35,7 @@ module.exports = {
       },
     },
     {
+      // path added for portfolio posts
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `portfolio`,
@@ -41,6 +43,7 @@ module.exports = {
       },
     },
     {
+      // path added for job posts
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `career`,
@@ -58,7 +61,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/favicon.png`, // This path is relative to the root of the site.
+        icon: `src/images/icon.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-sharp`,
@@ -78,11 +81,11 @@ module.exports = {
     {
       resolve: "gatsby-plugin-mailchimp",
       options: {
-        endpoint: process.env.MAILCHIMP_ENDPOINT,
+        endpoint: process.env.MAILCHIMP_ENDPOINT, // Mailchimp endpoint should be added here
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
   ],
 }

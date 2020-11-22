@@ -31,7 +31,7 @@ const Blog = () => (
                       className="col-xl-4 col-md-6 d-flex flex-column mb-4"
                       key={node.id}
                     >
-                      <Post post={post} noMargin />
+                      <Post post={post} noMargin columnView />
                     </div>
                   )
                 })}

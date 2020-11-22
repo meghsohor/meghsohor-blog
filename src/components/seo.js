@@ -29,7 +29,6 @@ function SEO({ description, lang, meta, title, img }) {
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
   const siteImg = img || homeImage
-  console.log(siteImg)
 
   return (
     <Helmet
@@ -74,6 +73,10 @@ function SEO({ description, lang, meta, title, img }) {
         {
           name: `twitter:description`,
           content: metaDescription,
+        },
+        {
+          name: `twitter:image`,
+          content: siteImg,
         },
       ].concat(meta)}
     />
