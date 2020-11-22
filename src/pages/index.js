@@ -13,7 +13,7 @@ import Blog from "../components/blog"
 
 const IndexPage = () => (
   <Fragment>
-    <SEO title="Home" />
+    <SEO title="Welcome to Home page of my blog and portfolio site" />
 
     <main id="page-content">
       <Header siteTitle={`MeghSohor`} />

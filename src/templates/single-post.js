@@ -24,6 +24,7 @@ const SinglePost = ({data, pageContext}) => {
         url: baseUrl + pageContext.slug
     }
 
+
     return (
       <Layout
         postAuthor={{
@@ -35,6 +36,7 @@ const SinglePost = ({data, pageContext}) => {
           title={post.title}
           keyword={post.tags}
           description={post.postdescription}
+          img={post.image.childImageSharp.fluid.src}
         />
 
         <Card className="single-post-card">

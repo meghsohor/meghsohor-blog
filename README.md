@@ -13,7 +13,7 @@
 
 Hi, I am a Software Developer focused and specialized on the Front-End stacks. Experienced with HTML, CSS/SCSS, JavaScript, Typescript, jQuery, Angular, React, WordPress & PHP. I have created this blog to write posts on the Software Development things. I am also going to showcase my projects and my career here.
 Checkout the live site here:
-#### [Live: MeghSohor Blog](https://meghsohor.netlify.app/)
+### [Live: MeghSohor Blog](https://meghsohor.netlify.app/)
 
 The site is developed in **gatsby** and here are some of the highlighted features:
 - **Homepage**: showcases my portfolios, job experiences and a few popular posts from my blog
