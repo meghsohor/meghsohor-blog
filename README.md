@@ -21,6 +21,7 @@ The site is developed in **gatsby** and here are some of the highlighted feature
 - **Single Post page**: Clicking on a blog post will take to the single post page
 - **Post category page**: Clicking on a tag from a post will show the list of the posts under the same category
 - **Newsletter Subscription**:  Mailchimp newsletter subscription integrated
+- **PWA** & **Offline** enabled
 
 ***
 

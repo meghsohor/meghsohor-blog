@@ -1,6 +1,6 @@
 @import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import url("../../node_modules/font-awesome/css/font-awesome.min.css");
-@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap");
 
 /*-------- Base Styles ---------*/
@@ -117,7 +117,7 @@ ul {
 .site-header .navbar .navbar-nav .nav-link {
   color: #2d9fd2;
   font-size: 1.15rem;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   position: relative;
   transition: all 0.25s ease-in-out;
@@ -374,7 +374,7 @@ ul {
 .job-period {
   background: #151d2a;
   color: #fff;
-  font-weight: 500;
+  font-weight: 600;
   position: relative;
   text-transform: uppercase;
   padding: 0.75rem 1rem;
@@ -405,7 +405,7 @@ ul {
 }
 .career-card .card-subtitle {
   font-style: italic;
-  font-weight: 500;
+  font-weight: 600;
   color: #777;
   padding-bottom: 0.25rem;
   border-bottom: 1px solid #dadada;
@@ -481,7 +481,7 @@ ul.post-tags li .tag {
   margin-bottom: 1rem;
   padding-top: 0.5rem;
   padding-right: 0.5rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 .single-post-card {}
 
