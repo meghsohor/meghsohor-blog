@@ -9,7 +9,9 @@ const Post = (props) => {
 
     return (
       <Card
-        className={`${props.noMargin ? "" : "mb-5"} ${props.columnView ? "blog-card" : ""}`}
+        className={`${props.noMargin ? "" : "mb-5"} ${
+          props.columnView ? "blog-card" : ""
+        }`}
       >
         <Link to={path}>
           <Img className="card-img-top" fluid={image} />
@@ -22,7 +24,7 @@ const Post = (props) => {
           <hr />
           <CardText>{body}</CardText>
 
-          <div className="d-flex align-items-center mt-auto">
+          <div className="d-flex align-items-center mt-auto flex-wrap">
             <ul className="post-tags">
               {tags.map((tag, i) => (
                 <li key={i}>
