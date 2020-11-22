@@ -1,8 +1,8 @@
 {
   "name": "meghsohor-blog",
   "private": true,
-  "description": "The site is developed with Gatsby",
-  "version": "0.1.0",
+  "description": "Portfolio and Blog site of Shafiqul Islam Shuvo",
+  "version": "1.0.0",
   "author": "Shuvo <meghsohor@gmail.com>",
   "dependencies": {
     "bootstrap": "^4.5.3",
@@ -30,7 +30,11 @@
     "prettier": "2.1.2"
   },
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "blog",
+    "portfolio",
+    "javascript",
+    "react"
   ],
   "license": "0BSD",
   "scripts": {
@@ -39,14 +43,17 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "clean": "gatsby clean"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/meghsohor/meghsohor-blog"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/meghsohor/meghsohor-blog/issues"
+  },
+  "engines": {
+    "npm": ">=6.9.0",
+    "node": ">=10.16.0"
   }
 }
