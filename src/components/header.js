@@ -35,6 +35,11 @@ const Header = ({ siteTitle }) => {
                   Blog
                 </NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink href="/search" active={currentPage.includes('/search')}>
+                  Search
+                </NavLink>
+              </NavItem>
               {/* <NavItem>
                 <NavLink href="/team" active={currentPage === "/team"}>
                   Team

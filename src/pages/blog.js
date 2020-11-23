@@ -13,7 +13,6 @@ const BlogPage = () => (
       query={blogQuery}
       render={data => {
         const numberOfPages = Math.ceil(data.allMarkdownRemark.totalCount / 5) // How many posts to be shown in the first page
-        console.log(numberOfPages)
 
         return (
           <Fragment>
