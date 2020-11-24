@@ -20,6 +20,7 @@ The site is developed in **gatsby** and here are some of the highlighted feature
 - **Blog page**: All the posts can be found in this page.
 - **Single Post page**: Clicking on a blog post will take to the single post page
 - **Post category page**: Clicking on a tag from a post will show the list of the posts under the same category
+- **Post search**: Google custom search integrated
 - **Newsletter Subscription**:  Mailchimp newsletter subscription integrated
 - **Post Comments**: visitors can comment on a post (**Disqus** plugin integrated)
 - **PWA** & **Offline** enabled
