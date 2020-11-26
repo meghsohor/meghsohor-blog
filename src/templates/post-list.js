@@ -10,7 +10,7 @@ const PostList = props => {
   const posts = props.data.allMarkdownRemark.edges
   const { currentPage, numberOfPages } = props.pageContext
   return (
-    <Layout pageTitle={`Blog Page: ${currentPage}`}>
+    <Layout>
       <SEO title="MeghSohor Blog" />
 
       {posts.map(({ node }) => {

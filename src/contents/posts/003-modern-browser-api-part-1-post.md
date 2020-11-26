@@ -37,7 +37,7 @@ The modern browsers have created a handful of APIs which can help the developers
 
 <h6>Demo:</h6>
 
-<pre class="snippet">
+```javascript
 function animate() {
 
 // your code goes here
@@ -47,17 +47,17 @@ function animate() {
 }
 // Intial call to the function
 animate();
-</pre>
+```
 
 <p>We also can stop animation using the <code>window.cancelAnimationFrame</code> method:</p>
 
-<pre class="snippet">
+```javascript
   window.cancelAnimationFrame(animate);
-</pre>
+```
 
 <h6>A polling function to wait for an HTML element using <code>requestAnimationFrame</code> :</h6>
 
-<pre class="snippet">
+```javascript
 const waitForElement = function (elem) {
   if (typeof elem === 'string') {
       return new Promise(function (resolve) {
@@ -78,7 +78,7 @@ const waitForElement = function (elem) {
 waitForElement('body').then(function(body){
   body.style.background = 'red';
 });
-</pre>
+```
 
 
 
@@ -87,9 +87,9 @@ waitForElement('body').then(function(body){
 
 <p>The browser will download and cache the resource in the background with a low priority, so it won't interfere with more important resources.</p>
 
-<pre class="snippet">
-  &lt;link rel="prefetch" href="/your-resource-link" /&gt;
-</pre>
+```markdown
+  <link rel="prefetch" href="/your-resource-link" />
+```
 
 
 <h5 class="post-subheading">Resource Preload</h5>
@@ -97,9 +97,9 @@ waitForElement('body').then(function(body){
 <p><strong>Resource preloading</strong> is similar to <strong>Resource prefetching</strong> but the difference is that <strong>Prefetching</strong> is a way to tell the browser what resource to download that likely to be accessed on the next navigation and <strong>Preloading</strong> is to load a resource that will be needed for the current page.</p>
 <p>The syntax is similar but we also need to provide the resource type in <code>as</code> attribute.</p>
 
-<pre class="snippet">
-  &lt;link rel="preload" href="/images/background.jpg" as="image" /&gt;
-</pre>
+```markdown
+  <link rel="preload" href="/images/background.jpg" as="image" />
+```
 
 
 <h5 class="post-subheading">Navigator.sendBeacon</h5>
@@ -108,19 +108,19 @@ waitForElement('body').then(function(body){
 <br>
 We can use <code>XMLHttpRequest</code> in an <code>unload</code> handler. But it will prevent the browser to load the next page until the request is completed.</p>
 
-<pre class="snippet">
+```javascript
 window.addEventListener("unload", function() {
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "/log", false); // third parameter of `false` means synchronous
   xhr.send(data);
 });
-</pre>
+```
 
 <p>But <code>Navigator.sendBeacon()</code> is here to solve that problem. This method is useful when you need to send a data through <strong>Ajax</strong> but don't expect a response. And the request is executed <strong>asynchronously</strong> when the browser gets a chance to send the data during the idle processing time.</p>
 
 <p><code>Navigator.sendBeacon()</code> takes <strong>two</strong> parameters: first one is the <strong>url</strong> and second one is the <strong>data</strong>. The function will return a <code>true</code> response when the data is successfully sent to server or <code>false</code> if the request isn't successful.</p>
 
-<pre class="snippet">
+```javascript
 window.addEventListener("unload", function() {
   if (navigator.sendBeacon) {
     // Send the beacon
@@ -129,7 +129,7 @@ window.addEventListener("unload", function() {
     console.log(status);
   }
 };
-</pre>
+```
 
 
 <h5 class="post-subheading">Intersection Observer</h5>
@@ -137,7 +137,7 @@ window.addEventListener("unload", function() {
 <p>It is hard to find a Developer who didn't write/use a code to check if <strong><em>an element is visible in the viewport</em></strong>.</p>
 <p>We usually create a function and attach it to the <code>scroll</code> event and check if the target element pops up in the screen. Check the following snippet in <strong>jQuery</strong>:</p>
 
-<pre class="snippet">
+```javascript
 $(window).scroll(function() {
   var top_of_element = $("#element").offset().top;
   var bottom_of_element = $("#element").offset().top + $("#element").outerHeight();
@@ -150,23 +150,23 @@ $(window).scroll(function() {
       // the element is not visible, do something else
   }
 });
-</pre>
+```
 
 <p><strong><em>Whew!</em></strong> Lots of calculations is going on there which I have never been able to remember. 
 <br>
 But, we now have <code>IntersectionObserver()</code> method which can save us from all of these troubles.</p>
 
-<pre class="snippet">
+```javascript
 const observer = new IntersectionObserver(function(elements) {
   console.log(elements);
 });
 
 observer.observe(document.querySelectorAll('p'));
-</pre>
+```
 
 <p>The first argument of <strong>IntersectionObserver</strong> is a <code>function</code> that can take an array of HTML elements. There is a second optional argument that takes an object of options:</p>
 
-<pre class="snippet">
+```javascript
 const observer = new IntersectionObserver(function(elements) {
   elements.forEach(function(element) {
       if (element.intersectionRatio >= 0.5 && element.intersectionRatio < 1) {
@@ -183,4 +183,4 @@ const observer = new IntersectionObserver(function(elements) {
 });
 
 observer.observe(document.querySelectorAll('p'));
-</pre>
+```

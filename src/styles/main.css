@@ -15,10 +15,10 @@ body {
 }
 
 a {
-  color: #0056b3;
+  color: #0f5d9c;
 }
-a:hover {
-  color: #007bff;
+a:hover, a:active {
+  color: #2d9fd2;
   text-decoration: none;
 }
 
@@ -246,7 +246,7 @@ ul {
   transition: 0.3s;
   opacity: 1;
 }
-.hero-section .learn-more a {
+.hero-section .learn-more a, .hero-section .learn-more a:visited {
   color: #fff;
   font-weight: 600;
 }
@@ -457,7 +457,7 @@ ul.post-tags {
 }
 ul.post-tags li {
   margin-right: 0.25rem;
-  margin-bottom: 0.5rem;
+  /* margin-bottom: 0.5rem; */
 }
 ul.post-tags li .tag {
   font-size: 0.9rem;
@@ -587,6 +587,13 @@ ul.post-tags li .tag {
 }
 
 /*----------- Code Styles ---------------*/
+:root {
+  --deckgo-highlight-code-font-family: "Fira Code", monospace;
+  --deckgo-highlight-code-font-size: 0.9rem;
+}
+deckgo-highlight-code {
+  margin-bottom: 2rem;
+}
 code {
   font-size: 1rem;
   font-family: "Fira Code", monospace;
@@ -620,6 +627,45 @@ code {
   display: inline-block;
   left: 50%;
   margin-left: -18px;
+}
+
+.point-list {
+  padding: 0;
+}
+.point-list li {
+  position: relative;
+  margin-bottom: 5px;
+  padding-left: 25px;
+}
+.point-list li:last-child {
+  margin-bottom: 0;
+}
+.point-list li:before {
+  content: "\f01d";
+  color: #0f5d9c;
+  font: normal normal normal 14px/1 FontAwesome;
+  position: absolute;
+  top: 5px;
+  left: 0;
+}
+blockquote {
+  padding: 0.25rem 0 0.25rem 1rem;
+  color: #4a5d6d;
+  font-style: italic;
+  border-left: 4px solid #a6b9ca;
+}
+blockquote p {
+  margin-bottom: 0;
+}
+.number-list {
+  padding-left: 1rem;
+}
+.number-list li {
+  margin-bottom: 0.5rem;
+  padding-left: 0.25rem;
+}
+.number-list li:last-child {
+  margin-bottom: 0;
 }
 
 /*-------- 404 Page Styles -------------*/

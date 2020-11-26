@@ -75,6 +75,13 @@ module.exports = {
               maxWidth: 800,
             },
           },
+          {
+            resolve: `gatsby-remark-highlight-code`,
+            options: {
+              terminal: "carbon",
+              theme: "zenburn",
+            },
+          },
         ],
       },
     },

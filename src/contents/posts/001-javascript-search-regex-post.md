@@ -19,14 +19,14 @@ Being able to accurately and efficiently filter search results based on a user�
 <p>A common way to achieve this is simply to use JavaScript’s <code>.filter()</code> function and check if any of the
   elements <code>.includes()</code> the user’s input.</p>
 
-<pre class="snippet">
+```javascript
 filterFunction = (userInput) =>{
   var filteredNames = names.filter((x)=>{ 
     return x.includes(userInput)
   }   
   return filteredNames
 }
-</pre>
+```
 
 <p>This function checks if the user’s input matches any part of any of the names in the array. If our array of names
   contains ‘Tom’, ‘Jerry’, ‘Larry’, ‘Barry’, and the user types in <strong>‘T’</strong>, the filtered list will only
@@ -46,25 +46,25 @@ filterFunction = (userInput) =>{
 
 <p>We are using Bootstrap to setup the layout of the page. See below for the HTML:</p>
 
-<pre class="snippet">
-&lt;div class="container"&gt;
-  &lt;h1 class="text-center title">All Star Wars Characters&lt;/h1&gt;
+```markdown
+<div class="container">
+  <h1 class="text-center title">All Star Wars Characters</h1>
 
-  &lt;div class="search-box"&gt;
-    &lt;div class="input-group"&gt;
-      &lt;div class="input-group-prepend"&gt;
-        &lt;div class="input-group-text"&gt;&lt;i class="fa fa-search"&gt;&lt;/i&gt;&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;input type="text" class="form-control" placeholder="Search Heroes..." onkeyup="searchHeroes()"&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class="heroesContainer"&gt;&lt;/div&gt;
-&lt;/div&gt;
-</pre>
+  <div class="search-box">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text"><i class="fa fa-search"></i></div>
+      </div>
+      <input type="text" class="form-control" placeholder="Search Heroes..." onkeyup="searchHeroes()">
+    </div>
+  </div>
+  <div class="heroesContainer"></div>
+</div>
+```
 
 <p>And CSS:</p>
 
-<pre class="snippet">
+```css
 .title {
   font-size: 5vw;
   font-weight: 300;
@@ -100,14 +100,14 @@ filterFunction = (userInput) =>{
   font-weight: 100;
   color: red;
 }
-</pre>
+```
 
 <p>Now, onto the JavaScript.
   <br>
   The array we are going to use contains the list of names of all <strong>432</strong> characters from one of the greatest Movie Series, <strong>Star Wars</strong>.
 </p>
 
-<pre class="snippet">
+```javascript
 const heroes = ["2-1B","4-LOM","8D8","99","0-0-0","A'Koba","Admiral Gial Ackbar","Sim Aloo","Almec",
 "Mas Amedda","Amee","Padmé Amidala","Cassian Andor","Fodesinbeed Annodue","Raymus Antilles","Wedge Antilles",
 "AP-5","Queen Apailana","Doctor Chelli Lona Aphra","Faro Argyus","Aiolin and Morit Astarte","Ello Asty",
@@ -163,11 +163,11 @@ const heroes = ["2-1B","4-LOM","8D8","99","0-0-0","A'Koba","Admiral Gial Ackbar"
 "WAC-47","Wald","Warok","Wicket W. Warrick","Watto","Taun We","Zam Wesell","Norra Wexley","Temmin 'Snap' Wexley",
 "Vanden Willard","Mace Windu","Commander Wolffe","Wollivan","Sabine Wren","Wuher","Kazuda Xiono","Yaddle","Yoda","(puppeteer)",
 "Joh Yowza","Wullf Yularen","Ziro the Hutt","Zuckuss","Constable Zuvio"];
-</pre>
+```
 
 <p>Let’s take a look at the function that is going to render all of the results in the container, <code>showHeroes</code>.</p>
 
-<pre class="snippet">
+```javascript
 showHeroes = (filteredHeroes) => {
   const container = document.querySelector('.heroesContainer');
   if (filteredHeroes.length > 0 ) {
@@ -184,7 +184,7 @@ showHeroes = (filteredHeroes) => {
     container.appendChild(h6);
   }
 }
-</pre>
+```
 
 <p>The function is passed an array as an argument. We iterate through the array and use JavaScript’s <code>createElement</code> function
 to create a <code>p</code> tag for each item in the array. Then we add the name at that iteration to the <code>innerText</code> of that <code>p</code> tag, which will represent the search results.</p>
@@ -195,15 +195,15 @@ to create a <code>p</code> tag for each item in the array. Then we add the name 
 
 <p>We also need to call this function with the <strong>heroes</strong> array in <code>document.onDOMContentLoaded</code> when the page loads for first time to initialize our results and show all the characters.</p>
 
-<pre class="snippet">
+```javascript
 document.addEventListener("DOMContentLoaded", () => {
   showHeroes(heroes)
 });
-</pre>
+```
 
 <p>Now, onto our filter function <code>searchHeroes()</code>.</p>
 
-<pre class="snippet">
+```javascript
 searchHeroes = () => {
   const searchText = event.target.value.toLowerCase();
 
@@ -213,7 +213,7 @@ searchHeroes = () => {
 
   showHeroes(filteredResult)
 }
-</pre>
+```
 
 <p>This function filters the <strong>heroes</strong> array based on whether or not any of the character names contains the user’s input. We also use <code>toLowerCase()</code> to improve input validation. Remember, <strong>‘Pam’</strong> is not equal to <strong>‘pam’</strong>, so without changing both the character name in the array and the user input to all lowercase, a user who types <strong>‘pam’</strong> will yield no search results.</p>
 
@@ -223,7 +223,7 @@ searchHeroes = () => {
 <p>Regex, short for ‘regular expression’, is a special text string for describing a search pattern. We are going to implement a search pattern using regex that takes the first three letters of a character’s name and compares it to the first three letters of the input.</p>
 <p>Check the <code>checkName()</code> function below:</p>
 
-<pre class="snippet">
+```javascript
 checkName = (name, str) => {
   const pattern = str.split("").map(letter => {
     return `(?=.*${letter})`
@@ -231,17 +231,17 @@ checkName = (name, str) => {
   const regex = new RegExp(`${pattern}`, "g");
   return name.match(regex);
 }
-</pre>
+```
 
 <br />
 <h6>Let’s break this down:</h6>
-<ul class="list-group mb-3">
-  <li class="list-group-item"><code>?=</code> is a positive lookahead.</li>
-  <li class="list-group-item"><code>.</code> matches any character except line break.</li>
-  <li class="list-group-item"><code>*</code> matches zero or more instances of a character.</li>
-  <li class="list-group-item"><code>()</code> is a capturing group, which is used to group characters together in a regular expression so that we can apply other
+<ul class="point-list mb-3">
+  <li><code>?=</code> is a positive lookahead.</li>
+  <li><code>.</code> matches any character except line break.</li>
+  <li><code>*</code> matches zero or more instances of a character.</li>
+  <li><code>()</code> is a capturing group, which is used to group characters together in a regular expression so that we can apply other
   operators <code>(?=.*)</code>.</li>
-  <li class="list-group-item"><code>g</code> is the global modifier which performs a global search of the string looking for matches. You could also add <code>i</code> to <code>g</code> to make it an insensitive (not case sensitive) search as well, but in this case I have already converted the input and character name to lowercase letters, so the <code>g</code> modifier is sufficient.</li>  
+  <li><code>g</code> is the global modifier which performs a global search of the string looking for matches. You could also add <code>i</code> to <code>g</code> to make it an insensitive (not case sensitive) search as well, but in this case I have already converted the input and character name to lowercase letters, so the <code>g</code> modifier is sufficient.</li>  
 </ul>
 
 <p>This function splits our user input, iterates over the characters and uses string interpolation to add each letter to the <code>(?=.*)</code> regex after the asterisk(<code>*</code>). Once we have an array of regex patterns, we join all items in the array to create a larger regex pattern that encompasses all letters. From that we can use <code>new RegExp</code> to create a regular expression from the joined patterns.</p>
@@ -254,7 +254,7 @@ checkName = (name, str) => {
 
 <p>Now that we know what we are trying to accomplish and how to do it, let’s look at our revised <code>searchHeroes()</code> function:</p>
 
-<pre class="snippet">
+```javascript
 searchHeroes = () => {
   const searchText = event.target.value.toLowerCase().substring(0, 3);
   const filteredResult = heroes.filter(hero => {
@@ -263,7 +263,7 @@ searchHeroes = () => {
   });
   showHeroes(filteredResult)
 }
-</pre>
+```
 
 <p>We use <code>substring()</code> to take the first three letters of the input and the character’s name. Then we check if <code>hero.toLowerCase().includes(str)</code> is true. If it is, we skip the regex validation because <code>.includes()</code> is a more accurate match since its literally part of the character name, order and character wise.
 <br>

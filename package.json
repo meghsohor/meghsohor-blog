@@ -5,6 +5,7 @@
   "version": "1.0.0",
   "author": "Shuvo <meghsohor@gmail.com>",
   "dependencies": {
+    "@deckdeckgo/highlight-code": "^2.2.1",
     "bootstrap": "^4.5.3",
     "disqus-react": "^1.0.10",
     "font-awesome": "^4.7.0",
@@ -16,6 +17,7 @@
     "gatsby-plugin-offline": "^3.3.3",
     "gatsby-plugin-react-helmet": "^3.3.14",
     "gatsby-plugin-sharp": "^2.7.1",
+    "gatsby-remark-highlight-code": "^2.1.0",
     "gatsby-remark-images": "^3.5.1",
     "gatsby-source-filesystem": "^2.4.2",
     "gatsby-transformer-remark": "^2.9.2",
