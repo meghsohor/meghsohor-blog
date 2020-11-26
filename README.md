@@ -13,7 +13,7 @@
 
 Hi, I am a Software Developer focused and specialized on the Front-End stacks. Experienced with HTML, CSS/SCSS, JavaScript, Typescript, jQuery, Angular, React, WordPress & PHP. I have created this blog to write posts on the Software Development things. I am also going to showcase my projects and my career here.
 Checkout the live site here:
-### [Live: MeghSohor Blog](https://meghsohor.netlify.app/)
+### [Live: MeghSohor Blog](https://meghsohor.com/)
 
 The site is developed in **gatsby** and here are some of the highlighted features:
 - **Homepage**: showcases my portfolios, job experiences and a few popular posts from my blog
@@ -40,7 +40,10 @@ And I would like to help you if you want to use this project to build your perso
 - Easy to deploy (It is really easy to deploy the app in **netlify** from **github** repo and it is **free**)
 
 The workflow is very simple. Once you deploy the app in **netlify**, you can publish new posts very easily:
-Create a post in your local project -> commit the changes -> push the changes to **git** repo -> **netlify** will automatically pull the latest content from the repo and publish the changes to live
+-> Create a post in your local project 
+-> commit the changes 
+-> push the changes to **git** repo 
+-> **netlify** will automatically pull the latest content from the repo and publish the changes to live
 
 ***
 

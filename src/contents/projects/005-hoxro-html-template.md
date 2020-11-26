@@ -1,6 +1,6 @@
 ---
 posttype: 'portfolio'
-title: 'HOXRO - Software Showcase Template'
+title: 'Software Showcase Template'
 date: 2017-12-01 10:00:00
 link: 'https://meghsohor.github.io/hoxro/'
 image: '../../images/hoxro-website.jpg'

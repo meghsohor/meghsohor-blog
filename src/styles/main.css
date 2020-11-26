@@ -348,6 +348,7 @@ ul {
   border-top: 1px solid #eee;
 }
 .portfolio-card .card-title {
+  width: 100%;
   border-bottom: 1px solid #e6e6e6;
   padding-bottom: 0.5rem;
 }

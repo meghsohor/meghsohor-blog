@@ -1,6 +1,6 @@
 ---
 posttype: 'portfolio'
-title: 'HTML Template for Creative Agency'
+title: 'Creative Agency Template'
 date: 2016-06-01 10:00:00
 link: 'https://meghsohor.github.io/portfolio/adobe-lady/'
 image: '../../images/adobe-lady.jpg'

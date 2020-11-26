@@ -1,6 +1,6 @@
 ---
 posttype: 'portfolio'
-title: 'HTML Template for Business Showcase'
+title: 'Business Showcase Template'
 date: 2016-03-01 10:00:00
 link: 'https://meghsohor.github.io/portfolio/csm/'
 image: '../../images/csm.jpg'
