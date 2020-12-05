@@ -1,6 +1,6 @@
 ---
 posttype: 'portfolio'
-title: 'HTML Template for E-commerce'
+title: 'E-commerce Template'
 date: 2017-01-01 10:00:00
 link: 'https://meghsohor.github.io/portfolio/e-commerce/'
 image: '../../images/e-commerce.jpg'

@@ -1,6 +1,6 @@
 @import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import url("../../node_modules/font-awesome/css/font-awesome.min.css");
-@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Domine:wght@400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;&display=swap");
 
 /*-------- Base Styles ---------*/
@@ -10,7 +10,9 @@ body {
 }
 
 body {
-  font-family: "Bitter", serif;
+  font-family: "Domine", serif;
+  font-size: 18px;
+  color: #1b1b1b;
   background-color: #f0f0f0;
 }
 
@@ -34,17 +36,23 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-weight: 600;
+  font-weight: 700;
 }
 
-.badge,
+h6, .h6 {
+  font-size: 18px;
+}
+
 strong,
 b {
-  font-weight: 600;
+  font-weight: 700;
 }
 .btn {
   font-weight: 600;
   text-transform: uppercase;
+}
+.badge {
+  font-weight: 600;
 }
 
 img {
@@ -420,16 +428,15 @@ ul {
   position: relative;
   padding: 0.5rem;
   padding-left: 0;
-  display: flex;
 }
 .check-list li:before {
   content: "\F14A";
   color: #2d9fd2;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: 1.25rem;
-  display: block;
+  float: left;
   margin-right: 0.5rem;
-  line-height: 2rem;
+  line-height: 1.7rem;
 }
 
 .career-card .portfolio-tags {
@@ -596,7 +603,7 @@ deckgo-highlight-code {
   margin-bottom: 2rem;
 }
 code {
-  font-size: 0.9rem;
+  font-size: 16px;
   font-family: Fira Code,monospace;
   font-weight: 500;
   background: #f4f4f6;

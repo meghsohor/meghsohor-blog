@@ -51,7 +51,7 @@ export const blogQuery = graphql`
   query {
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
-      limit: 3
+      limit: 6
       filter: { frontmatter: { posttype: { eq: "blog" } } }
     ) {
       totalCount
