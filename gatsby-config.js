@@ -87,6 +87,16 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Domine\:400,600,700`,
+          `Fira Code\:400,500`,
+        ],
+        display: "swap",
+      },
+    },
+    {
       resolve: "gatsby-plugin-mailchimp",
       options: {
         endpoint: process.env.MAILCHIMP_ENDPOINT, // Mailchimp endpoint should be added here
@@ -94,6 +104,6 @@ module.exports = {
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    `gatsby-plugin-offline`,
+    //`gatsby-plugin-offline`,
   ],
 }
