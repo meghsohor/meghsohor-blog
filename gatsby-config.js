@@ -58,7 +58,7 @@ module.exports = {
       options: {
         name: `MeghSohor Blog`,
         short_name: `MeghSohor`,
-        start_url: `${this.siteMetadata.siteURL}/`,
+        start_url: `https://www.meghsohor.com/`,
         background_color: `#f0f0f0`,
         theme_color: `#0f5d9c`,
         display: `minimal-ui`,
@@ -94,6 +94,6 @@ module.exports = {
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    //`gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
   ],
 }
