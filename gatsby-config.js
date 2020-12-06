@@ -58,7 +58,7 @@ module.exports = {
       options: {
         name: `MeghSohor Blog`,
         short_name: `MeghSohor`,
-        start_url: `https://www.meghsohor.com/`,
+        start_url: `/`,
         background_color: `#f0f0f0`,
         theme_color: `#0f5d9c`,
         display: `minimal-ui`,
