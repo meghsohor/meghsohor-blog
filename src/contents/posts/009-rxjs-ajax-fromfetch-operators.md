@@ -56,7 +56,7 @@ axios.get('url')
 
 <ul class="check-list">
   <li><strong>RxJS</strong> operators return a stream of observables instead of a single promise</li>
-  <li><strong>RxJS</strong> operators are lazy. So, no HTTP request will be made until we subscribe to the observable</li>
+  <li><strong>RxJS</strong> observables are lazy. So, no HTTP request will be made until we subscribe to the observables</li>
   <li>The request is cancelable</li>
   <li>Safe against XSRF</li>
   <li>Tons of other powerful RxJS operators to customize the HTTP request or manipulate the data returned from the request</li>
