@@ -2,7 +2,7 @@
 posttype: 'career'
 title: 'Software Developer'
 company: 'ikubINFO'
-date: 2021-3-01
+date: 2021-03-01
 fromdate: 'March, 2021'
 todate: 'Current'
 tasks:
