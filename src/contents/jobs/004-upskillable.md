@@ -7,7 +7,7 @@ fromdate: 'SEP, 2019'
 todate: 'Nov, 2019'
 tasks:
 - Worked on an Online Recruitment System using Angular, Material and created unit tests using Jasmine & Jest
-- Followed agile workflow - daily standups, weekly sprint review, sprint planning and sprint retrospective meetings.
+- Followed agile workflow - daily standups, weekly sprint review, sprint planning and sprint retrospective meetings
 tags:
 - SASS
 - Angular
