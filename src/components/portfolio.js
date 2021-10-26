@@ -32,9 +32,10 @@ const Portfolio = () => (
                       <Img className="card-img-top" fluid={portfolio.fluid} />
                       <CardBody>
                         <CardTitle tag="h5">{portfolio.title}</CardTitle>
-                        <CardText
+                        <div dangerouslySetInnerHTML={{ __html: `<p>${portfolio.html}</p>` }}></div>
+                        {/* <CardText
                           dangerouslySetInnerHTML={{ __html: portfolio.html }}
-                        />
+                        /> */}
 
                         <div className="portfolio-tags mt-auto">
                           {portfolio.tags &&
