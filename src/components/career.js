@@ -33,7 +33,7 @@ const Career = () => (
 
                   return (
                     <div
-                      className="col-xl-4 col-md-6 d-flex flex-column"
+                      className="col-xl-6 col-md-6 d-flex flex-column"
                       key={job.id}
                     >
                       <div className="job-period">

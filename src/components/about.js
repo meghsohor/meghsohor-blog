@@ -22,16 +22,15 @@ const About = () => {
           </div>
           <div className="col-md-12 col-lg-8">
             <p>
-              I am a Software Developer focused and specialized on the Front-End
-              stacks. My journey began in 2016 after completing the{" "}
+              I am a AWS Certified Software Developer mostly focused on the Front-End development. My journey began in 2016 after completing the{" "}
               <strong>"Web Development"</strong> certification course from{" "}
               <strong>IDB-BISEW</strong>. So far, I have learned and worked with{" "}
               <strong>HTML</strong>, <strong>CSS/SCSS</strong>,{" "}
-              <strong>JavaScript</strong>, <strong>jQuery</strong>,{" "}
-              <strong>Angular</strong>, <strong>Typescript</strong>,{" "}
-              <strong>React</strong>, <strong>Redux</strong>,{" "}
-              <strong>WordPress</strong>, <strong>PHP</strong>,{" "}
-              <strong>MySQL</strong> and many more.
+              <strong>JavaScript/Typescript</strong>, <strong>jQuery</strong>,{" "}
+              <strong>Angular</strong>,{" "}
+              <strong>React</strong>, <strong>Next JS</strong>,{" "}
+              <strong>Node JS</strong>, <strong>PHP</strong>,{" "}
+              <strong>AWS</strong> and many more.
             </p>
             <p>
               I am passionate about building new things and solving logical &
