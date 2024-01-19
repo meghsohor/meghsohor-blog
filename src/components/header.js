@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
 import { globalHistory as history } from "@reach/router"
 
@@ -35,11 +35,11 @@ const Header = ({ siteTitle }) => {
                   Blog
                 </NavLink>
               </NavItem>
-              <NavItem>
+              {/* <NavItem>
                 <NavLink href="/search" active={currentPage.includes('/search')}>
                   Search
                 </NavLink>
-              </NavItem>
+              </NavItem> */}
               {/* <NavItem>
                 <NavLink href="/team" active={currentPage === "/team"}>
                   Team

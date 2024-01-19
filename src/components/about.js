@@ -22,7 +22,7 @@ const About = () => {
           </div>
           <div className="col-md-12 col-lg-8">
             <p>
-              I am a AWS Certified Software Developer mostly focused on the Front-End development. My journey began in 2016 after completing the{" "}
+              I am a <strong>AWS Certified Software Developer</strong> mostly focused on the Front-End development. My journey began in 2016 after completing the{" "}
               <strong>"Web Development"</strong> certification course from{" "}
               <strong>IDB-BISEW</strong>. So far, I have learned and worked with{" "}
               <strong>HTML</strong>, <strong>CSS/SCSS</strong>,{" "}
@@ -144,7 +144,7 @@ const About = () => {
             <div className="col-sm-12 col-md-6 col-lg-3">
               <div className="about-me-segment mb-3 text-center">
                 <h5 className="text-uppercase">Phone</h5>
-                <p className="mb-2">+880 1771123333</p>
+                <p className="mb-2">+49 15165587164</p>
               </div>
             </div>
           </div>
