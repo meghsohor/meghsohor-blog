@@ -1,38 +1,40 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from 'astro:content'
 
-const portfolioItems = await getCollection('portfolio');
-const sortedPortfolio = portfolioItems.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const portfolioItems = await getCollection('portfolio')
+const sortedPortfolio = portfolioItems.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 ---
 
-<section class='portfolio-section bg-background py-12'>
-  <div class='container'>
-    <h2 class='section-heading'>
+<section class="portfolio-section bg-background py-12">
+  <div class="container">
+    <h2 class="section-heading">
       <span>Portfolio</span>
     </h2>
-    <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-      {sortedPortfolio.map(async (project) => {
-        const { Content } = await project.render();
-        return (
-          <div class='portfolio-card card'>
-            <img src={project.data.image} alt={project.data.title} class='w-full' />
-            <div class='card-body'>
-              <h3 class='card-title'>{project.data.title}</h3>
-              <div class='mb-4'>
-                <Content />
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        sortedPortfolio.map(async project => {
+          const { Content } = await project.render()
+          return (
+            <div class="portfolio-card card">
+              <img src={project.data.image} alt={project.data.title} class="w-full" />
+              <div class="card-body">
+                <h3 class="card-title">{project.data.title}</h3>
+                <div class="mb-4">
+                  <Content />
+                </div>
+                <div class="portfolio-tags tags">
+                  {project.data.tags.map(tag => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+                <a href={project.data.link} target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary ml-auto">
+                  View Live
+                </a>
               </div>
-              <div class='portfolio-tags tags'>
-                {project.data.tags.map(tag => (
-                  <span class='tag'>{tag}</span>
-                ))}
-              </div>
-              <a href={project.data.link} target='_blank' rel='noopener noreferrer' class='btn btn-outline-secondary ml-auto'>
-                View Live
-              </a>
             </div>
-          </div>
-        );
-      })}
+          )
+        })
+      }
     </div>
   </div>
 </section>

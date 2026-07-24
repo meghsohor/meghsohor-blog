@@ -6,21 +6,21 @@ const posts = await getCollection('blog')
 const latestPosts = posts.sort((a, b) => b.data.postNumber - a.data.postNumber).slice(0, 6)
 ---
 
-<section class='blog-section py-12'>
-  <div class='container'>
-    <h2 class='section-heading'>
+<section class="blog-section py-12">
+  <div class="container">
+    <h2 class="section-heading">
       <span>My Blog</span>
     </h2>
-    <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {
         latestPosts.map(async result => {
-          const blogPost = {...result.data, slug: result.slug}
+          const blogPost = { ...result.data, slug: result.slug }
           return <BlogItem post={blogPost} />
         })
       }
     </div>
-    <div class='flex justify-center mt-8'>
-      <a href='/blog' class='btn btn-primary'>View All Posts</a>
+    <div class="flex justify-center mt-8">
+      <a href="/blog" class="btn btn-primary">View All Posts</a>
     </div>
   </div>
 </section>

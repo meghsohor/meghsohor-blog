@@ -15,9 +15,9 @@ const posts = sortedPosts.slice(0, POSTS_PER_PAGE)
 const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE)
 ---
 
-<BaseLayout title='Blog - All Posts' showSidebar={true}>
+<BaseLayout title="Blog - All Posts" showSidebar={true}>
   <section>
-    <div class='grid grid-cols-1 md:grid-cols-2 gap-6'>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {
         posts.map(result => {
           const blogPost = { ...result.data, slug: result.slug }
@@ -25,7 +25,7 @@ const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE)
         })
       }
     </div>
-    
-    {totalPages > 1 && <Pagination currentPage={1} totalPages={totalPages} baseUrl='/blog' />}
+
+    {totalPages > 1 && <Pagination currentPage={1} totalPages={totalPages} baseUrl="/blog" />}
   </section>
 </BaseLayout>

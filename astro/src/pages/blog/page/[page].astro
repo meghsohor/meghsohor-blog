@@ -7,29 +7,29 @@ import type { GetStaticPaths } from 'astro'
 
 export const getStaticPaths = (async () => {
   const POSTS_PER_PAGE = 6
-  
+
   const allPosts = await getCollection('blog')
   const sortedPosts = allPosts.sort((a, b) => b.data.postNumber - a.data.postNumber)
 
   const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE)
-  
+
   // Generate all page routes (starting from page 2, since page 1 is /blog)
   const paths = []
   for (let i = 2; i <= totalPages; i++) {
     const startIndex = (i - 1) * POSTS_PER_PAGE
     const endIndex = startIndex + POSTS_PER_PAGE
     const posts = sortedPosts.slice(startIndex, endIndex)
-    
+
     paths.push({
       params: { page: String(i) },
-      props: { 
+      props: {
         posts,
         currentPage: i,
-        totalPages
+        totalPages,
       },
     })
   }
-  
+
   return paths
 }) satisfies GetStaticPaths
 
@@ -38,7 +38,7 @@ const { posts, currentPage, totalPages } = Astro.props
 
 <BaseLayout title={`Blog - Page ${currentPage}`} showSidebar={true}>
   <section>
-    <div class='grid grid-cols-1 md:grid-cols-2 gap-6'>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {
         posts.map((result: any) => {
           const blogPost = { ...result.data, slug: result.slug }
@@ -46,7 +46,7 @@ const { posts, currentPage, totalPages } = Astro.props
         })
       }
     </div>
-    
-    <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl='/blog' />
+
+    <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl="/blog" />
   </section>
 </BaseLayout>
