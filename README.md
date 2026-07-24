@@ -85,7 +85,7 @@ gatsby clean
 
 👤 **Shuvo <meghsohor@gmail.com>**
 
-* Website: [www.meghsohor.com](http://www.meghsohor.com)
+* Website: [www.meghsohor.dev](http://www.meghsohor.dev)
 * Github: [@meghsohor](https://github.com/meghsohor)
 * LinkedIn: [@meghsohor](https://linkedin.com/in/meghsohor)
 * StackOverflow: [@meghsohor](https://stackoverflow.com/users/7646942/shuvo)
