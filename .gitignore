@@ -56,7 +56,11 @@ typings/
 
 # gatsby files
 .cache/
-public
+/public
+
+# astro files
+astro/dist/
+astro/.astro/
 
 # Mac files
 .DS_Store
