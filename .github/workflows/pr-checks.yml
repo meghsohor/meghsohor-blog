@@ -1,0 +1,31 @@
+name: PR checks
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'astro/**'
+      - '.github/workflows/pr-checks.yml'
+
+jobs:
+  lint-and-format:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: astro
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
+          cache: npm
+          cache-dependency-path: astro/package-lock.json
+
+      - run: npm ci
+
+      - name: Type check (astro check)
+        run: npm run lint
+
+      - name: Format check (Prettier)
+        run: npm run format:check
