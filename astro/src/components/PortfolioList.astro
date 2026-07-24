@@ -5,7 +5,7 @@ const portfolioItems = await getCollection('portfolio')
 const sortedPortfolio = portfolioItems.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 ---
 
-<section class="portfolio-section bg-background py-12">
+<section class="portfolio-section bg-page py-16 md:py-24">
   <div class="container">
     <h2 class="section-heading">
       <span>Portfolio</span>

@@ -6,7 +6,7 @@ const posts = await getCollection('blog')
 const latestPosts = posts.sort((a, b) => b.data.postNumber - a.data.postNumber).slice(0, 6)
 ---
 
-<section class="blog-section py-12">
+<section class="blog-section py-16 md:py-24">
   <div class="container">
     <h2 class="section-heading">
       <span>My Blog</span>

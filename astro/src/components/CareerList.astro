@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content'
 const jobs = (await getCollection('career')).sort((a, b) => b.id.localeCompare(a.id))
 ---
 
-<section class="career-section bg-surface py-12">
+<section class="career-section bg-surface py-16 md:py-24">
   <div class="container">
     <h2 class="section-heading">
       <span>Job Experience</span>
