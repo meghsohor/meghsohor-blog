@@ -5,8 +5,8 @@ const { post } = Astro.props
 ---
 
 <div class="card blog-card">
-  <a href={`/blog/${post.slug}`}>
-    <img src={post.image} alt={post.title} class="rounded mb-4" />
+  <a href={`/blog/${post.slug}`} class="thumb-link">
+    <img src={post.image} alt={post.title} class="mb-4" />
   </a>
   <div class="card-body">
     <h5 class="card-title">
