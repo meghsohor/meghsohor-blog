@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '../../components/BaseLayout.astro'
+import { slugify } from '../../utils'
+
+const posts = await getCollection('blog')
+
+const tagMap = new Map<string, { name: string; count: number }>()
+for (const post of posts) {
+  for (const tag of post.data.tags) {
+    const slug = slugify(tag)
+    const entry = tagMap.get(slug)
+    if (entry) entry.count++
+    else tagMap.set(slug, { name: tag, count: 1 })
+  }
+}
+const tags = [...tagMap.entries()].sort((a, b) => b[1].count - a[1].count)
+---
+
+<BaseLayout title="All Tags">
+  <section class="container py-12">
+    <h1 class="section-heading"><span>All Tags</span></h1>
+    <ul class="flex flex-wrap justify-center gap-2 max-w-2xl mx-auto">
+      {
+        tags.map(([slug, { name, count }]) => (
+          <li>
+            <a href={`/tags/${slug}`} class="tag inline-flex items-center gap-2 hover:opacity-80">
+              {name}
+              <span class="count">{count}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .tag .count {
+    background: var(--theme-surface);
+    color: var(--theme-primary);
+    font-weight: 600;
+    border-radius: 1rem;
+    padding: 0 0.5rem;
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+</style>
