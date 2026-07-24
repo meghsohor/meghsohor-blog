@@ -1,30 +1,30 @@
 ---
-const navLinks = [{ href: '/blog', label: 'Blog' }]
+const navLinks = [
+  { href: '/blog', label: 'Blog' },
+  { href: '/tags', label: 'Tags' },
+  { href: '/about', label: 'About' },
+  { href: '/search', label: 'Search' },
+]
 ---
 
-<header class='site-header w-full sticky top-0 z-50'>
-  <nav class='navbar container flex items-center justify-between py-2'>
-    <a href='/' class='header-logo flex items-center gap-2'>
-      <img src='/images/logo.png' alt='MeghSohor' />
+<header class="site-header w-full sticky top-0 z-50">
+  <nav class="navbar container flex items-center justify-between py-2">
+    <a href="/" class="header-logo flex items-center gap-2">
+      <img src="/images/logo.png" alt="MeghSohor" />
     </a>
-    <button id='nav-toggle' class='md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary' aria-label='Toggle navigation' type='button'>
-      <svg class='h-6 w-6 text-heading' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'
-        ><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h16M4 18h16'></path></svg
+    <button id="nav-toggle" class="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary" aria-label="Toggle navigation" type="button">
+      <svg class="h-6 w-6 text-heading" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+        ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg
       >
     </button>
-    <ul id='nav-menu' class='hidden md:flex gap-6 items-center absolute md:static top-full left-0 w-full md:w-auto md:z-auto'>
+    <ul id="nav-menu" class="hidden md:flex gap-6 items-center absolute md:static top-full left-0 w-full md:w-auto md:z-auto">
       {/* @ts-ignore */}
       {
         navLinks.map(link => {
           const isActive = Astro.url.pathname.startsWith(link.href)
           return (
             <li>
-              <a
-                href={link.href}
-                class={[
-                  'nav-link',
-                  isActive ? 'active' : '',
-                ].join(' ')}>
+              <a href={link.href} class={['nav-link', isActive ? 'active' : ''].join(' ')}>
                 {link.label}
               </a>
             </li>
