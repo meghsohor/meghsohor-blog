@@ -7,13 +7,27 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "astro check",
+    "format": "prettier --write \"src/**/*.{astro,ts,js,css,md}\"",
+    "format:check": "prettier --check \"src/**/*.{astro,ts,js,css,md}\""
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.3",
+    "@fontsource/domine": "^5.3.0",
+    "@fontsource/fira-code": "^5.3.0",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.15.4",
     "tailwindcss": "^4.1.17"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "pagefind": "^1.5.2",
+    "prettier": "^3.9.6",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.3"
   }
 }
