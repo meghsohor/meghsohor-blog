@@ -1,0 +1,51 @@
+---
+
+---
+
+<section class='hero-section'>
+  <div class='hero-container'>
+    <div class='hero-header'>
+      <h1>
+        <span>
+          Shafiqul Islam
+          <span class='sub-span'>
+            <span>Software Developer</span>
+          </span>
+        </span>
+      </h1>
+      <div class='learn-more'>
+        <a href='#about' id='learn-more-link'>
+          <div class='text'>Learn More</div>
+          <div class='icon'>
+            <i class='fa fa-chevron-down'></i>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const handleLearnMoreClick = (e: Event) => {
+    e.preventDefault()
+    const aboutSection = document.getElementById('about')
+    const header = document.querySelector('.site-header')
+    
+    if (aboutSection && header) {
+      const headerHeight = header.getBoundingClientRect().height
+      const positionY = aboutSection.offsetTop - headerHeight
+      
+      window.scroll({
+        top: positionY,
+        behavior: 'smooth',
+      })
+    }
+  }
+
+  const link = document.getElementById('learn-more-link')
+  if (link) {
+    // Remove any existing listener before adding a new one
+    link.removeEventListener('click', handleLearnMoreClick)
+    link.addEventListener('click', handleLearnMoreClick)
+  }
+</script>
