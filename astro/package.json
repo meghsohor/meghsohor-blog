@@ -1,0 +1,19 @@
+{
+  "name": "meghsohor-blog",
+  "private": true,
+  "description": "Portfolio and Blog site of Shafiqul Islam Shuvo",
+  "version": "1.0.0",
+  "author": "Shuvo <meghsohor@gmail.com>",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.17",
+    "astro": "^5.15.4",
+    "tailwindcss": "^4.1.17"
+  }
+}
