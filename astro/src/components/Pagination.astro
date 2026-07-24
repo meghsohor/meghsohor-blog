@@ -1,0 +1,74 @@
+---
+interface Props {
+  currentPage: number
+  totalPages: number
+  baseUrl?: string
+}
+
+const { currentPage, totalPages, baseUrl = '/blog' } = Astro.props
+
+const isFirstPage = currentPage === 1
+const isLastPage = currentPage === totalPages
+
+// Previous page URL
+const prevPage = currentPage > 2 ? `${baseUrl}/page/${currentPage - 1}` : baseUrl
+
+// Next page URL
+const nextPage = currentPage + 1
+
+// Generate page numbers array
+const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1)
+---
+
+<nav class='pagination-wrapper' aria-label='Page navigation'>
+  <ul class='pagination'>
+    <!-- First Page -->
+    <li class={`page-item ${isFirstPage ? 'disabled' : ''}`}>
+      <a class='page-link' href={isFirstPage ? undefined : baseUrl} aria-label='First page'>
+        <i class='fa fa-step-backward' aria-hidden='true'></i>
+      </a>
+    </li>
+
+    <!-- Previous Page -->
+    <li class={`page-item ${isFirstPage ? 'disabled' : ''}`}>
+      <a class='page-link' href={isFirstPage ? undefined : prevPage} aria-label='Previous page'>
+        <i class='fa fa-chevron-left' aria-hidden='true'></i>
+      </a>
+    </li>
+
+    <!-- Page Numbers -->
+    {
+      pageNumbers.map(pageNumber => {
+        const isActive = pageNumber === currentPage
+        const pageUrl = pageNumber === 1 ? baseUrl : `${baseUrl}/page/${pageNumber}`
+
+        return (
+          <li class={`page-item ${isActive ? 'active' : ''}`}>
+            {isActive ? (
+              <span class='page-link'>{pageNumber}</span>
+            ) : (
+              <a class='page-link' href={pageUrl}>
+                {pageNumber}
+              </a>
+            )}
+          </li>
+        )
+      })
+    }
+
+    <!-- Next Page -->
+    <li class={`page-item ${isLastPage ? 'disabled' : ''}`}>
+      <a class='page-link' href={isLastPage ? undefined : `${baseUrl}/page/${nextPage}`} aria-label='Next page'>
+        <i class='fa fa-chevron-right' aria-hidden='true'></i>
+      </a>
+    </li>
+
+    <!-- Last Page -->
+    <li class={`page-item ${isLastPage ? 'disabled' : ''}`}>
+      <a class='page-link' href={isLastPage ? undefined : `${baseUrl}/page/${totalPages}`} aria-label='Last page'>
+        <i class='fa fa-step-forward' aria-hidden='true'></i>
+      </a>
+    </li>
+  </ul>
+</nav>
+

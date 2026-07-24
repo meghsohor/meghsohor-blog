@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../components/BaseLayout.astro'
+import Pagination from '../components/Pagination.astro'
+
+import { getCollection } from 'astro:content'
+import BlogItem from '../components/BlogItem.astro'
+
+const POSTS_PER_PAGE = 6
+
+const allPosts = await getCollection('blog')
+const sortedPosts = allPosts.sort((a, b) => b.data.postNumber - a.data.postNumber)
+
+// Get first page posts
+const posts = sortedPosts.slice(0, POSTS_PER_PAGE)
+const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE)
+---
+
+<BaseLayout title='Blog - All Posts' showSidebar={true}>
+  <section>
+    <div class='grid grid-cols-1 md:grid-cols-2 gap-6'>
+      {
+        posts.map(result => {
+          const blogPost = { ...result.data, slug: result.slug }
+          return <BlogItem post={blogPost} />
+        })
+      }
+    </div>
+    
+    {totalPages > 1 && <Pagination currentPage={1} totalPages={totalPages} baseUrl='/blog' />}
+  </section>
+</BaseLayout>
