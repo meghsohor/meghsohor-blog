@@ -1,7 +1,90 @@
 ---
+import { getCollection } from 'astro:content'
+import Icon from './Icon.astro'
+import { slugify } from '../utils'
 
+const posts = (await getCollection('blog')).sort((a, b) => b.data.postNumber - a.data.postNumber)
+const recentPosts = posts.slice(0, 3)
+
+const tagMap = new Map<string, { name: string; count: number }>()
+for (const post of posts) {
+  for (const tag of post.data.tags) {
+    const slug = slugify(tag)
+    const entry = tagMap.get(slug)
+    if (entry) entry.count++
+    else tagMap.set(slug, { name: tag, count: 1 })
+  }
+}
+const tags = [...tagMap.entries()].sort((a, b) => b[1].count - a[1].count)
 ---
 
-<div class='card min-h-screen'>
-  <p>Sidebar will come here</p>
+<div class="card mb-6">
+  <img src="/images/shuvo.jpg" alt="Shafiqul Islam Shuvo" class="w-full rounded-t" />
+  <div class="card-body">
+    <h5 class="card-title text-center uppercase font-bold">Shafiqul Islam Shuvo</h5>
+    <p class="mb-3">
+      AWS Certified Software Developer focused on Front-End development. I write about HTML, CSS, JavaScript, TypeScript, Angular, React and the web platform.
+    </p>
+    <div class="author-social-links flex justify-center gap-3">
+      <a href="https://www.linkedin.com/in/meghsohor/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Icon name="linkedin" size="1.25em" /></a
+      >
+      <a href="https://github.com/meghsohor" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Icon name="github" size="1.25em" /></a>
+      <a href="https://twitter.com/meghsohor" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><Icon name="twitter" size="1.25em" /></a>
+      <a href="https://stackoverflow.com/users/7646942/shuvo" target="_blank" rel="noopener noreferrer" aria-label="Stack Overflow"
+        ><Icon name="stack-overflow" size="1.25em" /></a
+      >
+    </div>
+  </div>
 </div>
+
+<div class="card mb-6">
+  <div class="card-body">
+    <h5 class="card-title text-center uppercase font-bold">Recent Posts</h5>
+    {
+      recentPosts.map(post => (
+        <a href={`/blog/${post.slug}`} class="recent-post card mb-4">
+          <img src={post.data.image} alt={post.data.title} class="rounded-t" />
+          <div class="card-body">
+            <h6 class="mb-0">{post.data.title}</h6>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title text-center uppercase font-bold">Tags</h5>
+    <div class="tags sidebar-tags">
+      {
+        tags.map(([slug, { name, count }]) => (
+          <a href={`/tags/${slug}`} class="tag hover:opacity-80">
+            {name} ({count})
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .author-social-links a {
+    color: var(--theme-muted);
+  }
+  .author-social-links a:hover {
+    color: var(--theme-primary);
+  }
+  .recent-post {
+    display: block;
+    color: var(--theme-body);
+  }
+  .recent-post:hover h6 {
+    color: var(--theme-primary);
+  }
+  .sidebar-tags {
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+</style>
