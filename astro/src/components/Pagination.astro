@@ -1,4 +1,6 @@
 ---
+import Icon from './Icon.astro'
+
 interface Props {
   currentPage: number
   totalPages: number
@@ -20,19 +22,19 @@ const nextPage = currentPage + 1
 const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1)
 ---
 
-<nav class='pagination-wrapper' aria-label='Page navigation'>
-  <ul class='pagination'>
+<nav class="pagination-wrapper" aria-label="Page navigation">
+  <ul class="pagination">
     <!-- First Page -->
     <li class={`page-item ${isFirstPage ? 'disabled' : ''}`}>
-      <a class='page-link' href={isFirstPage ? undefined : baseUrl} aria-label='First page'>
-        <i class='fa fa-step-backward' aria-hidden='true'></i>
+      <a class="page-link" href={isFirstPage ? undefined : baseUrl} aria-label="First page">
+        <Icon name="step-backward" size="0.875em" />
       </a>
     </li>
 
     <!-- Previous Page -->
     <li class={`page-item ${isFirstPage ? 'disabled' : ''}`}>
-      <a class='page-link' href={isFirstPage ? undefined : prevPage} aria-label='Previous page'>
-        <i class='fa fa-chevron-left' aria-hidden='true'></i>
+      <a class="page-link" href={isFirstPage ? undefined : prevPage} aria-label="Previous page">
+        <Icon name="chevron-left" size="0.875em" />
       </a>
     </li>
 
@@ -45,9 +47,9 @@ const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1)
         return (
           <li class={`page-item ${isActive ? 'active' : ''}`}>
             {isActive ? (
-              <span class='page-link'>{pageNumber}</span>
+              <span class="page-link">{pageNumber}</span>
             ) : (
-              <a class='page-link' href={pageUrl}>
+              <a class="page-link" href={pageUrl}>
                 {pageNumber}
               </a>
             )}
@@ -58,17 +60,16 @@ const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1)
 
     <!-- Next Page -->
     <li class={`page-item ${isLastPage ? 'disabled' : ''}`}>
-      <a class='page-link' href={isLastPage ? undefined : `${baseUrl}/page/${nextPage}`} aria-label='Next page'>
-        <i class='fa fa-chevron-right' aria-hidden='true'></i>
+      <a class="page-link" href={isLastPage ? undefined : `${baseUrl}/page/${nextPage}`} aria-label="Next page">
+        <Icon name="chevron-right" size="0.875em" />
       </a>
     </li>
 
     <!-- Last Page -->
     <li class={`page-item ${isLastPage ? 'disabled' : ''}`}>
-      <a class='page-link' href={isLastPage ? undefined : `${baseUrl}/page/${totalPages}`} aria-label='Last page'>
-        <i class='fa fa-step-forward' aria-hidden='true'></i>
+      <a class="page-link" href={isLastPage ? undefined : `${baseUrl}/page/${totalPages}`} aria-label="Last page">
+        <Icon name="step-forward" size="0.875em" />
       </a>
     </li>
   </ul>
 </nav>
-

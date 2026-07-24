@@ -1,4 +1,9 @@
 ---
+import '@fontsource/domine/400.css'
+import '@fontsource/domine/600.css'
+import '@fontsource/domine/700.css'
+import '@fontsource/fira-code/400.css'
+import '@fontsource/fira-code/500.css'
 import '../styles/global.css'
 import SEO from './SEO.astro'
 import Header from './Header.astro'
@@ -8,27 +13,27 @@ import Sidebar from './Sidebar.astro'
 const { title, description, image, showSidebar = false } = Astro.props
 ---
 
-<html lang='en'>
+<html lang="en">
   <head>
     <SEO {title} {description} {image} />
-    <slot name='head' />
+    <slot name="head" />
   </head>
   <body>
     <Header />
     {
       showSidebar ? (
-        <div class='container pt-4'>
-          <div class='grid grid-cols-1 lg:grid-cols-12 gap-6'>
-            <main class='lg:col-span-8'>
+        <div class="container pt-4">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <main class="lg:col-span-8">
               <slot />
             </main>
-            <aside class='lg:col-span-4'>
+            <aside class="lg:col-span-4">
               <Sidebar />
             </aside>
           </div>
         </div>
       ) : (
-        <main class='min-h-screen'>
+        <main class="min-h-screen">
           <slot />
         </main>
       )
