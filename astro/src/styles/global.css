@@ -13,6 +13,7 @@
   --theme-body: #1b1b1b; /* body text */
   --theme-page: #f0f0f0; /* page background */
   --theme-surface: #ffffff; /* cards, header, elevated surfaces */
+  --theme-surface-rgb: 255, 255, 255; /* same color as --theme-surface, as r,g,b for rgba() — keep in sync */
   --theme-muted: #6c757d; /* secondary text */
   --theme-border-soft: #e6e6e6; /* subtle borders */
   --theme-border-strong: #dadada; /* pronounced borders */
@@ -313,7 +314,9 @@ a.tag:active {
 
 /*--------------- Top Navigation --------------*/
 .site-header {
-  /* background-color comes from the bg-surface/90 utility on the element so it can be translucent */
+  background-color: rgba(var(--theme-surface-rgb), 0.9);
+  backdrop-filter: blur(8px);
+  transform: translateZ(0);
   border-bottom: 1px solid var(--theme-border-soft);
   box-shadow: 0 1px 8px rgba(175, 170, 180, 0.2);
 }
