@@ -8,7 +8,7 @@ on:
       - '.github/workflows/pr-checks.yml'
 
 jobs:
-  lint-and-format:
+  checks:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -29,3 +29,6 @@ jobs:
 
       - name: Format check (Prettier)
         run: npm run format:check
+
+      - name: Build
+        run: npm run build
