@@ -10,7 +10,10 @@ export default defineConfig({
   integrations: [sitemap()],
   markdown: {
     shikiConfig: {
-      theme: 'dracula',
+      themes: {
+        light: 'catppuccin-latte',
+        dark: 'dracula',
+      },
     },
   },
   vite: {
