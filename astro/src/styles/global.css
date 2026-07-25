@@ -1,10 +1,13 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
+/* `dark:` utilities activate from a `.dark` class on <html>, not prefers-color-scheme */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /*
- * Semantic theme tokens. Light values live on :root; dark mode (Phase 4)
- * will override the same --theme-* variables under a `.dark` selector.
- * `@theme inline` maps them to Tailwind utilities (bg-surface, text-heading, …).
+ * Semantic theme tokens. Light values live on :root; `.dark` overrides the
+ * same --theme-* variables below. `@theme inline` maps them to Tailwind
+ * utilities (bg-surface, text-heading, …).
  */
 :root {
   --theme-primary: #0f5d9c; /* main brand blue */
@@ -18,6 +21,21 @@
   --theme-border-strong: #dadada; /* pronounced borders */
   --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -12px rgba(15, 23, 42, 0.18);
   --shadow-card-hover: 0 4px 8px rgba(15, 23, 42, 0.06), 0 20px 32px -12px rgba(15, 23, 42, 0.26);
+  --badge-ink: #151d2a; /* fixed dark badge bg (job-period ribbon) — stays constant in both themes, not a --theme-* token */
+}
+
+.dark {
+  --theme-primary: #2f81f7; /* white-on-primary and text-on-page both need to work; brand blue splits into two shades below .dark */
+  --theme-accent: #58a6ff;
+  --theme-heading: #f0f6fc;
+  --theme-body: #c9d1d9;
+  --theme-page: #0d1117;
+  --theme-surface: #161b22;
+  --theme-muted: #8b949e;
+  --theme-border-soft: #21262d;
+  --theme-border-strong: #30363d;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
+  --shadow-card-hover: 0 4px 8px rgba(0, 0, 0, 0.25), 0 20px 32px -12px rgba(0, 0, 0, 0.6);
 }
 
 @theme {
@@ -79,6 +97,16 @@
   border-radius: 0.75rem;
   padding: 1.5rem 2rem;
   margin: 1rem 0 2rem;
+}
+/* Shiki dual themes (astro.config.mjs: { light, dark }) inline the light theme's colors
+   by default and expose the dark theme only as --shiki-dark-* vars — swap to those here. */
+.dark .astro-code,
+.dark .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
 /*---- Post prose (theme-aware so dark mode only needs to flip the tokens) ----*/
@@ -576,7 +604,7 @@ a.tag:active {
   flex-direction: column;
 }
 .job-period {
-  background: var(--theme-heading);
+  background: var(--badge-ink);
   color: #fff;
   font-weight: 600;
   position: relative;
@@ -593,7 +621,7 @@ a.tag:active {
   transform: rotate(45deg);
   width: 20px;
   height: 20px;
-  background: var(--theme-heading);
+  background: var(--badge-ink);
   bottom: -8px;
   left: 0;
   right: 0;
