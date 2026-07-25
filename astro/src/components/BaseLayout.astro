@@ -6,6 +6,7 @@ import '@fontsource/fira-code/400.css'
 import '@fontsource/fira-code/500.css'
 import '../styles/global.css'
 import SEO from './SEO.astro'
+import ThemeInitScript from './ThemeInitScript.astro'
 import Header from './Header.astro'
 import Footer from './Footer.astro'
 import Sidebar from './Sidebar.astro'
@@ -15,6 +16,7 @@ const { title, description, image, showSidebar = false } = Astro.props
 
 <html lang="en">
   <head>
+    <ThemeInitScript />
     <SEO {title} {description} {image} />
     <slot name="head" />
   </head>
