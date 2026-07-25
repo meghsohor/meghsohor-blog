@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from './ThemeToggle.astro'
+
 const navLinks = [
   { href: '/blog', label: 'Blog' },
   { href: '/tags', label: 'Tags' },
@@ -31,6 +33,9 @@ const navLinks = [
           )
         })
       }
+      <li>
+        <ThemeToggle />
+      </li>
     </ul>
   </nav>
   <script is:inline>

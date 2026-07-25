@@ -1,0 +1,90 @@
+---
+import Icon from './Icon.astro'
+---
+
+<div class="theme-toggle" role="group" aria-label="Color theme">
+  <button type="button" data-theme-choice="light" aria-label="Light theme" aria-pressed="false">
+    <Icon name="sun" size="0.9em" />
+  </button>
+  <button type="button" data-theme-choice="system" aria-label="Match system theme" aria-pressed="false">
+    <Icon name="desktop" size="0.9em" />
+  </button>
+  <button type="button" data-theme-choice="dark" aria-label="Dark theme" aria-pressed="false">
+    <Icon name="moon" size="0.9em" />
+  </button>
+</div>
+
+<script>
+  const STORAGE_KEY = 'theme'
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.theme-toggle button')
+  const mql = window.matchMedia('(prefers-color-scheme: dark)')
+
+  function currentChoice(): 'light' | 'dark' | 'system' {
+    let stored: string | null = null
+    try {
+      stored = localStorage.getItem(STORAGE_KEY)
+    } catch (e) {
+      // localStorage blocked — treat as no stored preference
+    }
+    return stored === 'light' || stored === 'dark' ? stored : 'system'
+  }
+
+  function applyChoice(choice: 'light' | 'dark' | 'system') {
+    const isDark = choice === 'dark' || (choice === 'system' && mql.matches)
+    document.documentElement.classList.toggle('dark', isDark)
+    buttons.forEach(btn => {
+      const active = btn.dataset.themeChoice === choice
+      btn.classList.toggle('active', active)
+      btn.setAttribute('aria-pressed', String(active))
+    })
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const choice = btn.dataset.themeChoice as 'light' | 'dark' | 'system'
+      try {
+        if (choice === 'system') localStorage.removeItem(STORAGE_KEY)
+        else localStorage.setItem(STORAGE_KEY, choice)
+      } catch (e) {
+        // localStorage blocked — theme just won't persist across reloads
+      }
+      applyChoice(choice)
+    })
+  })
+
+  mql.addEventListener('change', () => {
+    if (currentChoice() === 'system') applyChoice('system')
+  })
+
+  applyChoice(currentChoice())
+</script>
+
+<style>
+  .theme-toggle {
+    display: inline-flex;
+    gap: 0.125rem;
+    padding: 0.25rem;
+    background: var(--theme-page);
+    border-radius: 9999px;
+  }
+  .theme-toggle button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 9999px;
+    color: var(--theme-muted);
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease;
+  }
+  .theme-toggle button:hover {
+    color: var(--theme-primary);
+  }
+  .theme-toggle button.active {
+    background: var(--theme-surface);
+    color: var(--theme-primary);
+    box-shadow: var(--shadow-card);
+  }
+</style>
