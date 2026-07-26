@@ -1,0 +1,81 @@
+---
+import Icon from './Icon.astro'
+
+interface Props {
+  markdown: string
+  fallbackHref: string
+}
+
+const { markdown, fallbackHref } = Astro.props
+// Escape `<` so a stray "</script>" inside the post body can't break out of the tag
+const json = JSON.stringify(markdown).replace(/</g, '\\u003c')
+---
+
+<button type="button" class="copy-md-btn" data-fallback-href={fallbackHref}>
+  <span class="icon-copy"><Icon name="copy" size="0.8em" /></span>
+  <span class="icon-check"><Icon name="check" size="0.8em" /></span>
+  <span class="copy-md-label">Copy as Markdown</span>
+</button>
+<script type="application/json" class="copy-md-source" is:inline set:html={json} />
+
+<script>
+  // querySelectorAll (not getElementById) so this stays correct if a page ever
+  // renders more than one instance of this component
+  document.querySelectorAll('.copy-md-btn').forEach(btn => {
+    const source = btn.nextElementSibling
+    const label = btn.querySelector('.copy-md-label')
+    if (!(btn instanceof HTMLButtonElement) || !(source instanceof HTMLScriptElement) || !label) return
+
+    const markdown = JSON.parse(source.textContent || '""')
+    const defaultLabel = label.textContent ?? 'Copy as Markdown'
+
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(markdown)
+      } catch (e) {
+        window.location.href = btn.dataset.fallbackHref ?? '#'
+        return
+      }
+      label.textContent = 'Copied!'
+      btn.classList.add('copied')
+      setTimeout(() => {
+        label.textContent = defaultLabel
+        btn.classList.remove('copied')
+      }, 1600)
+    })
+  })
+</script>
+
+<style>
+  .copy-md-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--theme-muted);
+    background: transparent;
+    border: 1px solid var(--theme-border-strong);
+    border-radius: 9999px;
+    padding: 0.3rem 0.75rem;
+    cursor: pointer;
+    transition:
+      color 0.15s ease,
+      border-color 0.15s ease;
+  }
+  .copy-md-btn:hover,
+  .copy-md-btn.copied {
+    color: var(--theme-primary);
+    border-color: var(--theme-primary);
+  }
+  .copy-md-btn .icon-check {
+    display: none;
+  }
+  .copy-md-btn.copied .icon-copy {
+    display: none;
+  }
+  .copy-md-btn.copied .icon-check {
+    display: inline-flex;
+  }
+</style>
