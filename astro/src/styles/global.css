@@ -92,11 +92,62 @@
 
 /*---- Astro Code Snippet ----*/
 .astro-code {
+  position: relative;
   font-family: var(--font-mono);
-  box-shadow: rgba(0, 0, 0, 0.55) 0 8px 16px;
+  box-shadow: var(--shadow-card);
   border-radius: 0.75rem;
-  padding: 1.5rem 2rem;
-  margin: 1rem 0 2rem;
+  /* extra top padding keeps the copy button clear of line 1, even on narrow
+     viewports where a long first line would otherwise scroll under it */
+  padding: 3rem 2rem 1.5rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.code-copy-btn {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.85rem;
+  height: 1.85rem;
+  padding: 0;
+  border-radius: 0.4rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.04);
+  color: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+.code-copy-btn:hover {
+  color: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.08);
+}
+.dark .code-copy-btn {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.55);
+}
+.dark .code-copy-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+}
+.code-copy-btn .icon-check {
+  display: none;
+}
+.code-copy-btn.copied {
+  color: var(--theme-primary) !important;
+  border-color: var(--theme-primary) !important;
+  background: transparent !important;
+}
+.code-copy-btn.copied .icon-copy {
+  display: none;
+}
+.code-copy-btn.copied .icon-check {
+  display: inline-flex;
 }
 /* Shiki dual themes (astro.config.mjs: { light, dark }) inline the light theme's colors
    by default and expose the dark theme only as --shiki-dark-* vars — swap to those here. */
@@ -293,6 +344,12 @@ h6 {
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--theme-border-strong);
+}
+
+/* Same tag pills as .tags, but for the single-post byline row — no divider border needed there */
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .tag {

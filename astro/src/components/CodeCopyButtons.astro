@@ -1,0 +1,34 @@
+---
+import { icons } from './icons'
+
+const copyIcon = icons.copy
+const checkIcon = icons.check
+---
+
+<script is:inline define:vars={{ copyIcon, checkIcon }}>
+  document.querySelectorAll('pre.astro-code').forEach(pre => {
+    if (pre.querySelector('.code-copy-btn')) return
+
+    const btn = document.createElement('button')
+    btn.type = 'button'
+    btn.className = 'code-copy-btn'
+    btn.setAttribute('aria-label', 'Copy code')
+    btn.innerHTML = `
+      <svg class="icon-copy" viewBox="${copyIcon.viewBox}" width="0.9em" height="0.9em" fill="currentColor" aria-hidden="true"><path d="${copyIcon.path}"></path></svg>
+      <svg class="icon-check" viewBox="${checkIcon.viewBox}" width="0.9em" height="0.9em" fill="currentColor" aria-hidden="true"><path d="${checkIcon.path}"></path></svg>
+    `
+
+    btn.addEventListener('click', async () => {
+      const code = (pre.textContent || '').replace(/\n$/, '')
+      try {
+        await navigator.clipboard.writeText(code)
+      } catch (e) {
+        return
+      }
+      btn.classList.add('copied')
+      setTimeout(() => btn.classList.remove('copied'), 1500)
+    })
+
+    pre.appendChild(btn)
+  })
+</script>
