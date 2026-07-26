@@ -167,7 +167,7 @@
   --tw-prose-links: var(--theme-primary);
   --tw-prose-bold: var(--theme-heading);
   --tw-prose-counters: var(--theme-muted);
-  --tw-prose-bullets: var(--theme-border-strong);
+  --tw-prose-bullets: var(--theme-accent);
   --tw-prose-hr: var(--theme-border-soft);
   --tw-prose-quotes: var(--theme-heading);
   --tw-prose-quote-borders: var(--theme-accent);
