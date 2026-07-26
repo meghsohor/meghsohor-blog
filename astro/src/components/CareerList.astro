@@ -11,13 +11,12 @@ const jobs = (await getCollection('career')).sort((a, b) => b.id.localeCompare(a
       <span>Job Experience</span>
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- TODO: Replace with dynamic job cards -->
       {
         jobs.map(async result => {
           const job = result.data
 
           return (
-            <div class="job-card">
+            <article class="job-card">
               <div class="job-period">
                 {job.startDate} - {job.endDate}
               </div>
@@ -39,7 +38,7 @@ const jobs = (await getCollection('career')).sort((a, b) => b.id.localeCompare(a
                   </div>
                 </div>
               </div>
-            </div>
+            </article>
           )
         })
       }

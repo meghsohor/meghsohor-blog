@@ -15,7 +15,7 @@ const sortedPortfolio = portfolioItems.sort((a, b) => b.data.date.valueOf() - a.
         sortedPortfolio.map(async project => {
           const { Content } = await project.render()
           return (
-            <div class="portfolio-card card">
+            <article class="portfolio-card card">
               <img src={project.data.image} alt={project.data.title} class="w-full" />
               <div class="card-body">
                 <h3 class="card-title">{project.data.title}</h3>
@@ -31,7 +31,7 @@ const sortedPortfolio = portfolioItems.sort((a, b) => b.data.date.valueOf() - a.
                   View Live
                 </a>
               </div>
-            </div>
+            </article>
           )
         })
       }
