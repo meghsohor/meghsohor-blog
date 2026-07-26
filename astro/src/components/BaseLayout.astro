@@ -7,17 +7,42 @@ import '@fontsource/fira-code/500.css'
 import '../styles/global.css'
 import SEO from './SEO.astro'
 import ThemeInitScript from './ThemeInitScript.astro'
+import JsonLd from './JsonLd.astro'
+import CodeCopyButtons from './CodeCopyButtons.astro'
 import Header from './Header.astro'
 import Footer from './Footer.astro'
 import Sidebar from './Sidebar.astro'
+import { site } from '../config'
 
-const { title, description, image, showSidebar = false } = Astro.props
+const { title, description, image, meta, showSidebar = false } = Astro.props
+
+const siteGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${site.siteURL}/#person`,
+      name: site.authorName,
+      url: site.siteURL,
+      sameAs: site.sameAs,
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${site.siteURL}/#website`,
+      name: site.title,
+      description: site.description,
+      url: site.siteURL,
+      author: { '@id': `${site.siteURL}/#person` },
+    },
+  ],
+}
 ---
 
 <html lang="en">
   <head>
     <ThemeInitScript />
-    <SEO {title} {description} {image} />
+    <SEO {title} {description} {image} {meta} />
+    <JsonLd schema={siteGraph} />
     <slot name="head" />
   </head>
   <body>
@@ -41,5 +66,6 @@ const { title, description, image, showSidebar = false } = Astro.props
       )
     }
     <Footer />
+    <CodeCopyButtons />
   </body>
 </html>

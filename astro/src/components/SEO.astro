@@ -12,6 +12,8 @@ interface Props {
 const { title, description = defaultDescription, image = '/images/homepage.jpg', meta = [] } = Astro.props
 
 const siteImg = `${siteURL}${image}`
+const ogType = meta.find(m => m.property === 'og:type')?.content ?? 'Website'
+const extraMeta = meta.filter(m => m.property !== 'og:type')
 ---
 
 <meta charset="UTF-8" />
@@ -20,16 +22,17 @@ const siteImg = `${siteURL}${image}`
 <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
 <link rel="alternate" type="application/rss+xml" title={defaultTitle} href={new URL('rss.xml', Astro.site)} />
 <link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="llms.txt" href="/llms.txt" />
 <title>{title ? `${title} | ` : null}{defaultTitle}</title>
 <meta name="description" content={description} />
 <meta name="author" content={author} />
 <meta property="og:title" content={title ?? defaultTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={siteImg} />
-<meta property="og:type" content="Website" />
+<meta property="og:type" content={ogType} />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content={author} />
 <meta name="twitter:title" content={title ?? defaultTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={siteImg} />
-{meta.map(m => <meta {...m} />)}
+{extraMeta.map(m => <meta {...m} />)}
