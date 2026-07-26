@@ -76,11 +76,19 @@ import ThemeInitScript from '../components/ThemeInitScript.astro'
 </html>
 
 <style>
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
   body {
     margin: 0;
+    height: 100%;
+    background: #0c0e10;
   }
 
   .not-found-page {
+    min-height: 100vh;
     font-family: 'Fira Code', monospace;
     color: #f5f6fa;
   }
@@ -245,6 +253,7 @@ import ThemeInitScript from '../components/ThemeInitScript.astro'
     }
     .not-found-page .svgimg {
       padding: 0;
+      max-height: 42vh;
     }
   }
 </style>
