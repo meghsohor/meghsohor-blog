@@ -54,13 +54,9 @@ typings/
 # dotenv environment variable files
 .env*
 
-# gatsby files
-.cache/
-/public
-
 # astro files
-astro/dist/
-astro/.astro/
+/dist
+/.astro
 
 # Claude Code local settings
 .claude/settings.local.json

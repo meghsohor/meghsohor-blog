@@ -3,16 +3,10 @@ name: PR checks
 on:
   pull_request:
     branches: [master]
-    paths:
-      - 'astro/**'
-      - '.github/workflows/pr-checks.yml'
 
 jobs:
   checks:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: astro
     steps:
       - uses: actions/checkout@v7
 
@@ -20,7 +14,7 @@ jobs:
         with:
           node-version-file: .node-version
           cache: npm
-          cache-dependency-path: astro/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - run: npm ci
 
