@@ -62,6 +62,9 @@ typings/
 astro/dist/
 astro/.astro/
 
+# Claude Code local settings
+.claude/settings.local.json
+
 # Mac files
 .DS_Store
 
