@@ -12,11 +12,8 @@ const { currentPage, totalPages, baseUrl = '/blog' } = Astro.props
 const isFirstPage = currentPage === 1
 const isLastPage = currentPage === totalPages
 
-// Previous page URL
-const prevPage = currentPage > 2 ? `${baseUrl}/page/${currentPage - 1}` : baseUrl
-
-// Next page URL
-const nextPage = currentPage + 1
+// Trailing slash matches the built URLs, so links never hit a Netlify redirect
+const pageHref = (page: number) => (page === 1 ? `${baseUrl}/` : `${baseUrl}/page/${page}/`)
 
 // Generate page numbers array
 const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1)
@@ -26,14 +23,14 @@ const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1)
   <ul class="pagination">
     <!-- First Page -->
     <li class={`page-item ${isFirstPage ? 'disabled' : ''}`}>
-      <a class="page-link" href={isFirstPage ? undefined : baseUrl} aria-label="First page">
+      <a class="page-link" href={isFirstPage ? undefined : pageHref(1)} aria-label="First page">
         <Icon name="step-backward" size="0.875em" />
       </a>
     </li>
 
     <!-- Previous Page -->
     <li class={`page-item ${isFirstPage ? 'disabled' : ''}`}>
-      <a class="page-link" href={isFirstPage ? undefined : prevPage} aria-label="Previous page">
+      <a class="page-link" href={isFirstPage ? undefined : pageHref(currentPage - 1)} aria-label="Previous page">
         <Icon name="chevron-left" size="0.875em" />
       </a>
     </li>
@@ -42,7 +39,7 @@ const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1)
     {
       pageNumbers.map(pageNumber => {
         const isActive = pageNumber === currentPage
-        const pageUrl = pageNumber === 1 ? baseUrl : `${baseUrl}/page/${pageNumber}`
+        const pageUrl = pageHref(pageNumber)
 
         return (
           <li class={`page-item ${isActive ? 'active' : ''}`}>
@@ -60,14 +57,14 @@ const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1)
 
     <!-- Next Page -->
     <li class={`page-item ${isLastPage ? 'disabled' : ''}`}>
-      <a class="page-link" href={isLastPage ? undefined : `${baseUrl}/page/${nextPage}`} aria-label="Next page">
+      <a class="page-link" href={isLastPage ? undefined : pageHref(currentPage + 1)} aria-label="Next page">
         <Icon name="chevron-right" size="0.875em" />
       </a>
     </li>
 
     <!-- Last Page -->
     <li class={`page-item ${isLastPage ? 'disabled' : ''}`}>
-      <a class="page-link" href={isLastPage ? undefined : `${baseUrl}/page/${totalPages}`} aria-label="Last page">
+      <a class="page-link" href={isLastPage ? undefined : pageHref(totalPages)} aria-label="Last page">
         <Icon name="step-forward" size="0.875em" />
       </a>
     </li>

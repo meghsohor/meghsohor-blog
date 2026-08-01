@@ -5,12 +5,12 @@ const { post } = Astro.props
 ---
 
 <article class="card blog-card">
-  <a href={`/blog/${post.slug}`} class="thumb-link">
+  <a href={`/blog/${post.slug}/`} class="thumb-link">
     <img src={post.image} alt={post.title} class="mb-4" />
   </a>
   <div class="card-body">
     <h5 class="card-title">
-      <a href={`/blog/${post.slug}`}>{post.title}</a>
+      <a href={`/blog/${post.slug}/`}>{post.title}</a>
     </h5>
     <div class="text-muted card-subtitle">
       <time datetime={post.date.toISOString()}>{formatDate(post.date)}</time>
@@ -21,12 +21,12 @@ const { post } = Astro.props
     <div class="tags">
       {
         post.tags.map((tag: string) => (
-          <a href={`/tags/${slugify(tag)}`} class="tag hover:opacity-80">
+          <a href={`/tags/${slugify(tag)}/`} class="tag hover:opacity-80">
             {tag}
           </a>
         ))
       }
     </div>
-    <a href={`/blog/${post.slug}`} class="btn btn-outline-primary ml-auto">Read Post</a>
+    <a href={`/blog/${post.slug}/`} class="btn btn-outline-primary ml-auto">Read Post</a>
   </div>
 </article>

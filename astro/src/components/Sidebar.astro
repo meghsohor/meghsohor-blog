@@ -42,7 +42,7 @@ const tags = [...tagMap.entries()].sort((a, b) => b[1].count - a[1].count)
     <h5 class="card-title text-center uppercase font-bold">Recent Posts</h5>
     {
       recentPosts.map(post => (
-        <a href={`/blog/${post.slug}`} class="recent-post card mb-4">
+        <a href={`/blog/${post.slug}/`} class="recent-post card mb-4">
           <img src={post.data.image} alt={post.data.title} />
           <div class="card-body">
             <h6 class="mb-0">{post.data.title}</h6>
@@ -59,7 +59,7 @@ const tags = [...tagMap.entries()].sort((a, b) => b[1].count - a[1].count)
     <div class="tags sidebar-tags">
       {
         tags.map(([slug, { name, count }]) => (
-          <a href={`/tags/${slug}`} class="tag hover:opacity-80">
+          <a href={`/tags/${slug}/`} class="tag hover:opacity-80">
             {name} ({count})
           </a>
         ))
