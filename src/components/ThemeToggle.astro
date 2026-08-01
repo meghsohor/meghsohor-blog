@@ -2,89 +2,72 @@
 import Icon from './Icon.astro'
 ---
 
-<div class="theme-toggle" role="group" aria-label="Color theme">
-  <button type="button" data-theme-choice="light" aria-label="Light theme" aria-pressed="false">
-    <Icon name="sun" size="0.9em" />
-  </button>
-  <button type="button" data-theme-choice="system" aria-label="Match system theme" aria-pressed="false">
-    <Icon name="desktop" size="0.9em" />
-  </button>
-  <button type="button" data-theme-choice="dark" aria-label="Dark theme" aria-pressed="false">
-    <Icon name="moon" size="0.9em" />
-  </button>
-</div>
+<button id="theme-toggle" class="theme-toggle" type="button">
+  <Icon name="sun" size="1.1em" class="icon-light" />
+  <Icon name="moon" size="1.1em" class="icon-dark" />
+  <span class="sr-only">Toggle light and dark theme</span>
+</button>
 
 <script>
   const STORAGE_KEY = 'theme'
-  const buttons = document.querySelectorAll<HTMLButtonElement>('.theme-toggle button')
+  const button = document.getElementById('theme-toggle')
   const mql = window.matchMedia('(prefers-color-scheme: dark)')
 
-  function currentChoice(): 'light' | 'dark' | 'system' {
-    let stored: string | null = null
+  function hasStoredChoice() {
     try {
-      stored = localStorage.getItem(STORAGE_KEY)
+      const stored = localStorage.getItem(STORAGE_KEY)
+      return stored === 'light' || stored === 'dark'
     } catch (e) {
       // localStorage blocked — treat as no stored preference
+      return false
     }
-    return stored === 'light' || stored === 'dark' ? stored : 'system'
   }
 
-  function applyChoice(choice: 'light' | 'dark' | 'system') {
-    const isDark = choice === 'dark' || (choice === 'system' && mql.matches)
+  button?.addEventListener('click', () => {
+    const isDark = !document.documentElement.classList.contains('dark')
     document.documentElement.classList.toggle('dark', isDark)
-    buttons.forEach(btn => {
-      const active = btn.dataset.themeChoice === choice
-      btn.classList.toggle('active', active)
-      btn.setAttribute('aria-pressed', String(active))
-    })
-  }
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const choice = btn.dataset.themeChoice as 'light' | 'dark' | 'system'
-      try {
-        if (choice === 'system') localStorage.removeItem(STORAGE_KEY)
-        else localStorage.setItem(STORAGE_KEY, choice)
-      } catch (e) {
-        // localStorage blocked — theme just won't persist across reloads
-      }
-      applyChoice(choice)
-    })
+    try {
+      localStorage.setItem(STORAGE_KEY, isDark ? 'dark' : 'light')
+    } catch (e) {
+      // localStorage blocked — the choice just won't survive a reload
+    }
   })
 
-  mql.addEventListener('change', () => {
-    if (currentChoice() === 'system') applyChoice('system')
+  // Track the OS only until the button has been used
+  mql.addEventListener('change', event => {
+    if (!hasStoredChoice()) document.documentElement.classList.toggle('dark', event.matches)
   })
-
-  applyChoice(currentChoice())
 </script>
 
 <style>
   .theme-toggle {
     display: inline-flex;
-    gap: 0.125rem;
-    padding: 0.25rem;
-    background: var(--theme-page);
-    border-radius: 9999px;
-  }
-  .theme-toggle button {
-    display: flex;
     align-items: center;
     justify-content: center;
-    width: 1.75rem;
-    height: 1.75rem;
+    width: 2rem;
+    height: 2rem;
     border-radius: 9999px;
     color: var(--theme-muted);
     transition:
       background-color 0.15s ease,
       color 0.15s ease;
   }
-  .theme-toggle button:hover {
+  .theme-toggle:hover {
+    background: var(--theme-page);
     color: var(--theme-primary);
   }
-  .theme-toggle button.active {
-    background: var(--theme-surface);
-    color: var(--theme-primary);
-    box-shadow: var(--shadow-card);
+
+  /* Show the theme the click switches *to*, so the icon is the action, not the state.
+     CSS-driven off the root class so it is already correct at first paint.
+     The icons come from Icon.astro, so they need :global — this component's scope
+     attribute is never stamped on them. */
+  .theme-toggle :global(.icon-light) {
+    display: none;
+  }
+  :global(.dark) .theme-toggle :global(.icon-light) {
+    display: block;
+  }
+  :global(.dark) .theme-toggle :global(.icon-dark) {
+    display: none;
   }
 </style>
