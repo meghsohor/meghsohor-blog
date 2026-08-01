@@ -4,8 +4,10 @@
 # Exception: no slash after :splat — the indexed URLs are /tag/<tag>/, so it already has one.
 /tag/*  /tags/:splat  301
 
-# Old team page (nav-linked for years); single-author site now
-/team  /about/  301
+# /about was a real page on the Gatsby site; the About section now lives on the homepage.
+# /team predates that and pointed at /about for years.
+/about  /  301
+/team  /  301
 
 # Blog posts whose slugs changed in the Astro migration (old slugified titles)
 /blog/2-useful-polling-functions-in-javascript  /blog/polling-functions-in-javascript/  301

@@ -28,9 +28,8 @@ ${portfolioLines}
 
 ## Pages
 
-- [About](${base}/about)
-- [All tags](${base}/tags)
-- [Search](${base}/search)
+- [All tags](${base}/tags/)
+- [Search](${base}/search/)
 
 ## Optional
 
