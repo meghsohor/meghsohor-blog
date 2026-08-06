@@ -1,12 +1,14 @@
 ---
 import { slugify, formatDate } from '../utils'
+import { publicImageDims } from '../image-dims'
 
 const { post } = Astro.props
+const dims = await publicImageDims(post.image)
 ---
 
 <article class="card blog-card">
   <a href={`/blog/${post.slug}/`} class="thumb-link">
-    <img src={post.image} alt={post.title} class="mb-4" />
+    <img src={post.image} alt={post.title} class="mb-4" width={dims?.width} height={dims?.height} loading="lazy" decoding="async" />
   </a>
   <div class="card-body">
     <h5 class="card-title">

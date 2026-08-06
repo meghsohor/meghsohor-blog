@@ -6,6 +6,7 @@ import JsonLd from '../../components/JsonLd.astro'
 import CopyMarkdownButton from '../../components/CopyMarkdownButton.astro'
 import { site } from '../../config'
 import { slugify, formatDate } from '../../utils'
+import { publicImageDims } from '../../image-dims'
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection('blog')
@@ -17,6 +18,7 @@ export const getStaticPaths = (async () => {
 
 const { post } = Astro.props
 const { Content } = await post.render()
+const heroDims = post.data.image ? await publicImageDims(post.data.image) : null
 
 const postURL = new URL(`/blog/${post.slug}/`, site.siteURL).toString()
 const postSchema = {
@@ -46,7 +48,7 @@ const postSchema = {
   <JsonLd slot="head" schema={postSchema} />
   <link slot="head" rel="alternate" type="text/markdown" href={`/blog/${post.slug}.md`} title="Plain markdown version" />
   <article class="single-post-card card" data-pagefind-body>
-    {post.data.image && <img src={post.data.image} alt={post.data.title} class="w-full" />}
+    {post.data.image && <img src={post.data.image} alt={post.data.title} class="w-full" width={heroDims?.width} height={heroDims?.height} decoding="async" />}
 
     <div class="p-6 md:p-8">
       <h1 class="mb-4">{post.data.title}</h1>

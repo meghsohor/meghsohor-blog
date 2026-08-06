@@ -1,9 +1,10 @@
 ---
 import { getCollection } from 'astro:content'
 import { slugify } from '../utils'
+import { publicImageDims } from '../image-dims'
 
 const posts = (await getCollection('blog')).sort((a, b) => b.data.postNumber - a.data.postNumber)
-const recentPosts = posts.slice(0, 3)
+const recentPosts = await Promise.all(posts.slice(0, 3).map(async post => ({ post, dims: await publicImageDims(post.data.image) })))
 
 const tagMap = new Map<string, { name: string; count: number }>()
 for (const post of posts) {
@@ -21,9 +22,9 @@ const tags = [...tagMap.entries()].sort((a, b) => b[1].count - a[1].count)
   <div class="card-body">
     <h5 class="card-title text-center uppercase font-bold">Recent Posts</h5>
     {
-      recentPosts.map(post => (
+      recentPosts.map(({ post, dims }) => (
         <a href={`/blog/${post.slug}/`} class="recent-post card mb-4">
-          <img src={post.data.image} alt={post.data.title} />
+          <img src={post.data.image} alt={post.data.title} width={dims?.width} height={dims?.height} loading="lazy" decoding="async" />
           <div class="card-body">
             <h6 class="mb-0">{post.data.title}</h6>
           </div>
