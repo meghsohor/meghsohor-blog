@@ -10,6 +10,8 @@
  * utilities (bg-surface, text-heading, …).
  */
 :root {
+  /* native UI (scrollbars, form controls) follows the active theme */
+  color-scheme: light;
   --theme-primary: #0f5d9c; /* main brand blue */
   --theme-accent: #2d9fd2; /* lighter accent blue */
   --theme-heading: #151d2a; /* headings, dark blue-gray */
@@ -25,6 +27,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   --theme-primary: #2f81f7; /* white-on-primary and text-on-page both need to work; brand blue splits into two shades below .dark */
   --theme-accent: #58a6ff;
   --theme-heading: #f0f6fc;
