@@ -1,6 +1,5 @@
 ---
 import { getCollection } from 'astro:content'
-import Icon from './Icon.astro'
 import { slugify } from '../utils'
 
 const posts = (await getCollection('blog')).sort((a, b) => b.data.postNumber - a.data.postNumber)
@@ -17,25 +16,6 @@ for (const post of posts) {
 }
 const tags = [...tagMap.entries()].sort((a, b) => b[1].count - a[1].count)
 ---
-
-<div class="card mb-6">
-  <img src="/images/shuvo.jpg" alt="Shafiqul Islam Shuvo" class="w-full" />
-  <div class="card-body">
-    <h5 class="card-title text-center uppercase font-bold">Shafiqul Islam Shuvo</h5>
-    <p class="mb-3">
-      AWS Certified Software Developer focused on Front-End development. I write about HTML, CSS, JavaScript, TypeScript, Angular, React and the web platform.
-    </p>
-    <div class="author-social-links flex justify-center gap-3">
-      <a href="https://www.linkedin.com/in/meghsohor/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Icon name="linkedin" size="1.25em" /></a
-      >
-      <a href="https://github.com/meghsohor" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Icon name="github" size="1.25em" /></a>
-      <a href="https://twitter.com/meghsohor" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><Icon name="twitter" size="1.25em" /></a>
-      <a href="https://stackoverflow.com/users/7646942/shuvo" target="_blank" rel="noopener noreferrer" aria-label="Stack Overflow"
-        ><Icon name="stack-overflow" size="1.25em" /></a
-      >
-    </div>
-  </div>
-</div>
 
 <div class="card mb-6">
   <div class="card-body">
@@ -69,12 +49,6 @@ const tags = [...tagMap.entries()].sort((a, b) => b[1].count - a[1].count)
 </div>
 
 <style>
-  .author-social-links a {
-    color: var(--theme-muted);
-  }
-  .author-social-links a:hover {
-    color: var(--theme-primary);
-  }
   .recent-post {
     display: block;
     color: var(--theme-body);
