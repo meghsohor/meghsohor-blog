@@ -346,10 +346,23 @@ h6 {
   border-bottom: 1px solid var(--theme-border-strong);
 }
 
-/* Same tag pills as .tags, but for the single-post byline row — no divider border needed there */
+/* Same tag pills as .tags, but for the single-post meta row — no divider border needed there */
 .post-tags {
   display: flex;
   flex-wrap: wrap;
+}
+/* In the meta row the pills sit inline next to the date and copy button,
+   so they use flex gap instead of their own offset margins */
+.single-post-meta .post-tags {
+  gap: 0.5rem;
+}
+.single-post-meta .tag {
+  margin: 0;
+}
+/* Post title matches the pre-migration scale; the global h1 rule (2.5rem) is
+   unlayered so a Tailwind text-* utility can't override it */
+.single-post-card h1 {
+  font-size: 1.75rem;
 }
 
 .tag {
