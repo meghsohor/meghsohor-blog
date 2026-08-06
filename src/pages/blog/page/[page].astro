@@ -36,10 +36,10 @@ export const getStaticPaths = (async () => {
 const { posts, currentPage, totalPages } = Astro.props
 ---
 
-<BaseLayout title={`Blog - Page ${currentPage}`} showSidebar={true}>
-  <section>
+<BaseLayout title={`Blog - Page ${currentPage}`}>
+  <section class="container py-12">
     <h1 class="text-2xl font-bold mb-6">Blog — Page {currentPage}</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {
         posts.map((result: any) => {
           const blogPost = { ...result.data, slug: result.slug }

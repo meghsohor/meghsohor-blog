@@ -31,10 +31,10 @@ const { tag, posts } = Astro.props
 const pageHeader = `${posts.length} post${posts.length === 1 ? '' : 's'} tagged with "${tag}"`
 ---
 
-<BaseLayout title={pageHeader} showSidebar={true}>
-  <section>
+<BaseLayout title={pageHeader}>
+  <section class="container py-12">
     <h1 class="text-2xl font-bold mb-6">{pageHeader}</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {
         posts.map(result => {
           const blogPost = { ...result.data, slug: result.slug }
