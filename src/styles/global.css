@@ -754,6 +754,38 @@ a.tag:active {
   margin-top: 0.3rem;
 }
 
+/* Bootstrap-era callouts used inside post markdown, restyled on an accent-bar look.
+   All four text/background pairs are WCAG AA (6.5:1–9.7:1). */
+.alert {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid;
+  border-radius: 0.5rem;
+}
+.alert strong {
+  color: inherit;
+}
+.alert-warning {
+  background: #fff8e6;
+  border-color: #f0b429;
+  color: #7a5300;
+}
+.alert-info {
+  background: #e8f4fd;
+  border-color: #2d9fd2;
+  color: #145a8a;
+}
+.dark .alert-warning {
+  background: #2a2317;
+  border-color: #d69e2e;
+  color: #f0c674;
+}
+.dark .alert-info {
+  background: #16222e;
+  border-color: #2d9fd2;
+  color: #8fc7e8;
+}
+
 .career-card .job-skills {
   border-top: 1px solid var(--theme-border-strong);
   padding-top: 0.75rem;
