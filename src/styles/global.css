@@ -734,20 +734,24 @@ a.tag:active {
 }
 
 .check-list {
+  list-style: none;
+  padding-left: 0;
   margin-bottom: 0;
 }
 .check-list li {
   position: relative;
+  margin: 0;
   padding: 0.5rem;
   padding-left: 0;
 }
 .check-list li:before {
-  /* square-check icon, Font Awesome Free 6 (CC BY 4.0) */
+  /* solid square-check icon, Font Awesome Free 6 (CC BY 4.0) — the check reads
+     as a cutout, so the card background shows through it like the old FA glyph */
   content: '';
   width: 1.15rem;
   height: 1.15rem;
   background-color: var(--theme-accent);
-  mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M64 80c-8.8 0-16 7.2-16 16l0 320c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-320c0-8.8-7.2-16-16-16L64 80zM0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>')
+  mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>')
     no-repeat center / contain;
   float: left;
   margin-right: 0.5rem;
@@ -784,6 +788,81 @@ a.tag:active {
   background: #16222e;
   border-color: #2d9fd2;
   color: #8fc7e8;
+}
+
+/* Section headings inside post markdown (h5.post-subheading, 46 uses) —
+   centered brand-blue with a short centered underline, as on the Gatsby site */
+.post-subheading {
+  position: relative;
+  color: var(--theme-primary);
+  text-align: center;
+  padding-bottom: 0.75rem;
+  margin: 2rem 0 1rem;
+}
+.post-subheading::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 36px;
+  height: 2px;
+  margin-left: -18px;
+  background: var(--theme-primary);
+}
+
+/* Bulleted lists inside post markdown — icon bullets instead of discs */
+.point-list {
+  list-style: none;
+  padding-left: 0;
+}
+.point-list li {
+  position: relative;
+  margin: 0 0 0.375rem;
+  padding-left: 1.75rem;
+}
+.point-list li::before {
+  /* circle-play icon, Font Awesome Free 6 (CC BY 4.0) */
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  width: 1.05rem;
+  height: 1.05rem;
+  background-color: var(--theme-primary);
+  mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c7.6-4.2 16.8-4.1 24.3 .5l144 88c7.1 4.4 11.5 12.1 11.5 20.5s-4.4 16.1-11.5 20.5l-144 88c-7.4 4.5-16.7 4.7-24.3 .5s-12.3-12.2-12.3-20.9l0-176c0-8.7 4.7-16.7 12.3-20.9z"/></svg>')
+    no-repeat center / contain;
+}
+
+.number-list {
+  padding-left: 1rem;
+}
+.number-list li {
+  padding-left: 0.25rem;
+  margin: 0 0 0.5rem;
+}
+.number-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* Bootstrap-era table classes used inside post markdown, on theme tokens */
+.prose .table,
+.table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+}
+.table th,
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+}
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid var(--theme-border-strong);
+}
+.thead-light th {
+  background-color: var(--theme-page);
+  color: var(--theme-heading);
 }
 
 .career-card .job-skills {
