@@ -681,6 +681,8 @@ a.tag:active {
   margin-bottom: 10px;
 }
 .hero-section .learn-more .icon {
+  display: flex;
+  justify-content: center;
   animation: moveDown 1.3s cubic-bezier(0.07, 0.5, 0.58, 1) infinite;
 }
 @keyframes moveDown {
