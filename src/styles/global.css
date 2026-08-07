@@ -24,6 +24,8 @@
   --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -12px rgba(15, 23, 42, 0.18);
   --shadow-card-hover: 0 4px 8px rgba(15, 23, 42, 0.06), 0 20px 32px -12px rgba(15, 23, 42, 0.26);
   --badge-ink: #151d2a; /* fixed dark badge bg (job-period ribbon) — stays constant in both themes, not a --theme-* token */
+  --theme-mark: #ffec99; /* search-excerpt highlight; 14.5:1 with --theme-body */
+  --theme-mark-ink: #1b1b1b;
 }
 
 .dark {
@@ -39,6 +41,8 @@
   --theme-border-strong: #30363d;
   --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
   --shadow-card-hover: 0 4px 8px rgba(0, 0, 0, 0.25), 0 20px 32px -12px rgba(0, 0, 0, 0.6);
+  --theme-mark: #5c4a06; /* 7.9:1 with --theme-mark-ink below */
+  --theme-mark-ink: #f0f6fc;
 }
 
 @theme {
@@ -56,6 +60,20 @@
   --color-muted: var(--theme-muted);
   --color-border-soft: var(--theme-border-soft);
   --color-border-strong: var(--theme-border-strong);
+}
+
+/* [hidden] is only a UA rule — .card{display:flex} and Tailwind's .grid beat it,
+   so el.hidden = true silently fails without this */
+[hidden] {
+  display: none !important;
+}
+
+/* search-excerpt highlights (default <mark> is yellow-on-black — unreadable in dark mode) */
+mark {
+  background: var(--theme-mark);
+  color: var(--theme-mark-ink);
+  border-radius: 0.2em;
+  padding: 0 0.15em;
 }
 
 /* Override Tailwind container */

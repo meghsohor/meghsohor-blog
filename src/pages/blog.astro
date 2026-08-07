@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../components/BaseLayout.astro'
 import Pagination from '../components/Pagination.astro'
+import PostSearch from '../components/PostSearch.astro'
 
 import { getCollection } from 'astro:content'
 import BlogItem from '../components/BlogItem.astro'
@@ -17,16 +18,18 @@ const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE)
 
 <BaseLayout title="Blog - All Posts">
   <section class="container py-12">
-    <h1 class="text-2xl font-bold mb-6">Blog</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {
-        posts.map(result => {
-          const blogPost = { ...result.data, slug: result.slug }
-          return <BlogItem post={blogPost} />
-        })
-      }
-    </div>
+    <h1 class="sr-only">Blog</h1>
+    <PostSearch currentPage={1}>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          posts.map(result => {
+            const blogPost = { ...result.data, slug: result.slug }
+            return <BlogItem post={blogPost} />
+          })
+        }
+      </div>
 
-    {totalPages > 1 && <Pagination currentPage={1} totalPages={totalPages} baseUrl="/blog" />}
+      {totalPages > 1 && <Pagination currentPage={1} totalPages={totalPages} baseUrl="/blog" />}
+    </PostSearch>
   </section>
 </BaseLayout>

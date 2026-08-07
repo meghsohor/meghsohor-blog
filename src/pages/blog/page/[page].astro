@@ -2,6 +2,7 @@
 import BaseLayout from '../../../components/BaseLayout.astro'
 import Pagination from '../../../components/Pagination.astro'
 import BlogItem from '../../../components/BlogItem.astro'
+import PostSearch from '../../../components/PostSearch.astro'
 import { getCollection } from 'astro:content'
 import type { GetStaticPaths } from 'astro'
 
@@ -38,16 +39,31 @@ const { posts, currentPage, totalPages } = Astro.props
 
 <BaseLayout title={`Blog - Page ${currentPage}`}>
   <section class="container py-12">
-    <h1 class="text-2xl font-bold mb-6">Blog — Page {currentPage}</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {
-        posts.map((result: any) => {
-          const blogPost = { ...result.data, slug: result.slug }
-          return <BlogItem post={blogPost} />
-        })
-      }
-    </div>
+    <h1 class="sr-only">Blog — Page {currentPage}</h1>
+    <PostSearch currentPage={currentPage}>
+      <a href={currentPage === 2 ? '/blog/' : `/blog/page/${currentPage - 1}/`} class="newer-posts-link">« Newer posts</a>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          posts.map((result: any) => {
+            const blogPost = { ...result.data, slug: result.slug }
+            return <BlogItem post={blogPost} />
+          })
+        }
+      </div>
 
-    <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl="/blog" />
+      <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl="/blog" />
+    </PostSearch>
   </section>
 </BaseLayout>
+
+<style>
+  .newer-posts-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--theme-primary);
+    font-weight: 600;
+  }
+  .newer-posts-link:hover {
+    text-decoration: underline;
+  }
+</style>

@@ -1,0 +1,324 @@
+---
+import { getCollection } from 'astro:content'
+import BlogItem from './BlogItem.astro'
+import Icon from './Icon.astro'
+
+interface Props {
+  // page this route renders server-side; Load more continues after it
+  currentPage?: number
+}
+
+const { currentPage = 1 } = Astro.props
+const posts = (await getCollection('blog')).sort((a, b) => b.data.postNumber - a.data.postNumber)
+---
+
+<form id="post-search" class="post-search" role="search" hidden data-pagefind-ignore>
+  <label for="post-search-input" class="sr-only">Search posts</label>
+  <div class="post-search-field">
+    <Icon name="magnifying-glass" size="1em" class="post-search-icon" />
+    <input
+      id="post-search-input"
+      type="search"
+      name="q"
+      placeholder="Search posts…"
+      autocomplete="off"
+      spellcheck="false"
+      enterkeyhint="search"
+      aria-describedby="post-list-status"
+    />
+    <button id="post-search-clear" type="button" aria-label="Clear search" hidden>
+      <Icon name="xmark" size="0.85em" />
+    </button>
+  </div>
+</form>
+
+<div id="post-search-results" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" hidden></div>
+<p id="post-search-empty" class="post-search-empty" hidden>
+  No posts match your search. <button type="button" id="post-search-reset" class="post-search-reset">Clear the search</button> to browse all posts.
+</p>
+
+<div id="post-browse">
+  <slot />
+</div>
+
+<div class="post-list-foot" data-pagefind-ignore>
+  <button id="post-load-more" type="button" class="btn btn-primary" hidden>Load more</button>
+  <p id="post-list-status" role="status" aria-live="polite" aria-atomic="true"></p>
+</div>
+
+<template id="post-search-cards" data-pagefind-ignore data-current-page={currentPage}>
+  {posts.map(p => <BlogItem post={{ ...p.data, slug: p.slug }} />)}
+</template>
+
+<!-- is:inline on purpose: import('/pagefind/pagefind.js') only exists after `pagefind --site dist`
+     runs at build; a processed script would fail Vite resolution (same precedent as ThemeInitScript) -->
+<script is:inline>
+  ;(function () {
+    var PER_PAGE = 6
+    var form = document.getElementById('post-search')
+    var input = document.getElementById('post-search-input')
+    var clearBtn = document.getElementById('post-search-clear')
+    var results = document.getElementById('post-search-results')
+    var empty = document.getElementById('post-search-empty')
+    var resetBtn = document.getElementById('post-search-reset')
+    var loadMore = document.getElementById('post-load-more')
+    var status = document.getElementById('post-list-status')
+    var tpl = document.getElementById('post-search-cards')
+    var browse = document.getElementById('post-browse')
+    var browseGrid = browse && browse.querySelector('.grid')
+    var pagination = browse && browse.querySelector('.pagination-wrapper')
+    if (!form || !input || !results || !loadMore || !status || !tpl || !browse || !browseGrid) return
+
+    form.hidden = false
+    if (pagination) pagination.hidden = true
+
+    var cards = Array.from(tpl.content.querySelectorAll('article'))
+    var cardByHref = new Map()
+    cards.forEach(function (card) {
+      cardByHref.set(card.querySelector('a.thumb-link').getAttribute('href'), card)
+    })
+    var total = cards.length
+    // browse position: the server rendered this page's slice; Load more continues after it
+    var browseShown = Math.min(Number(tpl.dataset.currentPage || 1) * PER_PAGE, total)
+    var browsePath = location.pathname
+
+    var pf = null
+    var engine = function () {
+      if (!pf) {
+        pf = import('/pagefind/pagefind.js').then(function (m) {
+          m.init()
+          return m
+        })
+      }
+      return pf
+    }
+
+    var mode = 'browse' // 'browse' | 'search'
+    var hits = [] // matched template cards (clones), rank order, excerpt applied
+    var hitsShown = 0
+    var lastQuery = ''
+
+    function announce() {
+      if (mode === 'browse') {
+        var visible = browseGrid.children.length
+        status.textContent = visible >= total ? 'Showing all ' + total + ' posts' : 'Showing ' + visible + ' of ' + total + ' posts'
+        // browseShown, not visible: a deep-linked page N shows only its own slice,
+        // but the feed may already be exhausted (nothing older to append)
+        loadMore.hidden = browseShown >= total
+      } else {
+        status.textContent = hits.length === 0 ? '' : hitsShown + ' of ' + hits.length + ' match' + (hits.length === 1 ? '' : 'es') + ' for “' + lastQuery + '”'
+        loadMore.hidden = hitsShown >= hits.length
+      }
+    }
+
+    function pageHref(n) {
+      return n <= 1 ? '/blog/' : '/blog/page/' + n + '/'
+    }
+
+    function showBrowse() {
+      mode = 'browse'
+      results.hidden = true
+      empty.hidden = true
+      browse.hidden = false
+      history.replaceState(null, '', browsePath)
+      announce()
+    }
+
+    function showResultsChunk() {
+      var next = hits.slice(hitsShown, hitsShown + PER_PAGE)
+      next.forEach(function (card) {
+        results.appendChild(card)
+      })
+      hitsShown += next.length
+      announce()
+    }
+
+    function renderResults(list, query) {
+      hits = list
+      hitsShown = 0
+      lastQuery = query
+      mode = 'search'
+      browse.hidden = true
+      results.replaceChildren()
+      results.hidden = list.length === 0
+      empty.hidden = list.length !== 0
+      if (list.length) showResultsChunk()
+      else status.textContent = 'No posts match “' + query + '”'
+      loadMore.hidden = hitsShown >= hits.length
+    }
+
+    function run(query) {
+      if (!query) {
+        showBrowse()
+        return
+      }
+      history.replaceState(null, '', '/blog/?q=' + encodeURIComponent(query))
+      var slow = setTimeout(function () {
+        status.textContent = 'Searching…'
+      }, 150)
+      engine()
+        .then(function (m) {
+          return m.debouncedSearch(query, null, 200)
+        })
+        .then(function (res) {
+          clearTimeout(slow)
+          if (res === null) return // superseded by a newer keystroke
+          return Promise.all(
+            res.results.slice(0, 20).map(function (r) {
+              return r.data()
+            }),
+          ).then(function (datas) {
+            var list = []
+            datas.forEach(function (d) {
+              var src = cardByHref.get(new URL(d.url, location.origin).pathname)
+              if (!src) return
+              var card = src.cloneNode(true)
+              var excerpt = card.querySelector('.card-excerpt')
+              if (excerpt && d.excerpt) excerpt.innerHTML = d.excerpt
+              list.push(card)
+            })
+            renderResults(list, query)
+          })
+        })
+        .catch(function () {
+          clearTimeout(slow)
+          console.info('Search needs the build-time Pagefind index: npm run build && npm run preview')
+          status.textContent = 'Search is unavailable right now.'
+          showBrowse()
+        })
+    }
+
+    loadMore.addEventListener('click', function () {
+      if (mode === 'search') {
+        showResultsChunk()
+        return
+      }
+      cards.slice(browseShown, browseShown + PER_PAGE).forEach(function (card) {
+        browseGrid.appendChild(card.cloneNode(true))
+      })
+      browseShown = Math.min(browseShown + PER_PAGE, total)
+      browsePath = pageHref(Math.ceil(browseShown / PER_PAGE))
+      history.replaceState(null, '', browsePath)
+      announce()
+    })
+
+    input.addEventListener('focus', engine, { once: true })
+    input.addEventListener('input', function () {
+      clearBtn.hidden = input.value.length === 0
+      run(input.value.trim())
+    })
+    form.addEventListener('submit', function (e) {
+      e.preventDefault()
+      run(input.value.trim())
+    })
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && input.value) {
+        e.preventDefault()
+        input.value = ''
+        clearBtn.hidden = true
+        showBrowse()
+      }
+    })
+    function clearSearch() {
+      input.value = ''
+      clearBtn.hidden = true
+      showBrowse()
+      input.focus()
+    }
+    clearBtn.addEventListener('click', clearSearch)
+    if (resetBtn) resetBtn.addEventListener('click', clearSearch)
+
+    function syncFromUrl() {
+      var q = new URLSearchParams(location.search).get('q') || ''
+      input.value = q
+      clearBtn.hidden = q.length === 0
+      if (q) run(q)
+      else showBrowse()
+    }
+    window.addEventListener('popstate', syncFromUrl)
+
+    var initialQ = new URLSearchParams(location.search).get('q')
+    if (initialQ) syncFromUrl()
+    else announce()
+  })()
+</script>
+
+<style>
+  .post-search {
+    margin-bottom: 2rem;
+  }
+  .post-search-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 34rem;
+    margin: 0 auto;
+  }
+  .post-search-field :global(.post-search-icon) {
+    position: absolute;
+    left: 1rem;
+    color: var(--theme-muted);
+    pointer-events: none;
+  }
+  .post-search-field input {
+    width: 100%;
+    padding: 0.7rem 2.75rem;
+    border: 1px solid var(--theme-border-strong);
+    border-radius: 9999px;
+    background: var(--theme-surface);
+    color: var(--theme-body);
+    font-size: 1rem;
+  }
+  .post-search-field input:focus-visible {
+    outline: 2px solid var(--theme-accent);
+    outline-offset: 1px;
+  }
+  .post-search-field input::-webkit-search-cancel-button {
+    display: none; /* the custom clear button replaces it in every browser */
+  }
+  #post-search-clear {
+    position: absolute;
+    right: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 9999px;
+    color: var(--theme-muted);
+    cursor: pointer;
+  }
+  #post-search-clear:hover {
+    color: var(--theme-heading);
+    background: var(--theme-page);
+  }
+
+  .post-search-empty {
+    text-align: center;
+    color: var(--theme-muted);
+    padding: 2rem 0;
+  }
+  .post-search-reset {
+    color: var(--theme-primary);
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+    background: none;
+    border: 0;
+    font: inherit;
+  }
+
+  .post-list-foot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    min-height: 2.5rem;
+  }
+  .post-list-foot p {
+    margin: 0;
+    color: var(--theme-muted);
+    font-size: 0.9rem;
+  }
+</style>

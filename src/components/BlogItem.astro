@@ -18,7 +18,7 @@ const dims = await publicImageDims(post.image)
       <time datetime={post.date.toISOString()}>{formatDate(post.date)}</time>
     </div>
 
-    <p class="mb-2">{post.description}</p>
+    <p class="card-excerpt mb-2">{post.description}</p>
 
     <div class="tags">
       {
