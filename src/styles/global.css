@@ -284,13 +284,6 @@ h6 {
 
 /*------- Utility -------*/
 
-.img-thumbnail {
-  padding: 0.25rem;
-  background-color: var(--theme-surface);
-  border: 1px solid var(--theme-border-soft);
-  border-radius: 0.25rem;
-}
-
 .text-muted {
   color: var(--theme-muted) !important;
 }
@@ -744,30 +737,20 @@ a.tag:active {
   margin-top: 1rem;
   border-top: 2px solid var(--theme-border-soft);
 }
-.about-me-segment {
-  padding-left: 1rem;
-  border-left: 3px solid var(--theme-border-soft);
-  height: 100%;
-}
-.about-me-segment h5 {
+.about-me-container h5 {
   color: var(--theme-muted);
   font-size: 1.25rem;
   font-weight: 600;
 }
-.about-me-segment .social-link {
+.about-me-container .social-link {
   color: var(--theme-muted);
   font-size: 1.25rem;
   text-decoration: none;
   width: 32px;
   height: 32px;
-  margin-right: 0.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.about-me-segment .cv-link {
-  color: var(--theme-body);
-  text-decoration: none;
 }
 
 /*-------- Portfolio section ---------*/

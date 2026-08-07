@@ -7,9 +7,8 @@ import Icon from './Icon.astro'
     <h2 class="section-heading text-center text-heading text-3xl font-bold mb-8 uppercase">
       <span>About Me</span>
     </h2>
-    <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
-      <img src="/images/shuvo.jpg" alt="Shafiqul Islam Shuvo" class="w-80 img-thumbnail" />
-      <div class="flex-1 text-body text-lg">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-body text-lg">
         <p class="mb-4">
           I am an <strong>AWS Certified Software Developer</strong> focused on Front-End development. My journey began in 2016 after completing the <strong
             >Web Development</strong
@@ -34,48 +33,27 @@ import Icon from './Icon.astro'
   </div>
 
   <div class="about-me-container">
-    <div class="container">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="about-me-segment mb-3">
-          <h5 class="text-center uppercase text-muted mb-3">Socials</h5>
-          <div class="flex justify-center gap-1">
-            <a href="https://www.linkedin.com/in/meghsohor/" target="_blank" rel="noopener noreferrer" class="linkedin social-link" aria-label="LinkedIn">
-              <Icon name="linkedin" size="1.33em" />
-            </a>
-            <a href="https://github.com/meghsohor" target="_blank" rel="noopener noreferrer" class="github social-link" aria-label="GitHub">
-              <Icon name="github" size="1.33em" />
-            </a>
-            <a
-              href="https://stackoverflow.com/users/7646942/shuvo"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="stack-overflow social-link"
-              aria-label="Stack Overflow"
-            >
-              <Icon name="stack-overflow" size="1.33em" />
-            </a>
-            <a href="https://twitter.com/meghsohor" target="_blank" rel="noopener noreferrer" class="twitter social-link" aria-label="Twitter">
-              <Icon name="twitter" size="1.33em" />
-            </a>
-          </div>
-        </div>
-
-        <div class="about-me-segment mb-3 text-center">
-          <h5 class="uppercase text-muted mb-3">Email</h5>
-          <p class="mb-2">meghsohor@gmail.com</p>
-        </div>
-
-        <div class="about-me-segment mb-3 text-center">
-          <h5 class="uppercase text-muted mb-3">Resume</h5>
-          <a href="/images/CV_Shafiqul_Islam.pdf" target="_blank" rel="noopener noreferrer" class="cv-link inline-flex items-center gap-2">
-            <Icon name="file-pdf" size="1.33em" /> View/Download
-          </a>
-        </div>
-
-        <div class="about-me-segment mb-3 text-center">
-          <h5 class="uppercase text-muted mb-3">Phone</h5>
-          <p class="mb-2">+49 15165587164</p>
-        </div>
+    <div class="container text-center">
+      <h5 class="uppercase text-muted mb-3">Socials</h5>
+      <div class="flex justify-center gap-1">
+        <a href="https://www.linkedin.com/in/meghsohor/" target="_blank" rel="noopener noreferrer" class="linkedin social-link" aria-label="LinkedIn">
+          <Icon name="linkedin" size="1.33em" />
+        </a>
+        <a href="https://github.com/meghsohor" target="_blank" rel="noopener noreferrer" class="github social-link" aria-label="GitHub">
+          <Icon name="github" size="1.33em" />
+        </a>
+        <a
+          href="https://stackoverflow.com/users/7646942/shuvo"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="stack-overflow social-link"
+          aria-label="Stack Overflow"
+        >
+          <Icon name="stack-overflow" size="1.33em" />
+        </a>
+        <a href="https://twitter.com/meghsohor" target="_blank" rel="noopener noreferrer" class="twitter social-link" aria-label="Twitter">
+          <Icon name="twitter" size="1.33em" />
+        </a>
       </div>
     </div>
   </div>
