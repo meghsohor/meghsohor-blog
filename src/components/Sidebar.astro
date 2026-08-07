@@ -21,16 +21,18 @@ const tags = [...tagMap.entries()].sort((a, b) => b[1].count - a[1].count)
 <div class="card mb-6">
   <div class="card-body">
     <h5 class="card-title text-center uppercase font-bold">Recent Posts</h5>
-    {
-      recentPosts.map(({ post, dims }) => (
-        <a href={`/blog/${post.slug}/`} class="recent-post card mb-4">
-          <img src={post.data.image} alt={post.data.title} width={dims?.width} height={dims?.height} loading="lazy" decoding="async" />
-          <div class="card-body">
-            <h6 class="mb-0">{post.data.title}</h6>
-          </div>
-        </a>
-      ))
-    }
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
+      {
+        recentPosts.map(({ post, dims }) => (
+          <a href={`/blog/${post.slug}/`} class="recent-post card">
+            <img src={post.data.image} alt={post.data.title} class="w-full" width={dims?.width} height={dims?.height} loading="lazy" decoding="async" />
+            <div class="card-body">
+              <h6 class="mb-0">{post.data.title}</h6>
+            </div>
+          </a>
+        ))
+      }
+    </div>
   </div>
 </div>
 
