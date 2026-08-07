@@ -619,57 +619,111 @@ a.tag:active {
   }
 }
 .hero-header h1 {
-  font-size: clamp(2.5rem, 3vw + 2rem, 5rem);
-  color: #ffffff;
+  font-size: 79.2px;
+  color: #fff;
   text-transform: uppercase;
-  letter-spacing: 0.01em;
   margin: 0;
 }
-.hero-subtitle {
+.hero-header h1 > span {
   display: inline-block;
-  margin: 1rem 0 0;
-  padding-top: 0.6rem;
-  border-top: 3px solid var(--theme-accent);
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 1.1rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  position: relative;
+  font-weight: 700;
+}
+.hero-header h1 > span:before,
+.hero-header h1 > span:after {
+  content: '';
+  position: absolute;
+  background: #fff;
+  height: 115%;
+  width: 4px;
+  top: 15px;
+}
+.hero-header h1 > span:before {
+  left: -8%;
+}
+.hero-header h1 > span:after {
+  right: -8%;
+}
+.hero-header h1 > span .sub-span {
+  position: absolute;
+  top: 108%;
+  left: -8%;
+  width: 116%;
+  overflow: hidden;
+  height: 100%;
+}
+.hero-header h1 > span .sub-span > span {
+  font-size: 18px;
+  position: relative;
+  top: -50%;
+}
+.hero-header h1 > span .sub-span > span:before,
+.hero-header h1 > span .sub-span > span:after {
+  content: '';
+  position: absolute;
+  background: #fff;
+  width: 500%;
+  height: 4px;
+  top: 39%;
+}
+.hero-header h1 > span .sub-span > span:before {
+  right: 110%;
+}
+.hero-header h1 > span .sub-span > span:after {
+  left: 110%;
 }
 
 .hero-section .learn-more {
+  text-align: center;
   position: absolute;
-  bottom: 2rem;
+  bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
 }
-.learn-more-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 9999px;
+.hero-section .learn-more a {
   color: #fff;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(4px);
-  transition: background-color 0.2s ease;
+  font-weight: 600;
 }
-.learn-more-btn:hover {
-  background: rgba(255, 255, 255, 0.24);
+.hero-section .learn-more .text {
+  margin-bottom: 10px;
 }
-.learn-more-icon {
-  display: flex;
-  animation: moveDown 1.6s cubic-bezier(0.07, 0.5, 0.58, 1) infinite;
+.hero-section .learn-more .icon {
+  animation: moveDown 1.3s cubic-bezier(0.07, 0.5, 0.58, 1) infinite;
 }
 @keyframes moveDown {
   0%,
   100% {
-    transform: translateY(0);
+    transform: translateY(10px);
   }
   50% {
-    transform: translateY(6px);
+    transform: translateY(0);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .hero-header h1 {
+    font-size: 52px;
+  }
+  .hero-header h1 > span:before,
+  .hero-header h1 > span:after {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .hero-header h1 {
+    font-size: 36px;
+  }
+  .hero-header h1 > span .sub-span {
+    width: 100%;
+    left: 0;
+  }
+  .hero-header h1 > span .sub-span > span:before,
+  .hero-header h1 > span .sub-span > span:after {
+    display: none;
+  }
+  .hero-header h1 > span .sub-span > span {
+    top: 0;
   }
 }
 
@@ -679,7 +733,7 @@ a.tag:active {
     opacity: 1;
     transform: none;
   }
-  .learn-more-icon {
+  .hero-section .learn-more .icon {
     animation: none;
   }
 }
