@@ -4,6 +4,7 @@
   "description": "Portfolio and Blog site of Shafiqul Islam Shuvo",
   "version": "1.0.0",
   "author": "Shuvo <meghsohor@gmail.com>",
+  "license": "0BSD",
   "type": "module",
   "scripts": {
     "dev": "astro dev",

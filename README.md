@@ -100,6 +100,6 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2020 [Shuvo <meghsohor@gmail.com>](https://github.com/meghsohor).
+Copyright © 2020–2026 [Shuvo <meghsohor@gmail.com>](https://github.com/meghsohor).
 
-This project is [0BSD](https://github.com/meghsohor/meghsohor-blog/blob/master/LICENSE) licensed.
+The code of this project is [0BSD](https://github.com/meghsohor/meghsohor-blog/blob/master/LICENSE) licensed. Blog post content and images are © Shafiqul Islam (Shuvo) and are not covered by the code license.
