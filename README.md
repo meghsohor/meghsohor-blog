@@ -19,7 +19,7 @@ The site is developed in **Astro** with **Tailwind CSS** and here are some of th
 - **Blog page**: All the posts can be found in this page.
 - **Single Post page**: Clicking on a blog post will take to the single post page
 - **Post category page**: Clicking on a tag from a post will show the list of the posts under the same category
-- **Post search**: **Pagefind** static search, indexed at build time
+- **Post search**: built into the blog listing — **Pagefind** full-text search indexed at build time, loaded only on first use
 - **Dark mode**: follows the system preference, with a manual light/system/dark toggle
 - **Agent friendly**: `/llms.txt`, `/llms-full.txt`, a `.md` version of every post, and JSON-LD structured data
 - **RSS feed** & **sitemap** generated on every build

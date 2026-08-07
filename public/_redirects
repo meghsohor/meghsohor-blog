@@ -9,6 +9,9 @@
 /about  /  301
 /team  /  301
 
+# /search was a real page on the Gatsby site; search now lives on the blog listing
+/search  /blog/  301
+
 # Blog posts whose slugs changed in the Astro migration (old slugified titles)
 /blog/2-useful-polling-functions-in-javascript  /blog/polling-functions-in-javascript/  301
 /blog/js-coding-challenge-find-anagrams  /blog/find-anagrams-js/  301

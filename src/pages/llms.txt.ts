@@ -28,8 +28,8 @@ ${portfolioLines}
 
 ## Pages
 
+- [All posts](${base}/blog/)
 - [All tags](${base}/tags/)
-- [Search](${base}/search/)
 
 ## Optional
 
