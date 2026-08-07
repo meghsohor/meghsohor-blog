@@ -34,27 +34,103 @@ import Icon from './Icon.astro'
 
   <div class="about-me-container">
     <div class="container text-center">
-      <h5 class="uppercase text-muted mb-3">Socials</h5>
-      <div class="flex justify-center gap-1">
-        <a href="https://www.linkedin.com/in/meghsohor/" target="_blank" rel="noopener noreferrer" class="linkedin social-link" aria-label="LinkedIn">
-          <Icon name="linkedin" size="1.33em" />
+      <h5 class="uppercase text-muted mb-2">Get in Touch</h5>
+      <p class="contact-lead">Have a question, or just want to say hi? My inbox is open.</p>
+      <div class="contact-links">
+        <a id="contact-email" class="contact-link" aria-label="Email" data-u="meghsohor" data-d="gmail.com" hidden>
+          <Icon name="envelope" size="1.25rem" />
         </a>
-        <a href="https://github.com/meghsohor" target="_blank" rel="noopener noreferrer" class="github social-link" aria-label="GitHub">
-          <Icon name="github" size="1.33em" />
+        <a
+          href="https://www.linkedin.com/in/meghsohor/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contact-link"
+          aria-label="LinkedIn"
+          data-tooltip="LinkedIn"
+        >
+          <Icon name="linkedin" size="1.25rem" />
+        </a>
+        <a href="https://github.com/meghsohor" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="GitHub" data-tooltip="GitHub">
+          <Icon name="github" size="1.25rem" />
         </a>
         <a
           href="https://stackoverflow.com/users/7646942/shuvo"
           target="_blank"
           rel="noopener noreferrer"
-          class="stack-overflow social-link"
+          class="contact-link"
           aria-label="Stack Overflow"
+          data-tooltip="Stack Overflow"
         >
-          <Icon name="stack-overflow" size="1.33em" />
+          <Icon name="stack-overflow" size="1.25rem" />
         </a>
-        <a href="https://twitter.com/meghsohor" target="_blank" rel="noopener noreferrer" class="twitter social-link" aria-label="Twitter">
-          <Icon name="twitter" size="1.33em" />
+        <a
+          href="https://twitter.com/meghsohor"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contact-link"
+          aria-label="X (Twitter)"
+          data-tooltip="X (Twitter)"
+        >
+          <Icon name="x-twitter" size="1.25rem" />
         </a>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  const email = document.getElementById('contact-email') as HTMLAnchorElement | null
+  if (email) {
+    const address = `${email.dataset.u}@${email.dataset.d}`
+    email.href = `mailto:${address}`
+    email.dataset.tooltip = address
+    email.hidden = false
+  }
+</script>
+
+<style>
+  .contact-lead {
+    color: var(--theme-muted);
+    margin-bottom: 1.5rem;
+  }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+  }
+  .contact-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    border: 1px solid var(--theme-border-strong);
+    background: var(--theme-surface);
+    color: var(--theme-muted);
+    transition:
+      color 0.15s ease,
+      background-color 0.15s ease,
+      border-color 0.15s ease,
+      transform 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+  .contact-link:hover,
+  .contact-link:focus-visible {
+    color: #fff;
+    background: var(--theme-primary);
+    border-color: var(--theme-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-hover);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .contact-link,
+    .contact-link:hover,
+    .contact-link:focus-visible {
+      transition: none;
+      transform: none;
+    }
+  }
+</style>

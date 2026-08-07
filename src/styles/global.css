@@ -383,8 +383,6 @@ h6 {
   font-size: 1.75rem;
 }
 
-/* Icon buttons in the post meta row; data-tooltip shows on hover/focus.
-   Tooltips never appear on touch — aria-label carries the name there. */
 .meta-icon-btn {
   position: relative;
   display: inline-flex;
@@ -407,7 +405,8 @@ h6 {
   color: var(--theme-primary);
   border-color: var(--theme-primary);
 }
-.meta-icon-btn[data-tooltip]::after {
+/* hover/focus only — aria-label covers touch */
+[data-tooltip]::after {
   content: attr(data-tooltip);
   position: absolute;
   bottom: calc(100% + 0.5rem);
@@ -427,8 +426,8 @@ h6 {
   transition: opacity 0.15s ease;
   z-index: 10;
 }
-.meta-icon-btn:hover::after,
-.meta-icon-btn:focus-visible::after {
+[data-tooltip]:hover::after,
+[data-tooltip]:focus-visible::after {
   opacity: 1;
   visibility: visible;
 }
@@ -743,16 +742,6 @@ a.tag:active {
   color: var(--theme-muted);
   font-size: 1.25rem;
   font-weight: 600;
-}
-.about-me-container .social-link {
-  color: var(--theme-muted);
-  font-size: 1.25rem;
-  text-decoration: none;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 /*-------- Portfolio section ---------*/
