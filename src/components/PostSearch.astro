@@ -12,206 +12,163 @@ const { currentPage = 1 } = Astro.props
 const posts = (await getCollection('blog')).sort((a, b) => b.data.postNumber - a.data.postNumber)
 ---
 
-<form id="post-search" class="post-search" role="search" hidden data-pagefind-ignore>
+<form id="post-search" class="post-search" role="search" hidden>
   <label for="post-search-input" class="sr-only">Search posts</label>
   <div class="post-search-field">
-    <Icon name="magnifying-glass" size="1em" class="post-search-icon" />
     <input
       id="post-search-input"
       type="search"
       name="q"
-      placeholder="Search posts…"
+      placeholder="Search posts by title or tag…"
       autocomplete="off"
       spellcheck="false"
       enterkeyhint="search"
-      aria-describedby="post-list-status"
+      aria-describedby="post-search-title"
     />
     <button id="post-search-clear" type="button" aria-label="Clear search" hidden>
       <Icon name="xmark" size="0.85em" />
     </button>
+    <button type="submit" class="post-search-submit" aria-label="Search">
+      <Icon name="magnifying-glass" size="1em" />
+    </button>
   </div>
 </form>
 
+<h2 id="post-search-title" class="post-search-title" aria-live="polite" aria-atomic="true" hidden></h2>
+
 <div id="post-search-results" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" hidden></div>
 <p id="post-search-empty" class="post-search-empty" hidden>
-  No posts match your search. <button type="button" id="post-search-reset" class="post-search-reset">Clear the search</button> to browse all posts.
+  Try a different word, or <button type="button" id="post-search-reset" class="post-search-reset">clear the search</button> to browse all posts.
 </p>
 
 <div id="post-browse">
   <slot />
 </div>
 
-<div class="post-list-foot" data-pagefind-ignore>
+<div class="post-list-foot">
   <button id="post-load-more" type="button" class="btn btn-primary" hidden>Load more</button>
   <p id="post-list-status" role="status" aria-live="polite" aria-atomic="true"></p>
 </div>
 
-<template id="post-search-cards" data-pagefind-ignore data-current-page={currentPage}>
+<template id="post-search-cards" data-current-page={currentPage}>
   {posts.map(p => <BlogItem post={{ ...p.data, slug: p.slug }} />)}
 </template>
 
-<!-- is:inline on purpose: import('/pagefind/pagefind.js') only exists after `pagefind --site dist`
-     runs at build; a processed script would fail Vite resolution (same precedent as ThemeInitScript) -->
-<script is:inline>
-  ;(function () {
-    var PER_PAGE = 6
-    var form = document.getElementById('post-search')
-    var input = document.getElementById('post-search-input')
-    var clearBtn = document.getElementById('post-search-clear')
-    var results = document.getElementById('post-search-results')
-    var empty = document.getElementById('post-search-empty')
-    var resetBtn = document.getElementById('post-search-reset')
-    var loadMore = document.getElementById('post-load-more')
-    var status = document.getElementById('post-list-status')
-    var tpl = document.getElementById('post-search-cards')
-    var browse = document.getElementById('post-browse')
-    var browseGrid = browse && browse.querySelector('.grid')
-    var pagination = browse && browse.querySelector('.pagination-wrapper')
-    if (!form || !input || !results || !loadMore || !status || !tpl || !browse || !browseGrid) return
+<script>
+  const PER_PAGE = 6
+  const form = document.getElementById('post-search') as HTMLFormElement | null
+  const input = document.getElementById('post-search-input') as HTMLInputElement | null
+  const clearBtn = document.getElementById('post-search-clear') as HTMLButtonElement | null
+  const title = document.getElementById('post-search-title')
+  const results = document.getElementById('post-search-results')
+  const empty = document.getElementById('post-search-empty')
+  const resetBtn = document.getElementById('post-search-reset')
+  const loadMore = document.getElementById('post-load-more') as HTMLButtonElement | null
+  const status = document.getElementById('post-list-status')
+  const tpl = document.getElementById('post-search-cards') as HTMLTemplateElement | null
+  const browse = document.getElementById('post-browse')
+  const browseGrid = browse?.querySelector('.grid')
+  const pagination = browse?.querySelector('.pagination-wrapper')
 
+  if (form && input && clearBtn && title && results && empty && loadMore && status && tpl && browse && browseGrid) {
     form.hidden = false
-    if (pagination) pagination.hidden = true
+    if (pagination instanceof HTMLElement) pagination.hidden = true
 
-    var cards = Array.from(tpl.content.querySelectorAll('article'))
-    var cardByHref = new Map()
-    cards.forEach(function (card) {
-      cardByHref.set(card.querySelector('a.thumb-link').getAttribute('href'), card)
+    // searchable haystack per card: title + tag names, lowercased
+    const cards = Array.from(tpl.content.querySelectorAll('article'))
+    const entries = cards.map(card => {
+      const cardTitle = card.querySelector('.card-title')?.textContent ?? ''
+      const tags = Array.from(card.querySelectorAll('.tag'))
+        .map(t => t.textContent ?? '')
+        .join(' ')
+      return { card, hay: (cardTitle + ' ' + tags).toLowerCase() }
     })
-    var total = cards.length
+    const total = cards.length
     // browse position: the server rendered this page's slice; Load more continues after it
-    var browseShown = Math.min(Number(tpl.dataset.currentPage || 1) * PER_PAGE, total)
-    var browsePath = location.pathname
+    let browseShown = Math.min(Number(tpl.dataset.currentPage || 1) * PER_PAGE, total)
+    let browsePath = location.pathname
 
-    var pf = null
-    var engine = function () {
-      if (!pf) {
-        pf = import('/pagefind/pagefind.js').then(function (m) {
-          m.init()
-          return m
-        })
-      }
-      return pf
-    }
-
-    var mode = 'browse' // 'browse' | 'search'
-    var hits = [] // matched template cards (clones), rank order, excerpt applied
-    var hitsShown = 0
-    var lastQuery = ''
+    let mode: 'browse' | 'search' = 'browse'
+    let hits: Element[] = []
+    let hitsShown = 0
 
     function announce() {
+      if (!status || !loadMore || !browseGrid) return
       if (mode === 'browse') {
-        var visible = browseGrid.children.length
-        status.textContent = visible >= total ? 'Showing all ' + total + ' posts' : 'Showing ' + visible + ' of ' + total + ' posts'
+        const visible = browseGrid.children.length
+        status.textContent = visible >= total ? `Showing all ${total} posts` : `Showing ${visible} of ${total} posts`
         // browseShown, not visible: a deep-linked page N shows only its own slice,
         // but the feed may already be exhausted (nothing older to append)
         loadMore.hidden = browseShown >= total
       } else {
-        status.textContent = hits.length === 0 ? '' : hitsShown + ' of ' + hits.length + ' match' + (hits.length === 1 ? '' : 'es') + ' for “' + lastQuery + '”'
+        status.textContent = hits.length > hitsShown ? `Showing ${hitsShown} of ${hits.length}` : ''
         loadMore.hidden = hitsShown >= hits.length
       }
     }
 
-    function pageHref(n) {
-      return n <= 1 ? '/blog/' : '/blog/page/' + n + '/'
-    }
+    const pageHref = (n: number) => (n <= 1 ? '/blog/' : `/blog/page/${n}/`)
 
     function showBrowse() {
+      if (!browse || !results || !empty || !title) return
       mode = 'browse'
       results.hidden = true
       empty.hidden = true
+      title.hidden = true
       browse.hidden = false
       history.replaceState(null, '', browsePath)
       announce()
     }
 
     function showResultsChunk() {
-      var next = hits.slice(hitsShown, hitsShown + PER_PAGE)
-      next.forEach(function (card) {
-        results.appendChild(card)
-      })
-      hitsShown += next.length
+      if (!results) return
+      hits.slice(hitsShown, hitsShown + PER_PAGE).forEach(card => results.appendChild(card))
+      hitsShown = Math.min(hitsShown + PER_PAGE, hits.length)
       announce()
     }
 
-    function renderResults(list, query) {
-      hits = list
-      hitsShown = 0
-      lastQuery = query
-      mode = 'search'
-      browse.hidden = true
-      results.replaceChildren()
-      results.hidden = list.length === 0
-      empty.hidden = list.length !== 0
-      if (list.length) showResultsChunk()
-      else status.textContent = 'No posts match “' + query + '”'
-      loadMore.hidden = hitsShown >= hits.length
-    }
-
-    function run(query) {
+    function run(query: string) {
+      if (!browse || !results || !empty || !title) return
       if (!query) {
         showBrowse()
         return
       }
       history.replaceState(null, '', '/blog/?q=' + encodeURIComponent(query))
-      var slow = setTimeout(function () {
-        status.textContent = 'Searching…'
-      }, 150)
-      engine()
-        .then(function (m) {
-          return m.debouncedSearch(query, null, 200)
-        })
-        .then(function (res) {
-          clearTimeout(slow)
-          if (res === null) return // superseded by a newer keystroke
-          return Promise.all(
-            res.results.slice(0, 20).map(function (r) {
-              return r.data()
-            }),
-          ).then(function (datas) {
-            var list = []
-            datas.forEach(function (d) {
-              var src = cardByHref.get(new URL(d.url, location.origin).pathname)
-              if (!src) return
-              var card = src.cloneNode(true)
-              var excerpt = card.querySelector('.card-excerpt')
-              if (excerpt && d.excerpt) excerpt.innerHTML = d.excerpt
-              list.push(card)
-            })
-            renderResults(list, query)
-          })
-        })
-        .catch(function () {
-          clearTimeout(slow)
-          console.info('Search needs the build-time Pagefind index: npm run build && npm run preview')
-          status.textContent = 'Search is unavailable right now.'
-          showBrowse()
-        })
+      const words = query.toLowerCase().split(/\s+/).filter(Boolean)
+      hits = entries.filter(e => words.every(w => e.hay.includes(w))).map(e => e.card.cloneNode(true) as Element)
+      hitsShown = 0
+      mode = 'search'
+      browse.hidden = true
+      results.replaceChildren()
+      title.hidden = false
+      title.textContent =
+        hits.length === 0 ? `No posts match “${query}”` : `${hits.length} post${hits.length === 1 ? '' : 's'} match${hits.length === 1 ? 'es' : ''} “${query}”`
+      results.hidden = hits.length === 0
+      empty.hidden = hits.length !== 0
+      if (hits.length) showResultsChunk()
+      else announce()
     }
 
-    loadMore.addEventListener('click', function () {
+    loadMore.addEventListener('click', () => {
       if (mode === 'search') {
         showResultsChunk()
         return
       }
-      cards.slice(browseShown, browseShown + PER_PAGE).forEach(function (card) {
-        browseGrid.appendChild(card.cloneNode(true))
-      })
+      cards.slice(browseShown, browseShown + PER_PAGE).forEach(card => browseGrid.appendChild(card.cloneNode(true)))
       browseShown = Math.min(browseShown + PER_PAGE, total)
       browsePath = pageHref(Math.ceil(browseShown / PER_PAGE))
       history.replaceState(null, '', browsePath)
       announce()
     })
 
-    input.addEventListener('focus', engine, { once: true })
-    input.addEventListener('input', function () {
-      clearBtn.hidden = input.value.length === 0
-      run(input.value.trim())
-    })
-    form.addEventListener('submit', function (e) {
+    // search runs on submit (Enter or the search button), not per keystroke
+    form.addEventListener('submit', e => {
       e.preventDefault()
       run(input.value.trim())
     })
-    input.addEventListener('keydown', function (e) {
+    input.addEventListener('input', () => {
+      clearBtn.hidden = input.value.length === 0
+    })
+    input.addEventListener('keydown', e => {
       if (e.key === 'Escape' && input.value) {
         e.preventDefault()
         input.value = ''
@@ -220,16 +177,18 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.postNumber - a
       }
     })
     function clearSearch() {
+      if (!input || !clearBtn) return
       input.value = ''
       clearBtn.hidden = true
       showBrowse()
       input.focus()
     }
     clearBtn.addEventListener('click', clearSearch)
-    if (resetBtn) resetBtn.addEventListener('click', clearSearch)
+    resetBtn?.addEventListener('click', clearSearch)
 
     function syncFromUrl() {
-      var q = new URLSearchParams(location.search).get('q') || ''
+      if (!input || !clearBtn) return
+      const q = new URLSearchParams(location.search).get('q') || ''
       input.value = q
       clearBtn.hidden = q.length === 0
       if (q) run(q)
@@ -237,10 +196,9 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.postNumber - a
     }
     window.addEventListener('popstate', syncFromUrl)
 
-    var initialQ = new URLSearchParams(location.search).get('q')
-    if (initialQ) syncFromUrl()
+    if (new URLSearchParams(location.search).get('q')) syncFromUrl()
     else announce()
-  })()
+  }
 </script>
 
 <style>
@@ -254,15 +212,9 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.postNumber - a
     max-width: 34rem;
     margin: 0 auto;
   }
-  .post-search-field :global(.post-search-icon) {
-    position: absolute;
-    left: 1rem;
-    color: var(--theme-muted);
-    pointer-events: none;
-  }
   .post-search-field input {
     width: 100%;
-    padding: 0.7rem 2.75rem;
+    padding: 0.7rem 5.5rem 0.7rem 1.25rem;
     border: 1px solid var(--theme-border-strong);
     border-radius: 9999px;
     background: var(--theme-surface);
@@ -276,9 +228,26 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.postNumber - a
   .post-search-field input::-webkit-search-cancel-button {
     display: none; /* the custom clear button replaces it in every browser */
   }
+  .post-search-submit {
+    position: absolute;
+    right: 0.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 9999px;
+    background: var(--theme-primary);
+    color: #fff;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+  }
+  .post-search-submit:hover {
+    opacity: 0.85;
+  }
   #post-search-clear {
     position: absolute;
-    right: 0.6rem;
+    right: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -293,10 +262,16 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.postNumber - a
     background: var(--theme-page);
   }
 
+  .post-search-title {
+    text-align: center;
+    font-size: 1.35rem;
+    margin: 0 0 2rem;
+  }
+
   .post-search-empty {
     text-align: center;
     color: var(--theme-muted);
-    padding: 2rem 0;
+    padding: 1rem 0 2rem;
   }
   .post-search-reset {
     color: var(--theme-primary);
