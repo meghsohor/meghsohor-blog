@@ -45,11 +45,11 @@ const siteGraph = {
     <JsonLd schema={siteGraph} />
     <slot name="head" />
   </head>
-  <body>
+  <body class="min-h-screen flex flex-col">
     <Header />
     {
       showSidebar ? (
-        <div class="container pt-4 pb-12">
+        <div class="container pt-4 pb-12 flex-1">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
             <main class="lg:col-span-8">
               <slot />
@@ -60,7 +60,7 @@ const siteGraph = {
           </div>
         </div>
       ) : (
-        <main class="min-h-screen">
+        <main class="flex-1">
           <slot />
         </main>
       )
