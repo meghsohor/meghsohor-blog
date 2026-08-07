@@ -1,22 +1,11 @@
----
-import { icons } from './icons'
-
-const copyIcon = icons.copy
-const checkIcon = icons.check
----
-
-<script is:inline define:vars={{ copyIcon, checkIcon }}>
-  document.querySelectorAll('pre.astro-code').forEach(pre => {
-    if (pre.querySelector('.code-copy-btn')) return
-
-    const btn = document.createElement('button')
-    btn.type = 'button'
-    btn.className = 'code-copy-btn'
-    btn.setAttribute('aria-label', 'Copy code')
-    btn.innerHTML = `
-      <svg class="icon-copy" viewBox="${copyIcon.viewBox}" width="0.9em" height="0.9em" fill="currentColor" aria-hidden="true"><path d="${copyIcon.path}"></path></svg>
-      <svg class="icon-check" viewBox="${checkIcon.viewBox}" width="0.9em" height="0.9em" fill="currentColor" aria-hidden="true"><path d="${checkIcon.path}"></path></svg>
-    `
+<script>
+  // Header strips + buttons are rendered at build time (rehype-code-headers.mjs);
+  // this only wires up the clipboard behaviour.
+  document.querySelectorAll('.code-block').forEach(block => {
+    const btn = block.querySelector<HTMLButtonElement>('.code-copy-btn')
+    const pre = block.querySelector('pre')
+    const label = btn?.querySelector('.code-copy-label')
+    if (!btn || !pre || !label) return
 
     btn.addEventListener('click', async () => {
       const code = (pre.textContent || '').replace(/\n$/, '')
@@ -25,10 +14,12 @@ const checkIcon = icons.check
       } catch (e) {
         return
       }
+      label.textContent = 'Copied!'
       btn.classList.add('copied')
-      setTimeout(() => btn.classList.remove('copied'), 1500)
+      setTimeout(() => {
+        label.textContent = 'Copy'
+        btn.classList.remove('copied')
+      }, 1600)
     })
-
-    pre.appendChild(btn)
   })
 </script>

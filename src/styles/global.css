@@ -99,52 +99,66 @@
   font-family: var(--font-mono);
   box-shadow: var(--shadow-card);
   border-radius: 0.75rem;
-  /* extra top padding keeps the copy button clear of line 1, even on narrow
-     viewports where a long first line would otherwise scroll under it */
-  padding: 3rem 2rem 1.5rem;
+  padding: 1.5rem 2rem;
   margin: 1.5rem 0 2rem;
 }
 
-.code-copy-btn {
-  position: absolute;
-  top: 0.6rem;
-  right: 0.6rem;
+/* Code blocks from markdown are wrapped (rehype-code-headers.mjs) in a figure
+   with a header strip: language label left, always-visible copy button right */
+.code-block {
+  margin: 1.5rem 0 2rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--theme-border-soft);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+.code-block .astro-code {
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.code-block-header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 1.85rem;
-  height: 1.85rem;
-  padding: 0;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.45rem 0.75rem 0.45rem 1.25rem;
+  background: var(--theme-page);
+  border-bottom: 1px solid var(--theme-border-soft);
+}
+.code-block-lang {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--theme-muted);
+}
+.code-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.65rem;
+  border: 1px solid var(--theme-border-strong);
   border-radius: 0.4rem;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  background: rgba(0, 0, 0, 0.04);
-  color: rgba(0, 0, 0, 0.45);
+  background: var(--theme-surface);
+  color: var(--theme-body);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   cursor: pointer;
   transition:
     color 0.15s ease,
-    background-color 0.15s ease,
     border-color 0.15s ease;
 }
 .code-copy-btn:hover {
-  color: rgba(0, 0, 0, 0.75);
-  background: rgba(0, 0, 0, 0.08);
-}
-.dark .code-copy-btn {
-  border-color: rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.55);
-}
-.dark .code-copy-btn:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.14);
+  color: var(--theme-primary);
+  border-color: var(--theme-primary);
 }
 .code-copy-btn .icon-check {
   display: none;
 }
 .code-copy-btn.copied {
-  color: var(--theme-primary) !important;
-  border-color: var(--theme-primary) !important;
-  background: transparent !important;
+  color: var(--theme-primary);
+  border-color: var(--theme-primary);
 }
 .code-copy-btn.copied .icon-copy {
   display: none;
