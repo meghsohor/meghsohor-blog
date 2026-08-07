@@ -48,13 +48,13 @@ const postSchema = {
 >
   <JsonLd slot="head" schema={postSchema} />
   <link slot="head" rel="alternate" type="text/markdown" href={`/blog/${post.slug}.md`} title="Plain markdown version" />
-  <article class="single-post-card card" data-pagefind-body>
+  <article class="single-post-card card">
     {post.data.image && <img src={post.data.image} alt={post.data.title} class="w-full" width={heroDims?.width} height={heroDims?.height} decoding="async" />}
 
     <div class="p-6 md:p-8">
       <h1 class="mb-4">{post.data.title}</h1>
 
-      <div class="single-post-meta flex items-center justify-between flex-wrap gap-x-4 gap-y-2 pb-4 mb-6 border-b border-border-soft" data-pagefind-ignore>
+      <div class="single-post-meta flex items-center justify-between flex-wrap gap-x-4 gap-y-2 pb-4 mb-6 border-b border-border-soft">
         <div class="flex items-center gap-3">
           <time class="text-muted italic" datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
           <CopyMarkdownButton markdown={post.body} fallbackHref={`/blog/${post.slug}.md`} />
