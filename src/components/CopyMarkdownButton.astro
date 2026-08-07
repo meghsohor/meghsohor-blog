@@ -12,7 +12,7 @@ const json = JSON.stringify(markdown).replace(/</g, '\\u003c')
 ---
 
 <button type="button" class="meta-icon-btn copy-md-btn" data-fallback-href={fallbackHref} aria-label="Copy as Markdown" data-tooltip="Copy as Markdown">
-  <span class="icon-copy"><Icon name="copy" size="0.85em" /></span>
+  <span class="icon-copy"><Icon name="markdown" size="1em" /></span>
   <span class="icon-check"><Icon name="check" size="0.85em" /></span>
 </button>
 <script type="application/json" class="copy-md-source" is:inline set:html={json} />

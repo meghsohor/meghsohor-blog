@@ -122,6 +122,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
+  /* prose styles figcaption with a margin-top; this is chrome, not a caption */
+  margin: 0;
   padding: 0.45rem 0.75rem 0.45rem 1.25rem;
   background: var(--theme-page);
   border-bottom: 1px solid var(--theme-border-soft);
