@@ -368,6 +368,56 @@ h6 {
   font-size: 1.75rem;
 }
 
+/* Icon buttons in the post meta row; data-tooltip shows on hover/focus.
+   Tooltips never appear on touch — aria-label carries the name there. */
+.meta-icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--theme-border-strong);
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--theme-muted);
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+.meta-icon-btn:hover,
+.meta-icon-btn:focus-visible,
+.meta-icon-btn.copied {
+  color: var(--theme-primary);
+  border-color: var(--theme-primary);
+}
+.meta-icon-btn[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.3rem 0.55rem;
+  border-radius: 0.3rem;
+  background: var(--badge-ink);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  z-index: 10;
+}
+.meta-icon-btn:hover::after,
+.meta-icon-btn:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+}
+
 .tag {
   font-size: 0.9rem;
   line-height: 1.2;
