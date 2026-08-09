@@ -739,7 +739,7 @@ a.tag:active {
   border-top: 2px solid var(--theme-border-soft);
 }
 .about-me-container h5 {
-  color: var(--theme-muted);
+  color: var(--theme-heading);
   font-size: 1.25rem;
   font-weight: 600;
 }

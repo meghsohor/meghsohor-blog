@@ -34,10 +34,9 @@ import Icon from './Icon.astro'
 
   <div class="about-me-container">
     <div class="container text-center">
-      <h5 class="uppercase text-muted mb-2">Get in Touch</h5>
-      <p class="contact-lead">Have a question, or just want to say hi? My inbox is open.</p>
+      <h5 class="uppercase mb-4">Get in Touch</h5>
       <div class="contact-links">
-        <a id="contact-email" class="contact-link" aria-label="Email" data-u="meghsohor" data-d="gmail.com" hidden>
+        <a id="contact-email" href="#" class="contact-link" aria-label="Email" data-u="meghsohor" data-d="gmail.com" hidden>
           <Icon name="envelope" size="1.25rem" />
         </a>
         <a
@@ -81,18 +80,19 @@ import Icon from './Icon.astro'
 <script>
   const email = document.getElementById('contact-email') as HTMLAnchorElement | null
   if (email) {
-    const address = `${email.dataset.u}@${email.dataset.d}`
-    email.href = `mailto:${address}`
-    email.dataset.tooltip = address
+    const reveal = () => {
+      const address = `${email.dataset.u}@${email.dataset.d}`
+      email.href = `mailto:${address}`
+      email.dataset.tooltip = address
+    }
+    for (const type of ['pointerenter', 'focusin', 'touchstart']) {
+      email.addEventListener(type, reveal, { once: true })
+    }
     email.hidden = false
   }
 </script>
 
 <style>
-  .contact-lead {
-    color: var(--theme-muted);
-    margin-bottom: 1.5rem;
-  }
   .contact-links {
     display: flex;
     justify-content: center;
