@@ -747,13 +747,6 @@ a.tag:active {
 /*-------- Portfolio section ---------*/
 .portfolio-card {
   height: 100%;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-.portfolio-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card-hover);
 }
 .portfolio-card .card-body {
   padding: 1.25rem;
@@ -979,15 +972,6 @@ a.tag:active {
 
 /*------- Blog Card Styles ---------*/
 
-.blog-card {
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-.blog-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card-hover);
-}
 /* .card's overflow:hidden clips an outward browser outline here, so draw the focus ring inward instead */
 .thumb-link:focus-visible {
   outline: none;
