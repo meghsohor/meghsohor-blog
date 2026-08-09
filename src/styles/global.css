@@ -21,6 +21,9 @@
   --theme-muted: #6c757d; /* secondary text */
   --theme-border-soft: #e6e6e6; /* subtle borders */
   --theme-border-strong: #dadada; /* pronounced borders */
+  --theme-code-ink: #0f5d9c; /* inline <code> text */
+  --theme-code-bg: #eef6fd; /* inline <code> chip */
+  --theme-code-border: #d4e5f5;
   --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -12px rgba(15, 23, 42, 0.18);
   --shadow-card-hover: 0 4px 8px rgba(15, 23, 42, 0.06), 0 20px 32px -12px rgba(15, 23, 42, 0.26);
   --badge-ink: #151d2a; /* fixed dark badge bg (job-period ribbon) — stays constant in both themes, not a --theme-* token */
@@ -37,6 +40,9 @@
   --theme-muted: #8b949e;
   --theme-border-soft: #21262d;
   --theme-border-strong: #30363d;
+  --theme-code-ink: #79b8ff;
+  --theme-code-bg: rgba(88, 166, 255, 0.09);
+  --theme-code-border: rgba(88, 166, 255, 0.25);
   --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
   --shadow-card-hover: 0 4px 8px rgba(0, 0, 0, 0.25), 0 20px 32px -12px rgba(0, 0, 0, 0.6);
 }
@@ -197,7 +203,7 @@
   --tw-prose-quotes: var(--theme-heading);
   --tw-prose-quote-borders: var(--theme-accent);
   --tw-prose-captions: var(--theme-muted);
-  --tw-prose-code: var(--theme-heading);
+  --tw-prose-code: var(--theme-code-ink);
   --tw-prose-th-borders: var(--theme-border-strong);
   --tw-prose-td-borders: var(--theme-border-soft);
 }
@@ -208,10 +214,11 @@
   background-color: transparent;
 }
 .prose :where(code):not(:where(pre code)):not(:where([class~='not-prose'] *)) {
-  background-color: var(--theme-page);
-  padding: 0.15em 0.4em;
+  background-color: var(--theme-code-bg);
+  border: 1px solid var(--theme-code-border);
+  padding: 0.1em 0.4em;
   border-radius: 0.3em;
-  font-weight: 400;
+  font-weight: 500;
 }
 .prose :where(code):not(:where(pre code)):not(:where([class~='not-prose'] *))::before,
 .prose :where(code):not(:where(pre code)):not(:where([class~='not-prose'] *))::after {
