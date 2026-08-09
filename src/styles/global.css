@@ -255,9 +255,14 @@ h3,
 h4,
 h5,
 h6 {
+  margin-top: 0;
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.01em;
+}
+
+p {
+  margin-top: 0;
 }
 .h1,
 h1 {
@@ -900,7 +905,7 @@ a.tag:active {
   color: var(--theme-primary);
   text-align: center;
   padding-bottom: 0.75rem;
-  margin: 2rem 0 1rem;
+  margin-bottom: 1rem;
 }
 .post-subheading::before {
   content: '';
