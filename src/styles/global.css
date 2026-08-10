@@ -26,6 +26,7 @@
   --theme-code-border: #d4e5f5;
   --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -12px rgba(15, 23, 42, 0.18);
   --shadow-card-hover: 0 4px 8px rgba(15, 23, 42, 0.06), 0 20px 32px -12px rgba(15, 23, 42, 0.26);
+  --shadow-header: 0 1px 8px rgba(175, 170, 180, 0.2);
   --badge-ink: #151d2a; /* fixed dark badge bg (job-period ribbon) — stays constant in both themes, not a --theme-* token */
 }
 
@@ -45,6 +46,7 @@
   --theme-code-border: rgba(88, 166, 255, 0.25);
   --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px -12px rgba(0, 0, 0, 0.5);
   --shadow-card-hover: 0 4px 8px rgba(0, 0, 0, 0.25), 0 20px 32px -12px rgba(0, 0, 0, 0.6);
+  --shadow-header: 0 1px 8px rgba(0, 0, 0, 0.45);
 }
 
 @theme {
@@ -371,7 +373,26 @@ h6 {
   border-bottom: 1px solid var(--theme-border-strong);
 }
 
-/* Same tag pills as .tags, but for the single-post meta row — sized by content, not full-width */
+.tag {
+  font-size: 0.9rem;
+  line-height: 1.2;
+  margin-right: 0.25rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  white-space: nowrap;
+  color: #fff;
+  background: var(--theme-primary);
+  border-radius: 1rem;
+}
+/* keep pill text readable — beats the global a:hover accent color */
+a.tag:hover,
+a.tag:active {
+  color: #fff;
+  background: var(--theme-accent);
+}
+
+/*------- Single post meta -------*/
+/* Same tag pills as .tags, but sized by content, not full-width */
 .post-tags {
   display: flex;
   flex-wrap: wrap;
@@ -390,6 +411,7 @@ h6 {
   font-size: 1.75rem;
 }
 
+/*------- Icon buttons & tooltips -------*/
 .meta-icon-btn {
   position: relative;
   display: inline-flex;
@@ -458,24 +480,6 @@ h6 {
   visibility: visible;
 }
 
-.tag {
-  font-size: 0.9rem;
-  line-height: 1.2;
-  margin-right: 0.25rem;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  white-space: nowrap;
-  color: #fff;
-  background: var(--theme-primary);
-  border-radius: 1rem;
-}
-/* keep pill text readable — beats the global a:hover accent color */
-a.tag:hover,
-a.tag:active {
-  color: #fff;
-  background: var(--theme-accent);
-}
-
 /*----- Card  ------*/
 .card {
   position: relative;
@@ -511,7 +515,7 @@ a.tag:active {
 .site-header {
   background-color: var(--theme-surface);
   border-bottom: 1px solid var(--theme-border-soft);
-  box-shadow: 0 1px 8px rgba(175, 170, 180, 0.2);
+  box-shadow: var(--shadow-header);
 }
 
 .site-header .header-logo {
@@ -831,6 +835,11 @@ a.tag:active {
   font-weight: 600;
   color: var(--theme-muted);
 }
+.career-card .job-skills {
+  border-top: 1px solid var(--theme-border-strong);
+  padding-top: 0.75rem;
+  margin-top: 1rem;
+}
 
 .check-list {
   list-style: none;
@@ -860,7 +869,8 @@ a.tag:active {
     no-repeat center / contain;
 }
 
-/* Bootstrap-era callouts used inside post markdown, restyled on an accent-bar look.
+/*------- Post markdown helpers (class names referenced from blog content — do not rename) -------*/
+/* Bootstrap-era callouts restyled on an accent-bar look.
    All four text/background pairs are WCAG AA (6.5:1–9.7:1). */
 .alert {
   margin: 0 0 1.5rem;
@@ -967,12 +977,6 @@ a.tag:active {
 .thead-light th {
   background-color: var(--theme-page);
   color: var(--theme-heading);
-}
-
-.career-card .job-skills {
-  border-top: 1px solid var(--theme-border-strong);
-  padding-top: 0.75rem;
-  margin-top: 1rem;
 }
 
 /*------- Blog Card Styles ---------*/
