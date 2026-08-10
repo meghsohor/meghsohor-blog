@@ -384,12 +384,16 @@ h6 {
   flex-wrap: wrap;
   width: 100%;
   margin-top: auto;
+}
+/* only the blog/portfolio cards want a divider under the pill row */
+.blog-card .tags,
+.portfolio-card .tags {
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--theme-border-strong);
 }
 
-/* Same tag pills as .tags, but for the single-post meta row — no divider border needed there */
+/* Same tag pills as .tags, but for the single-post meta row — sized by content, not full-width */
 .post-tags {
   display: flex;
   flex-wrap: wrap;
@@ -972,9 +976,6 @@ a.tag:active {
   border-top: 1px solid var(--theme-border-strong);
   padding-top: 0.75rem;
   margin-top: 1rem;
-  margin-bottom: 0;
-  padding-bottom: 0;
-  border-bottom: 0;
 }
 
 /*------- Blog Card Styles ---------*/
