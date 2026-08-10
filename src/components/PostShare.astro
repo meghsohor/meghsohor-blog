@@ -23,7 +23,7 @@ const targets = [
 <dialog class="share-dialog" aria-label="Share this post">
   <div class="share-dialog-head">
     <h2>Share this post</h2>
-    <button type="button" class="share-close" aria-label="Close">
+    <button type="button" class="share-close icon-btn-ghost" aria-label="Close">
       <Icon name="xmark" size="1em" />
     </button>
   </div>
@@ -104,21 +104,6 @@ const targets = [
     font-size: 1.05rem;
     margin: 0;
   }
-  .share-close {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 9999px;
-    color: var(--theme-muted);
-    cursor: pointer;
-  }
-  .share-close:hover {
-    color: var(--theme-heading);
-    background: var(--theme-page);
-  }
-
   .share-targets {
     display: flex;
     justify-content: space-around;

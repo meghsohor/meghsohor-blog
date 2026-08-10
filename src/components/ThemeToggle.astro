@@ -2,7 +2,7 @@
 import Icon from './Icon.astro'
 ---
 
-<button id="theme-toggle" class="theme-toggle" type="button">
+<button id="theme-toggle" class="theme-toggle icon-btn-ghost" type="button">
   <Icon name="sun" size="1.1em" class="icon-light" />
   <Icon name="moon" size="1.1em" class="icon-dark" />
   <span class="sr-only">Toggle light and dark theme</span>
@@ -40,20 +40,7 @@ import Icon from './Icon.astro'
 </script>
 
 <style>
-  .theme-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 9999px;
-    color: var(--theme-muted);
-    transition:
-      background-color 0.15s ease,
-      color 0.15s ease;
-  }
   .theme-toggle:hover {
-    background: var(--theme-page);
     color: var(--theme-primary);
   }
 

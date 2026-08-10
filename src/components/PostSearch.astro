@@ -25,7 +25,7 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.postNumber - a
       enterkeyhint="search"
       aria-describedby="post-search-title"
     />
-    <button id="post-search-clear" type="button" aria-label="Clear search" hidden>
+    <button id="post-search-clear" type="button" class="icon-btn-ghost" aria-label="Clear search" hidden>
       <Icon name="xmark" size="0.85em" />
     </button>
     <button type="submit" class="post-search-submit" aria-label="Search">
@@ -248,18 +248,6 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.postNumber - a
   #post-search-clear {
     position: absolute;
     right: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.9rem;
-    height: 1.9rem;
-    border-radius: 9999px;
-    color: var(--theme-muted);
-    cursor: pointer;
-  }
-  #post-search-clear:hover {
-    color: var(--theme-heading);
-    background: var(--theme-page);
   }
 
   .post-search-title {

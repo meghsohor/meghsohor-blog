@@ -412,6 +412,25 @@ h6 {
   color: var(--theme-primary);
   border-color: var(--theme-primary);
 }
+
+/* borderless 2rem circle button (dialog close, search clear, theme toggle) */
+.icon-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  color: var(--theme-muted);
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease;
+}
+.icon-btn-ghost:hover {
+  color: var(--theme-heading);
+  background: var(--theme-page);
+}
 /* hover/focus only — aria-label covers touch */
 [data-tooltip]::after {
   content: attr(data-tooltip);
