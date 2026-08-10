@@ -23,7 +23,7 @@ const dims = await publicImageDims(post.image)
     <div class="tags">
       {
         post.tags.map((tag: string) => (
-          <a href={`/tags/${slugify(tag)}/`} class="tag hover:opacity-80">
+          <a href={`/tags/${slugify(tag)}/`} class="tag">
             {tag}
           </a>
         ))

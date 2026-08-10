@@ -42,7 +42,7 @@ const tags = [...tagMap.entries()].sort((a, b) => b[1].count - a[1].count)
     <div class="tags">
       {
         tags.map(([slug, { name, count }]) => (
-          <a href={`/tags/${slug}/`} class="tag hover:opacity-80">
+          <a href={`/tags/${slug}/`} class="tag">
             {name} ({count})
           </a>
         ))

@@ -24,7 +24,7 @@ const tags = [...tagMap.entries()].sort((a, b) => b[1].count - a[1].count)
       {
         tags.map(([slug, { name, count }]) => (
           <li>
-            <a href={`/tags/${slug}/`} class="tag inline-flex items-center gap-2 hover:opacity-80">
+            <a href={`/tags/${slug}/`} class="tag inline-flex items-center gap-2">
               {name}
               <span class="count">{count}</span>
             </a>

@@ -308,11 +308,11 @@ h6 {
   line-height: 1.5;
   border-radius: 0.5rem;
   transition:
-    color 0.15s ease-in-out,
-    background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out,
-    box-shadow 0.15s ease-in-out,
-    transform 0.15s ease-in-out;
+    color 0.15s ease,
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
 }
 .btn:not(:disabled) {
   cursor: pointer;
@@ -535,9 +535,9 @@ a.tag:active {
   text-transform: uppercase;
   position: relative;
   padding: 0.5rem;
-  transition: all 0.25s ease-in-out;
+  transition: color 0.25s ease-in-out;
 }
-.site-header .nav-link:before {
+.site-header .nav-link::before {
   content: '';
   position: absolute;
   bottom: 0;
@@ -555,8 +555,8 @@ a.tag:active {
 .site-header .nav-link.active {
   color: var(--theme-primary);
 }
-.site-header .nav-link:hover:before,
-.site-header .nav-link.active:before {
+.site-header .nav-link:hover::before,
+.site-header .nav-link.active::before {
   transform: scaleX(1);
 }
 @media screen and (max-width: 767px) {
@@ -574,7 +574,7 @@ a.tag:active {
     padding-left: 0;
     border-bottom: 1px solid var(--theme-border-soft);
   }
-  .site-header .nav-link:before {
+  .site-header .nav-link::before {
     display: none;
   }
   .site-header .nav-link:hover,
@@ -598,7 +598,7 @@ a.tag:active {
   display: inline-block;
   padding-bottom: 0.75rem;
 }
-.section-heading span:before {
+.section-heading span::before {
   content: '';
   position: absolute;
   bottom: 0;
@@ -640,8 +640,9 @@ a.tag:active {
     transform: translateY(0);
   }
 }
+/* 4.95rem = the old site's 79.2px at the 16px root */
 .hero-header h1 {
-  font-size: 79.2px;
+  font-size: 4.95rem;
   color: #fff;
   text-transform: uppercase;
   margin: 0;
@@ -651,8 +652,8 @@ a.tag:active {
   position: relative;
   font-weight: 700;
 }
-.hero-header h1 > span:before,
-.hero-header h1 > span:after {
+.hero-header h1 > span::before,
+.hero-header h1 > span::after {
   content: '';
   position: absolute;
   background: #fff;
@@ -660,10 +661,10 @@ a.tag:active {
   width: 4px;
   top: 15px;
 }
-.hero-header h1 > span:before {
+.hero-header h1 > span::before {
   left: -8%;
 }
-.hero-header h1 > span:after {
+.hero-header h1 > span::after {
   right: -8%;
 }
 .hero-header h1 > span .sub-span {
@@ -675,12 +676,12 @@ a.tag:active {
   height: 100%;
 }
 .hero-header h1 > span .sub-span > span {
-  font-size: 18px;
+  font-size: 1.125rem;
   position: relative;
   top: -50%;
 }
-.hero-header h1 > span .sub-span > span:before,
-.hero-header h1 > span .sub-span > span:after {
+.hero-header h1 > span .sub-span > span::before,
+.hero-header h1 > span .sub-span > span::after {
   content: '';
   position: absolute;
   background: #fff;
@@ -688,10 +689,10 @@ a.tag:active {
   height: 4px;
   top: 39%;
 }
-.hero-header h1 > span .sub-span > span:before {
+.hero-header h1 > span .sub-span > span::before {
   right: 110%;
 }
-.hero-header h1 > span .sub-span > span:after {
+.hero-header h1 > span .sub-span > span::after {
   left: 110%;
 }
 
@@ -707,7 +708,7 @@ a.tag:active {
   font-weight: 600;
 }
 .hero-section .learn-more .text {
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 .hero-section .learn-more .icon {
   display: flex;
@@ -726,24 +727,24 @@ a.tag:active {
 
 @media screen and (max-width: 767px) {
   .hero-header h1 {
-    font-size: 52px;
+    font-size: 3.25rem;
   }
-  .hero-header h1 > span:before,
-  .hero-header h1 > span:after {
+  .hero-header h1 > span::before,
+  .hero-header h1 > span::after {
     display: none;
   }
 }
 
 @media screen and (max-width: 520px) {
   .hero-header h1 {
-    font-size: 36px;
+    font-size: 2.25rem;
   }
   .hero-header h1 > span .sub-span {
     width: 100%;
     left: 0;
   }
-  .hero-header h1 > span .sub-span > span:before,
-  .hero-header h1 > span .sub-span > span:after {
+  .hero-header h1 > span .sub-span > span::before,
+  .hero-header h1 > span .sub-span > span::after {
     display: none;
   }
   .hero-header h1 > span .sub-span > span {
@@ -804,12 +805,12 @@ a.tag:active {
   position: relative;
   text-transform: uppercase;
   padding: 0.75rem 1rem;
-  border-radius: 5px;
+  border-radius: 0.5rem;
   margin-bottom: 1.8rem;
   text-align: center;
 }
 
-.job-period:before {
+.job-period::before {
   position: absolute;
   content: '';
   transform: rotate(45deg);
@@ -843,21 +844,20 @@ a.tag:active {
 .check-list li {
   position: relative;
   margin: 0;
-  padding: 0.5rem;
-  padding-left: 0;
+  padding: 0.5rem 0.5rem 0.5rem 1.75rem;
 }
-.check-list li:before {
+.check-list li::before {
   /* solid square-check icon, Font Awesome Free 6 (CC BY 4.0) — the check reads
      as a cutout, so the card background shows through it like the old FA glyph */
   content: '';
+  position: absolute;
+  left: 0;
+  top: 0.8rem;
   width: 1.15rem;
   height: 1.15rem;
   background-color: var(--theme-accent);
   mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zM337 209L209 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L303 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>')
     no-repeat center / contain;
-  float: left;
-  margin-right: 0.5rem;
-  margin-top: 0.3rem;
 }
 
 /* Bootstrap-era callouts used inside post markdown, restyled on an accent-bar look.
@@ -921,6 +921,9 @@ a.tag:active {
   position: relative;
   margin: 0 0 0.5rem;
   padding-left: 1.75rem;
+}
+.point-list li:last-child {
+  margin-bottom: 0;
 }
 .point-list li::before {
   /* circle-play icon, Font Awesome Free 6 (CC BY 4.0) */
@@ -1040,7 +1043,10 @@ a.tag:active {
   background-color: var(--theme-surface);
   border: 1px solid var(--theme-border-soft);
   border-radius: 0.5rem;
-  transition: all 0.2s ease;
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .page-link:hover {
