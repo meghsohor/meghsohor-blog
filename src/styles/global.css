@@ -902,6 +902,88 @@ a.tag:active {
   color: #8fc7e8;
 }
 
+/* Markdown headings in posts — h2 carries the section-heading look (centered
+   brand-blue, short underline), h3 the minor-heading scale of the old h6s */
+.prose h2 {
+  position: relative;
+  color: var(--theme-primary);
+  font-size: 1.25rem;
+  text-align: center;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+.prose h2::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 36px;
+  height: 2px;
+  margin-left: -18px;
+  background: var(--theme-primary);
+}
+.prose h3 {
+  font-size: 1rem;
+}
+
+/* Markdown lists in posts — icon bullets instead of discs */
+.prose ul {
+  list-style: none;
+  padding-left: 0;
+}
+.prose ul li {
+  position: relative;
+  margin: 0 0 0.5rem;
+  padding-left: 1.75rem;
+}
+.prose ul li:last-child {
+  margin-bottom: 0;
+}
+.prose ul li::before {
+  /* circle-play icon, Font Awesome Free 6 (CC BY 4.0) */
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  width: 1.05rem;
+  height: 1.05rem;
+  background-color: var(--theme-primary);
+  mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c7.6-4.2 16.8-4.1 24.3 .5l144 88c7.1 4.4 11.5 12.1 11.5 20.5s-4.4 16.1-11.5 20.5l-144 88c-7.4 4.5-16.7 4.7-24.3 .5s-12.3-12.2-12.3-20.9l0-176c0-8.7 4.7-16.7 12.3-20.9z"/></svg>')
+    no-repeat center / contain;
+}
+.prose ol {
+  padding-left: 1rem;
+}
+.prose ol li {
+  padding-left: 0.25rem;
+  margin: 0 0 0.5rem;
+}
+.prose ol li:last-child {
+  margin-bottom: 0;
+}
+
+/* Markdown tables in posts — bordered, on theme tokens */
+.prose table {
+  width: 100%;
+  margin: 0 0 1.5rem;
+  border-collapse: collapse;
+}
+.prose th,
+.prose td {
+  padding: 0.75rem;
+  border: 1px solid var(--theme-border-strong);
+  vertical-align: top;
+}
+.prose thead th {
+  background-color: var(--theme-page);
+  color: var(--theme-heading);
+}
+
+.prose img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Section headings inside post markdown (h5.post-subheading, 46 uses) —
    centered brand-blue with a short centered underline, as on the Gatsby site */
 .post-subheading {
