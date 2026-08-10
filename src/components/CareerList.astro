@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content'
+
+// Filename prefixes (001…) are chronological; newest job first, like the old site
+const jobs = (await getCollection('career')).sort((a, b) => b.id.localeCompare(a.id))
+---
+
+<section class="career-section bg-surface py-16 md:py-24">
+  <div class="container">
+    <h2 class="section-heading">
+      <span>Job Experience</span>
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {
+        jobs.map(async result => {
+          const job = result.data
+
+          return (
+            <article class="job-card">
+              <div class="job-period">
+                {job.startDate} - {job.endDate}
+              </div>
+              <div class="card career-card">
+                <div class="card-body">
+                  <h3 class="card-title">{job.title}</h3>
+                  <p class="card-subtitle">{job.company}</p>
+                  <div class="mb-auto">
+                    <ul class="check-list">
+                      {job.tasks.map(task => (
+                        <li>{task}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div class="tags job-skills">
+                    {job.tags.map(tag => (
+                      <span class="tag">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </article>
+          )
+        })
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+<script>
+  // Header strips + buttons are rendered at build time (rehype-code-headers.mjs);
+  // this only wires up the clipboard behaviour.
+  document.querySelectorAll('.code-block').forEach(block => {
+    const btn = block.querySelector<HTMLButtonElement>('.code-copy-btn')
+    const pre = block.querySelector('pre')
+    const label = btn?.querySelector('.code-copy-label')
+    if (!btn || !pre || !label) return
+
+    btn.addEventListener('click', async () => {
+      const code = (pre.textContent || '').replace(/\n$/, '')
+      try {
+        await navigator.clipboard.writeText(code)
+      } catch (e) {
+        return
+      }
+      label.textContent = 'Copied!'
+      btn.classList.add('copied')
+      setTimeout(() => {
+        label.textContent = 'Copy'
+        btn.classList.remove('copied')
+      }, 1600)
+    })
+  })
+</script>

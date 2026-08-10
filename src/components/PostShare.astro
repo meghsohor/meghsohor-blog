@@ -1,0 +1,172 @@
+---
+import Icon from './Icon.astro'
+
+interface Props {
+  title: string
+  url: string
+}
+
+const { title, url } = Astro.props
+const enc = encodeURIComponent
+const targets = [
+  { name: 'X', icon: 'x-twitter' as const, href: `https://twitter.com/intent/tweet?url=${enc(url)}&text=${enc(title)}&via=meghsohor` },
+  { name: 'Facebook', icon: 'facebook' as const, href: `https://www.facebook.com/sharer/sharer.php?u=${enc(url)}` },
+  { name: 'LinkedIn', icon: 'linkedin' as const, href: `https://www.linkedin.com/sharing/share-offsite/?url=${enc(url)}` },
+  { name: 'WhatsApp', icon: 'whatsapp' as const, href: `https://wa.me/?text=${enc(`${title} ${url}`)}` },
+]
+---
+
+<button type="button" class="meta-icon-btn share-btn" aria-label="Share this post" data-tooltip="Share this post" aria-haspopup="dialog">
+  <Icon name="share-nodes" size="0.9em" />
+</button>
+
+<dialog class="share-dialog" aria-label="Share this post">
+  <div class="share-dialog-head">
+    <h2>Share this post</h2>
+    <button type="button" class="share-close icon-btn-ghost" aria-label="Close">
+      <Icon name="xmark" size="1em" />
+    </button>
+  </div>
+  <ul class="share-targets">
+    {
+      targets.map(t => (
+        <li>
+          <a href={t.href} target="_blank" rel="noopener noreferrer">
+            <span class="share-target-icon">
+              <Icon name={t.icon} size="1.5rem" />
+            </span>
+            <span class="share-target-name">{t.name}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <div class="share-link-row">
+    <input type="text" readonly value={url} aria-label="Post link" />
+    <button type="button" class="share-copy-link">Copy</button>
+  </div>
+</dialog>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.share-btn').forEach(btn => {
+    const dialog = btn.nextElementSibling
+    if (!(dialog instanceof HTMLDialogElement)) return
+    const input = dialog.querySelector<HTMLInputElement>('.share-link-row input')
+    const copyBtn = dialog.querySelector<HTMLButtonElement>('.share-copy-link')
+
+    btn.addEventListener('click', () => dialog.showModal())
+    dialog.querySelector('.share-close')?.addEventListener('click', () => dialog.close())
+    // a click that lands on the dialog element itself is on the backdrop
+    dialog.addEventListener('click', e => {
+      if (e.target === dialog) dialog.close()
+    })
+
+    copyBtn?.addEventListener('click', async () => {
+      if (!input) return
+      try {
+        await navigator.clipboard.writeText(input.value)
+      } catch (e) {
+        input.select()
+        return
+      }
+      copyBtn.textContent = 'Copied!'
+      copyBtn.classList.add('copied')
+      setTimeout(() => {
+        copyBtn.textContent = 'Copy'
+        copyBtn.classList.remove('copied')
+      }, 1600)
+    })
+  })
+</script>
+
+<style>
+  .share-dialog {
+    margin: auto;
+    width: min(92vw, 22rem);
+    padding: 1.25rem;
+    border: 1px solid var(--theme-border-soft);
+    border-radius: 0.75rem;
+    background: var(--theme-surface);
+    color: var(--theme-body);
+    box-shadow: var(--shadow-card-hover);
+  }
+  .share-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.55);
+  }
+
+  .share-dialog-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+  .share-dialog-head h2 {
+    font-size: 1.05rem;
+    margin: 0;
+  }
+  .share-targets {
+    display: flex;
+    justify-content: space-around;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem;
+  }
+  .share-targets a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.72rem;
+    color: var(--theme-muted);
+  }
+  .share-target-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    background: var(--theme-page);
+    color: var(--theme-heading);
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease;
+  }
+  .share-targets a:hover .share-target-icon {
+    background: var(--theme-primary);
+    color: #fff;
+  }
+  .share-targets a:hover {
+    color: var(--theme-primary);
+  }
+
+  .share-link-row {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .share-link-row input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.45rem 0.6rem;
+    border: 1px solid var(--theme-border-strong);
+    border-radius: 0.4rem;
+    background: var(--theme-page);
+    color: var(--theme-muted);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+  }
+  .share-copy-link {
+    padding: 0.45rem 0.9rem;
+    border-radius: 0.4rem;
+    background: var(--theme-primary);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+  }
+  .share-copy-link:hover {
+    opacity: 0.85;
+  }
+</style>

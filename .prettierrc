@@ -1,4 +1,7 @@
 {
+  "semi": false,
+  "singleQuote": true,
   "arrowParens": "avoid",
-  "semi": false
+  "printWidth": 160,
+  "plugins": ["prettier-plugin-astro"]
 }

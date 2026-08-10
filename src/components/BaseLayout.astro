@@ -1,0 +1,71 @@
+---
+import '@fontsource/domine/400.css'
+import '@fontsource/domine/600.css'
+import '@fontsource/domine/700.css'
+import '@fontsource/fira-code/400.css'
+import '@fontsource/fira-code/500.css'
+import '../styles/global.css'
+import SEO from './SEO.astro'
+import ThemeInitScript from './ThemeInitScript.astro'
+import JsonLd from './JsonLd.astro'
+import CodeCopyButtons from './CodeCopyButtons.astro'
+import Header from './Header.astro'
+import Footer from './Footer.astro'
+import Sidebar from './Sidebar.astro'
+import { site } from '../config'
+
+const { title, description, image, meta, showSidebar = false } = Astro.props
+
+const siteGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${site.siteURL}/#person`,
+      name: site.authorName,
+      url: site.siteURL,
+      sameAs: site.sameAs,
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${site.siteURL}/#website`,
+      name: site.title,
+      description: site.description,
+      url: site.siteURL,
+      author: { '@id': `${site.siteURL}/#person` },
+    },
+  ],
+}
+---
+
+<html lang="en">
+  <head>
+    <ThemeInitScript />
+    <SEO {title} {description} {image} {meta} />
+    <JsonLd schema={siteGraph} />
+    <slot name="head" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Header />
+    {
+      showSidebar ? (
+        <div class="container pt-4 pb-12 flex-1">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <main class="lg:col-span-8">
+              <slot />
+            </main>
+            <aside class="lg:col-span-4">
+              <Sidebar />
+            </aside>
+          </div>
+        </div>
+      ) : (
+        <main class="flex-1">
+          <slot />
+        </main>
+      )
+    }
+    <Footer />
+    <CodeCopyButtons />
+  </body>
+</html>

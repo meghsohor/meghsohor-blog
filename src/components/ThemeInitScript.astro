@@ -1,0 +1,17 @@
+---
+// Sets the `dark` class before first paint, so there's no light->dark flash.
+// Must render as early as possible in <head> and stay a plain synchronous script.
+---
+
+<script is:inline>
+  ;(function () {
+    try {
+      var stored = localStorage.getItem('theme') // 'light' | 'dark' | null (null = follow system)
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      var isDark = stored === 'dark' || (stored !== 'light' && prefersDark)
+      document.documentElement.classList.toggle('dark', isDark)
+    } catch (e) {
+      // localStorage/matchMedia blocked (e.g. sandboxed iframe) — fall back to light
+    }
+  })()
+</script>

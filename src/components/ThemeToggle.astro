@@ -1,0 +1,60 @@
+---
+import Icon from './Icon.astro'
+---
+
+<button id="theme-toggle" class="theme-toggle icon-btn-ghost" type="button">
+  <Icon name="sun" size="1.1em" class="icon-light" />
+  <Icon name="moon" size="1.1em" class="icon-dark" />
+  <span class="sr-only">Toggle light and dark theme</span>
+</button>
+
+<script>
+  const STORAGE_KEY = 'theme'
+  const button = document.getElementById('theme-toggle')
+  const mql = window.matchMedia('(prefers-color-scheme: dark)')
+
+  function hasStoredChoice() {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY)
+      return stored === 'light' || stored === 'dark'
+    } catch (e) {
+      // localStorage blocked — treat as no stored preference
+      return false
+    }
+  }
+
+  button?.addEventListener('click', () => {
+    const isDark = !document.documentElement.classList.contains('dark')
+    document.documentElement.classList.toggle('dark', isDark)
+    try {
+      localStorage.setItem(STORAGE_KEY, isDark ? 'dark' : 'light')
+    } catch (e) {
+      // localStorage blocked — the choice just won't survive a reload
+    }
+  })
+
+  // Track the OS only until the button has been used
+  mql.addEventListener('change', event => {
+    if (!hasStoredChoice()) document.documentElement.classList.toggle('dark', event.matches)
+  })
+</script>
+
+<style>
+  .theme-toggle:hover {
+    color: var(--theme-primary);
+  }
+
+  /* Show the theme the click switches *to*, so the icon is the action, not the state.
+     CSS-driven off the root class so it is already correct at first paint.
+     The icons come from Icon.astro, so they need :global — this component's scope
+     attribute is never stamped on them. */
+  .theme-toggle :global(.icon-light) {
+    display: none;
+  }
+  :global(.dark) .theme-toggle :global(.icon-light) {
+    display: block;
+  }
+  :global(.dark) .theme-toggle :global(.icon-dark) {
+    display: none;
+  }
+</style>

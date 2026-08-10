@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content'
+import type { GetStaticPaths } from 'astro'
+import BaseLayout from '../../components/BaseLayout.astro'
+import BlogItem from '../../components/BlogItem.astro'
+import { slugify } from '../../utils'
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('blog')
+  const byTag = new Map<string, { name: string; posts: typeof posts }>()
+
+  for (const post of posts) {
+    for (const tag of post.data.tags) {
+      const slug = slugify(tag)
+      const entry = byTag.get(slug)
+      if (entry) entry.posts.push(post)
+      else byTag.set(slug, { name: tag, posts: [post] })
+    }
+  }
+
+  return [...byTag.entries()].map(([slug, { name, posts }]) => ({
+    params: { tag: slug },
+    props: {
+      tag: name,
+      posts: posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()),
+    },
+  }))
+}) satisfies GetStaticPaths
+
+const { tag, posts } = Astro.props
+const pageHeader = `${posts.length} post${posts.length === 1 ? '' : 's'} tagged with "${tag}"`
+---
+
+<BaseLayout title={pageHeader}>
+  <section class="container py-12">
+    <h1 class="text-2xl font-bold mb-6">{pageHeader}</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        posts.map(result => {
+          const blogPost = { ...result.data, slug: result.slug }
+          return <BlogItem post={blogPost} />
+        })
+      }
+    </div>
+  </section>
+</BaseLayout>

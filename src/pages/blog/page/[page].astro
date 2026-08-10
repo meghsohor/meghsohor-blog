@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../../components/BaseLayout.astro'
+import Pagination from '../../../components/Pagination.astro'
+import BlogItem from '../../../components/BlogItem.astro'
+import PostSearch from '../../../components/PostSearch.astro'
+import { getCollection } from 'astro:content'
+import type { GetStaticPaths } from 'astro'
+
+export const getStaticPaths = (async () => {
+  const POSTS_PER_PAGE = 6
+
+  const allPosts = await getCollection('blog')
+  const sortedPosts = allPosts.sort((a, b) => b.data.postNumber - a.data.postNumber)
+
+  const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE)
+
+  // Generate all page routes (starting from page 2, since page 1 is /blog)
+  const paths = []
+  for (let i = 2; i <= totalPages; i++) {
+    const startIndex = (i - 1) * POSTS_PER_PAGE
+    const endIndex = startIndex + POSTS_PER_PAGE
+    const posts = sortedPosts.slice(startIndex, endIndex)
+
+    paths.push({
+      params: { page: String(i) },
+      props: {
+        posts,
+        currentPage: i,
+        totalPages,
+      },
+    })
+  }
+
+  return paths
+}) satisfies GetStaticPaths
+
+const { posts, currentPage, totalPages } = Astro.props
+---
+
+<BaseLayout title={`Blog - Page ${currentPage}`}>
+  <section class="container py-12">
+    <h1 class="sr-only">Blog — Page {currentPage}</h1>
+    <PostSearch currentPage={currentPage}>
+      <a href={currentPage === 2 ? '/blog/' : `/blog/page/${currentPage - 1}/`} class="newer-posts-link">« Newer posts</a>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          posts.map((result: any) => {
+            const blogPost = { ...result.data, slug: result.slug }
+            return <BlogItem post={blogPost} />
+          })
+        }
+      </div>
+
+      <Pagination currentPage={currentPage} totalPages={totalPages} baseUrl="/blog" />
+    </PostSearch>
+  </section>
+</BaseLayout>
+
+<style>
+  .newer-posts-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+  .newer-posts-link:hover {
+    text-decoration: underline;
+  }
+</style>

@@ -1,0 +1,61 @@
+---
+import Icon from './Icon.astro'
+
+interface Props {
+  markdown: string
+  fallbackHref: string
+}
+
+const { markdown, fallbackHref } = Astro.props
+// Escape `<` so a stray "</script>" inside the post body can't break out of the tag
+const json = JSON.stringify(markdown).replace(/</g, '\\u003c')
+---
+
+<button type="button" class="meta-icon-btn copy-md-btn" data-fallback-href={fallbackHref} aria-label="Copy as Markdown" data-tooltip="Copy as Markdown">
+  <span class="icon-copy"><Icon name="markdown" size="1em" /></span>
+  <span class="icon-check"><Icon name="check" size="0.85em" /></span>
+</button>
+<script type="application/json" class="copy-md-source" is:inline set:html={json} />
+
+<script>
+  // querySelectorAll (not getElementById) so this stays correct if a page ever
+  // renders more than one instance of this component
+  document.querySelectorAll('.copy-md-btn').forEach(btn => {
+    const source = btn.nextElementSibling
+    if (!(btn instanceof HTMLButtonElement) || !(source instanceof HTMLScriptElement)) return
+
+    const markdown = JSON.parse(source.textContent || '""')
+    const defaultTip = btn.dataset.tooltip ?? 'Copy as Markdown'
+
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(markdown)
+      } catch (e) {
+        window.location.href = btn.dataset.fallbackHref ?? '#'
+        return
+      }
+      btn.dataset.tooltip = 'Copied!'
+      btn.classList.add('copied')
+      setTimeout(() => {
+        btn.dataset.tooltip = defaultTip
+        btn.classList.remove('copied')
+      }, 1600)
+    })
+  })
+</script>
+
+<style>
+  .copy-md-btn .icon-copy,
+  .copy-md-btn .icon-check {
+    display: inline-flex;
+  }
+  .copy-md-btn .icon-check {
+    display: none;
+  }
+  .copy-md-btn.copied .icon-copy {
+    display: none;
+  }
+  .copy-md-btn.copied .icon-check {
+    display: inline-flex;
+  }
+</style>

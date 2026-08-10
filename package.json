@@ -4,60 +4,31 @@
   "description": "Portfolio and Blog site of Shafiqul Islam Shuvo",
   "version": "1.0.0",
   "author": "Shuvo <meghsohor@gmail.com>",
+  "license": "0BSD",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "astro check",
+    "format": "prettier --write \"src/**/*.{astro,ts,js,css,md}\"",
+    "format:check": "prettier --check \"src/**/*.{astro,ts,js,css,md}\""
+  },
   "dependencies": {
-    "@deckdeckgo/highlight-code": "^2.2.1",
-    "bootstrap": "^4.5.3",
-    "disqus-react": "^1.0.10",
-    "font-awesome": "^4.7.0",
-    "gatsby": "^2.25.3",
-    "gatsby-image": "^2.4.21",
-    "gatsby-plugin-catch-links": "^2.3.15",
-    "gatsby-plugin-google-fonts": "^1.0.1",
-    "gatsby-plugin-mailchimp": "^5.2.2",
-    "gatsby-plugin-manifest": "^2.5.2",
-    "gatsby-plugin-offline": "^3.3.3",
-    "gatsby-plugin-react-helmet": "^3.3.14",
-    "gatsby-plugin-sharp": "^2.7.1",
-    "gatsby-remark-highlight-code": "^2.1.0",
-    "gatsby-remark-images": "^3.5.1",
-    "gatsby-source-filesystem": "^2.4.2",
-    "gatsby-transformer-remark": "^2.9.2",
-    "gatsby-transformer-sharp": "^2.5.21",
-    "lodash": "^4.17.20",
-    "prop-types": "^15.7.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-helmet": "^6.1.0",
-    "reactstrap": "^8.7.1"
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.3",
+    "@fontsource/domine": "^5.3.0",
+    "@fontsource/fira-code": "^5.3.0",
+    "@tailwindcss/vite": "^4.1.17",
+    "astro": "^5.15.4",
+    "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
-    "prettier": "2.1.2"
-  },
-  "keywords": [
-    "gatsby",
-    "blog",
-    "portfolio",
-    "javascript",
-    "react"
-  ],
-  "license": "0BSD",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/meghsohor/meghsohor-blog"
-  },
-  "bugs": {
-    "url": "https://github.com/meghsohor/meghsohor-blog/issues"
-  },
-  "engines": {
-    "npm": ">=6.9.0",
-    "node": ">=10.16.0"
+    "@astrojs/check": "^0.9.9",
+    "@tailwindcss/typography": "^0.5.20",
+    "prettier": "^3.9.6",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.3"
   }
 }

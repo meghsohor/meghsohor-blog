@@ -1,0 +1,136 @@
+---
+import Icon from './Icon.astro'
+---
+
+<section id="about" class="about-section bg-surface py-16 md:py-24">
+  <div class="container">
+    <h2 class="section-heading">
+      <span>About Me</span>
+    </h2>
+    <div class="max-w-3xl mx-auto">
+      <div class="text-body text-lg">
+        <p class="mb-4">
+          I am an <strong>AWS Certified Software Developer</strong>. Since 2016 I have built enterprise applications and customer dashboards, A/B experiments
+          for online shops, an audio streaming service, and event-driven backend services. Along the way I have worked with <strong>HTML</strong>,
+          <strong>CSS/SCSS</strong>, <strong>JavaScript/TypeScript</strong>, <strong>jQuery</strong>, <strong>Angular</strong>, <strong>React</strong>,
+          <strong>Next.js</strong>, <strong>Node.js</strong>, <strong>PHP</strong>, <strong>Ruby on Rails</strong>, <strong>AWS</strong>, and more.
+        </p>
+        <p class="mb-4">
+          I am passionate about building new things and solving logical & technical problems. My passion drives me to learn, read, and practice new things as
+          well as sharpen what I already know.
+        </p>
+        <p class="mb-4">
+          Right now I am learning <strong>Go</strong>, and working on building <strong>agentic systems</strong> — AI that doesn't just chat, but gets things done.
+        </p>
+        <p class="mb-4">
+          In my free time, I build small projects on
+          <a href="https://github.com/meghsohor" class="text-primary underline" target="_blank" rel="noopener noreferrer">GitHub</a> and help others on
+          <a href="https://stackoverflow.com/users/7646942/shuvo" class="text-primary underline" target="_blank" rel="noopener noreferrer">Stack Overflow</a>.
+        </p>
+        <p>Besides my profession, I enjoy reading, cooking, and traveling.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-me-container">
+    <div class="container text-center">
+      <h5 class="uppercase mb-4">Get in Touch</h5>
+      <div class="contact-links">
+        <a id="contact-email" href="#" class="contact-link" aria-label="Email" data-u="meghsohor" data-d="gmail.com" hidden>
+          <Icon name="envelope" size="1.25rem" />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/meghsohor/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contact-link"
+          aria-label="LinkedIn"
+          data-tooltip="LinkedIn"
+        >
+          <Icon name="linkedin" size="1.25rem" />
+        </a>
+        <a href="https://github.com/meghsohor" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="GitHub" data-tooltip="GitHub">
+          <Icon name="github" size="1.25rem" />
+        </a>
+        <a
+          href="https://stackoverflow.com/users/7646942/shuvo"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contact-link"
+          aria-label="Stack Overflow"
+          data-tooltip="Stack Overflow"
+        >
+          <Icon name="stack-overflow" size="1.25rem" />
+        </a>
+        <a
+          href="https://twitter.com/meghsohor"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contact-link"
+          aria-label="X (Twitter)"
+          data-tooltip="X (Twitter)"
+        >
+          <Icon name="x-twitter" size="1.25rem" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const email = document.getElementById('contact-email') as HTMLAnchorElement | null
+  if (email) {
+    const reveal = () => {
+      const address = `${email.dataset.u}@${email.dataset.d}`
+      email.href = `mailto:${address}`
+      email.dataset.tooltip = address
+    }
+    for (const type of ['pointerenter', 'focusin', 'touchstart']) {
+      email.addEventListener(type, reveal, { once: true })
+    }
+    email.hidden = false
+  }
+</script>
+
+<style>
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+  }
+  .contact-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    border: 1px solid var(--theme-border-strong);
+    background: var(--theme-surface);
+    color: var(--theme-muted);
+    transition:
+      color 0.15s ease,
+      background-color 0.15s ease,
+      border-color 0.15s ease,
+      transform 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+  .contact-link:hover,
+  .contact-link:focus-visible {
+    color: #fff;
+    background: var(--theme-primary);
+    border-color: var(--theme-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-hover);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .contact-link,
+    .contact-link:hover,
+    .contact-link:focus-visible {
+      transition: none;
+      transform: none;
+    }
+  }
+</style>

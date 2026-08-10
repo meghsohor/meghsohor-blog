@@ -1,0 +1,287 @@
+---
+import { getCollection } from 'astro:content'
+import BlogItem from './BlogItem.astro'
+import Icon from './Icon.astro'
+
+interface Props {
+  // page this route renders server-side; Load more continues after it
+  currentPage?: number
+}
+
+const { currentPage = 1 } = Astro.props
+const posts = (await getCollection('blog')).sort((a, b) => b.data.postNumber - a.data.postNumber)
+---
+
+<form id="post-search" class="post-search" role="search" hidden>
+  <label for="post-search-input" class="sr-only">Search posts</label>
+  <div class="post-search-field">
+    <input
+      id="post-search-input"
+      type="search"
+      name="q"
+      placeholder="Search posts by title or tag…"
+      autocomplete="off"
+      spellcheck="false"
+      enterkeyhint="search"
+      aria-describedby="post-search-title"
+    />
+    <button id="post-search-clear" type="button" class="icon-btn-ghost" aria-label="Clear search" hidden>
+      <Icon name="xmark" size="0.85em" />
+    </button>
+    <button type="submit" class="post-search-submit" aria-label="Search">
+      <Icon name="magnifying-glass" size="1em" />
+    </button>
+  </div>
+</form>
+
+<h2 id="post-search-title" class="post-search-title" aria-live="polite" aria-atomic="true" hidden></h2>
+
+<div id="post-search-results" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" hidden></div>
+<p id="post-search-empty" class="post-search-empty" hidden>
+  Try a different word, or <button type="button" id="post-search-reset" class="post-search-reset">clear the search</button> to browse all posts.
+</p>
+
+<div id="post-browse">
+  <slot />
+</div>
+
+<div class="post-list-foot">
+  <p id="post-list-status" role="status" aria-live="polite" aria-atomic="true"></p>
+  <button id="post-load-more" type="button" class="btn btn-primary" hidden>Load more</button>
+</div>
+
+<template id="post-search-cards" data-current-page={currentPage}>
+  {posts.map(p => <BlogItem post={{ ...p.data, slug: p.slug }} />)}
+</template>
+
+<script>
+  const PER_PAGE = 6
+  const form = document.getElementById('post-search') as HTMLFormElement | null
+  const input = document.getElementById('post-search-input') as HTMLInputElement | null
+  const clearBtn = document.getElementById('post-search-clear') as HTMLButtonElement | null
+  const title = document.getElementById('post-search-title')
+  const results = document.getElementById('post-search-results')
+  const empty = document.getElementById('post-search-empty')
+  const resetBtn = document.getElementById('post-search-reset')
+  const loadMore = document.getElementById('post-load-more') as HTMLButtonElement | null
+  const status = document.getElementById('post-list-status')
+  const tpl = document.getElementById('post-search-cards') as HTMLTemplateElement | null
+  const browse = document.getElementById('post-browse')
+  const browseGrid = browse?.querySelector('.grid')
+  const pagination = browse?.querySelector('.pagination-wrapper')
+
+  if (form && input && clearBtn && title && results && empty && loadMore && status && tpl && browse && browseGrid) {
+    form.hidden = false
+    if (pagination instanceof HTMLElement) pagination.hidden = true
+
+    // searchable haystack per card: title + tag names, lowercased
+    const cards = Array.from(tpl.content.querySelectorAll('article'))
+    const entries = cards.map(card => {
+      const cardTitle = card.querySelector('.card-title')?.textContent ?? ''
+      const tags = Array.from(card.querySelectorAll('.tag'))
+        .map(t => t.textContent ?? '')
+        .join(' ')
+      return { card, hay: (cardTitle + ' ' + tags).toLowerCase() }
+    })
+    const total = cards.length
+    // browse position: the server rendered this page's slice; Load more continues after it
+    let browseShown = Math.min(Number(tpl.dataset.currentPage || 1) * PER_PAGE, total)
+    let browsePath = location.pathname
+
+    let mode: 'browse' | 'search' = 'browse'
+    let hits: Element[] = []
+    let hitsShown = 0
+
+    function announce() {
+      if (!status || !loadMore || !browseGrid) return
+      if (mode === 'browse') {
+        const visible = browseGrid.children.length
+        status.textContent = visible >= total ? `Showing all ${total} posts` : `Showing ${visible} of ${total} posts`
+        // browseShown, not visible: a deep-linked page N shows only its own slice,
+        // but the feed may already be exhausted (nothing older to append)
+        loadMore.hidden = browseShown >= total
+      } else {
+        status.textContent = hits.length > hitsShown ? `Showing ${hitsShown} of ${hits.length}` : ''
+        loadMore.hidden = hitsShown >= hits.length
+      }
+    }
+
+    const pageHref = (n: number) => (n <= 1 ? '/blog/' : `/blog/page/${n}/`)
+
+    function showBrowse() {
+      if (!browse || !results || !empty || !title) return
+      mode = 'browse'
+      results.hidden = true
+      empty.hidden = true
+      title.hidden = true
+      browse.hidden = false
+      history.replaceState(null, '', browsePath)
+      announce()
+    }
+
+    function showResultsChunk() {
+      if (!results) return
+      hits.slice(hitsShown, hitsShown + PER_PAGE).forEach(card => results.appendChild(card))
+      hitsShown = Math.min(hitsShown + PER_PAGE, hits.length)
+      announce()
+    }
+
+    function run(query: string) {
+      if (!browse || !results || !empty || !title) return
+      if (!query) {
+        showBrowse()
+        return
+      }
+      history.replaceState(null, '', '/blog/?q=' + encodeURIComponent(query))
+      const words = query.toLowerCase().split(/\s+/).filter(Boolean)
+      hits = entries.filter(e => words.every(w => e.hay.includes(w))).map(e => e.card.cloneNode(true) as Element)
+      hitsShown = 0
+      mode = 'search'
+      browse.hidden = true
+      results.replaceChildren()
+      title.hidden = false
+      title.textContent =
+        hits.length === 0 ? `No posts match “${query}”` : `${hits.length} post${hits.length === 1 ? '' : 's'} match${hits.length === 1 ? 'es' : ''} “${query}”`
+      results.hidden = hits.length === 0
+      empty.hidden = hits.length !== 0
+      if (hits.length) showResultsChunk()
+      else announce()
+    }
+
+    loadMore.addEventListener('click', () => {
+      if (mode === 'search') {
+        showResultsChunk()
+        return
+      }
+      cards.slice(browseShown, browseShown + PER_PAGE).forEach(card => browseGrid.appendChild(card.cloneNode(true)))
+      browseShown = Math.min(browseShown + PER_PAGE, total)
+      browsePath = pageHref(Math.ceil(browseShown / PER_PAGE))
+      history.replaceState(null, '', browsePath)
+      announce()
+    })
+
+    // search runs on submit (Enter or the search button), not per keystroke
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      run(input.value.trim())
+    })
+    input.addEventListener('input', () => {
+      clearBtn.hidden = input.value.length === 0
+    })
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && input.value) {
+        e.preventDefault()
+        input.value = ''
+        clearBtn.hidden = true
+        showBrowse()
+      }
+    })
+    function clearSearch() {
+      if (!input || !clearBtn) return
+      input.value = ''
+      clearBtn.hidden = true
+      showBrowse()
+      input.focus()
+    }
+    clearBtn.addEventListener('click', clearSearch)
+    resetBtn?.addEventListener('click', clearSearch)
+
+    function syncFromUrl() {
+      if (!input || !clearBtn) return
+      const q = new URLSearchParams(location.search).get('q') || ''
+      input.value = q
+      clearBtn.hidden = q.length === 0
+      if (q) run(q)
+      else showBrowse()
+    }
+    window.addEventListener('popstate', syncFromUrl)
+
+    if (new URLSearchParams(location.search).get('q')) syncFromUrl()
+    else announce()
+  }
+</script>
+
+<style>
+  .post-search {
+    margin-bottom: 2rem;
+  }
+  .post-search-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 34rem;
+    margin: 0 auto;
+  }
+  .post-search-field input {
+    width: 100%;
+    padding: 0.7rem 5.5rem 0.7rem 1.25rem;
+    border: 1px solid var(--theme-border-strong);
+    border-radius: 9999px;
+    background: var(--theme-surface);
+    color: var(--theme-body);
+    font-size: 1rem;
+  }
+  .post-search-field input:focus-visible {
+    outline: 2px solid var(--theme-accent);
+    outline-offset: 1px;
+  }
+  .post-search-field input::-webkit-search-cancel-button {
+    display: none; /* the custom clear button replaces it in every browser */
+  }
+  .post-search-submit {
+    position: absolute;
+    right: 0.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 9999px;
+    background: var(--theme-primary);
+    color: #fff;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+  }
+  .post-search-submit:hover {
+    opacity: 0.85;
+  }
+  #post-search-clear {
+    position: absolute;
+    right: 3rem;
+  }
+
+  .post-search-title {
+    text-align: center;
+    font-size: 1.35rem;
+    margin: 0 0 2rem;
+  }
+
+  .post-search-empty {
+    text-align: center;
+    color: var(--theme-muted);
+    padding: 1rem 0 2rem;
+  }
+  .post-search-reset {
+    color: var(--theme-primary);
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+    background: none;
+    border: 0;
+    font: inherit;
+  }
+
+  .post-list-foot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 2.5rem;
+    min-height: 2.5rem;
+  }
+  .post-list-foot p {
+    margin: 0;
+    color: var(--theme-muted);
+    font-size: 0.9rem;
+  }
+</style>

@@ -1,0 +1,21 @@
+# Targets end in / to match the built URLs — otherwise each 301 lands on another 301.
+
+# Old Gatsby tag URLs → new /tags structure.
+# Exception: no slash after :splat — the indexed URLs are /tag/<tag>/, so it already has one.
+/tag/*  /tags/:splat  301
+
+# /about was a real page on the Gatsby site; the About section now lives on the homepage.
+# /team predates that and pointed at /about for years.
+/about  /  301
+/team  /  301
+
+# /search was a real page on the Gatsby site; search now lives on the blog listing
+/search  /blog/  301
+
+# Blog posts whose slugs changed in the Astro migration (old slugified titles)
+/blog/2-useful-polling-functions-in-javascript  /blog/polling-functions-in-javascript/  301
+/blog/js-coding-challenge-find-anagrams  /blog/find-anagrams-js/  301
+/blog/javascript-arrow-functions  /blog/javascript-arrow-function/  301
+/blog/use-regex-in-javascript-to-improve-search-results  /blog/javascript-search-regex/  301
+/blog/modern-browser-apis-part-1  /blog/modern-browser-api-part-1/  301
+/blog/swipe-function-for-touch-devices-in-vanilla-js  /blog/touch-swipe-function-javascript/  301
