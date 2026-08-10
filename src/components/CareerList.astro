@@ -20,11 +20,11 @@ const jobs = (await getCollection('career')).sort((a, b) => b.id.localeCompare(a
               <div class="job-period">
                 {job.startDate} - {job.endDate}
               </div>
-              <div class="career-card">
+              <div class="card career-card">
                 <div class="card-body">
                   <h3 class="card-title">{job.title}</h3>
                   <p class="card-subtitle">{job.company}</p>
-                  <div class="card-text mb-auto">
+                  <div class="mb-auto">
                     <ul class="check-list">
                       {job.tasks.map(task => (
                         <li>{task}</li>

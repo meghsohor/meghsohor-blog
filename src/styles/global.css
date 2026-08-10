@@ -490,6 +490,8 @@ a.tag:active {
   overflow: hidden;
 }
 .card-body {
+  display: flex;
+  flex-direction: column;
   flex: 1 1 auto;
   min-height: 1px;
   padding: 1.25rem;
@@ -499,6 +501,9 @@ a.tag:active {
 }
 .card-subtitle {
   margin-top: -0.375rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--theme-border-strong);
 }
 
 /*--------------- Top Navigation --------------*/
@@ -774,17 +779,16 @@ a.tag:active {
   height: 100%;
 }
 .portfolio-card .card-body {
-  padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
   align-items: flex-start;
   border-top: 1px solid var(--theme-border-soft);
 }
-.portfolio-card .card-title {
+/* card titles are h3 elements — pull them down from the global 1.75rem */
+.portfolio-card .card-title,
+.career-card .card-title {
   font-size: 1.25rem;
-  font-weight: 700;
+}
+.portfolio-card .card-title {
   width: 100%;
-  margin-bottom: 0.75rem;
   border-bottom: 1px solid var(--theme-border-soft);
   padding-bottom: 0.5rem;
 }
@@ -821,37 +825,11 @@ a.tag:active {
 
 .career-card {
   flex: auto;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: var(--theme-surface);
-  background-clip: border-box;
-  border: 1px solid var(--theme-border-soft);
-  border-radius: 0.75rem;
-  box-shadow: var(--shadow-card);
-}
-.career-card .card-body {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  min-height: 1px;
-  padding: 1.25rem;
-}
-.career-card .card-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
 }
 .career-card .card-subtitle {
   font-style: italic;
   font-weight: 600;
   color: var(--theme-muted);
-  padding-bottom: 0.25rem;
-  border-bottom: 1px solid var(--theme-border-strong);
-  margin-top: -0.375rem;
-  margin-bottom: 0.5rem;
 }
 
 .check-list {
@@ -1005,15 +983,6 @@ a.tag:active {
 .thumb-link:focus-visible {
   outline: none;
   box-shadow: inset 0 0 0 3px var(--theme-accent);
-}
-.blog-card .card-subtitle {
-  padding-bottom: 0.25rem;
-  border-bottom: 1px solid var(--theme-border-strong);
-  margin-bottom: 0.5rem;
-}
-.blog-card .card-body {
-  display: flex;
-  flex-direction: column;
 }
 
 /*---- Footer -------*/
