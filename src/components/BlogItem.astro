@@ -1,14 +1,26 @@
 ---
 import { slugify, formatDate } from '../utils'
 import { publicImageDims } from '../image-dims'
+import { cdnImage, CARD_WIDTHS, CARD_SIZES } from '../image-cdn.mjs'
 
 const { post } = Astro.props
 const dims = await publicImageDims(post.image)
+const img = cdnImage(post.image, dims?.width, CARD_WIDTHS)
 ---
 
 <article class="card blog-card">
   <a href={`/blog/${post.slug}/`} class="thumb-link">
-    <img src={post.image} alt={post.title} class="mb-4" width={dims?.width} height={dims?.height} loading="lazy" decoding="async" />
+    <img
+      src={img.src}
+      srcset={img.srcset}
+      sizes={img.srcset ? CARD_SIZES : undefined}
+      alt={post.title}
+      class="mb-4"
+      width={dims?.width}
+      height={dims?.height}
+      loading="lazy"
+      decoding="async"
+    />
   </a>
   <div class="card-body">
     <h5 class="card-title">
