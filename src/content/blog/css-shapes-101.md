@@ -12,25 +12,23 @@ tags:
 
 This article describes styles of different shapes: triangles, parallelograms, diamonds, comic bubbles, and more using CSS only.
 
-<h5 class="post-subheading">BORDER-RADIUS PROPERTY</h5>
+## BORDER-RADIUS PROPERTY
 
-<p>The <code>border-radius</code> property is an important concept to understand before styling any CSS figures. It allows rounding
+The `border-radius` property is an important concept to understand before styling any CSS figures. It allows rounding
 corners of HTML elements. The curve for each angle is determined by one or two radii defining its shape — a circle or an
-ellipse. The radius extends to the entire background, even if the element has no borders.</p>
+ellipse. The radius extends to the entire background, even if the element has no borders.
 
-<p>The <code>border-radius</code> property allows rounding all corners of HTML elements at the same time. If you set two values ​​for
-the <code>border-radius</code> property, the first value will round the upper left and lower right corners, and the second one will
-round the upper right and lower left corners. You can use <code>px</code>, <code>em</code>, <code>%</code> or other units to set values.</p>
+The `border-radius` property allows rounding all corners of HTML elements at the same time. If you set two values ​​for
+the `border-radius` property, the first value will round the upper left and lower right corners, and the second one will
+round the upper right and lower left corners. You can use `px`, `em`, `%` or other units to set values.
 
-<p>By using the <code>border-top-left-radius</code>, <code>border-top-right-radius</code>, <code>border-bottom-left-radius</code>, and <code>border-bottom-right-radius</code> properties, you can round each corner in its own way.</p>
+By using the `border-top-left-radius`, `border-top-right-radius`, `border-bottom-left-radius`, and `border-bottom-right-radius` properties, you can round each corner in its own way.
 
-<p>The values separated by the slash <code>(/)</code> symbol define the horizontal and vertical radii.</p>
+The values separated by the slash `(/)` symbol define the horizontal and vertical radii.
 
-<h6 class="text-center mb-3">Below are some examples of shapes with different border radii.</h6>
+**Below are some examples of shapes with different border radii.**
 
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-border-radius.jpg" alt="Shapes using css border-radius property">
-</div>
+![Shapes using css border-radius property](/images/blog/css-shapes-101/css-shapes-border-radius.jpg)
 
 ```css
 .shape1 { border-radius: 15px; }
@@ -54,13 +52,11 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">CIRCLE</h5>
+## CIRCLE
 
-<p>A circle is the simplest CSS shape. Apply the <code>border-radius: 50%;</code> property to an element with identical width and height, and you’ll get a circle.</p>
+A circle is the simplest CSS shape. Apply the `border-radius: 50%;` property to an element with identical width and height, and you’ll get a circle.
 
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-circle.jpg" alt="Circle shape using css border-radius property">
-</div>
+![Circle shape using css border-radius property](/images/blog/css-shapes-101/css-shapes-circle.jpg)
 
 ```css
 .circle {
@@ -71,12 +67,10 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">OVALS/ELLIPSES</h5>
+## OVALS/ELLIPSES
 
-<p>Ovals are made in the same way as circles. The only difference is that ovals’ width should be different from its height.</p>
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-oval.jpg" alt="Oval shape using css border-radius property">
-</div>
+Ovals are made in the same way as circles. The only difference is that ovals’ width should be different from its height.
+![Oval shape using css border-radius property](/images/blog/css-shapes-101/css-shapes-oval.jpg)
 
 ```css
 .ellipse {
@@ -87,14 +81,14 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">HALF-ELLIPSES</h5>
+## HALF-ELLIPSES
 
-<p>To make half-ellipses, use sets of values separated by the slash <strong>(/)</strong> symbol to define the <strong>horizontal</strong> and <strong>vertical</strong> radii. If you put 50% before the slash symbol, you will get a vertical half-ellipse. And if you put 50% after the slash symbol, you’ll get a horizontal half-ellipse. Combinations of 0 and 100% values define the direction of your half-ellipse. 
-<br> See the examples below:</p>
+To make half-ellipses, use sets of values separated by the slash **(/)** symbol to define the **horizontal** and **vertical** radii. If you put 50% before the slash symbol, you will get a vertical half-ellipse. And if you put 50% after the slash symbol, you’ll get a horizontal half-ellipse. Combinations of 0 and 100% values define the direction of your half-ellipse. 
 
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-half-ellipses.jpg" alt="Half-ellipse shape using css border-radius property">
-</div>
+
+See the examples below:
+
+![Half-ellipse shape using css border-radius property](/images/blog/css-shapes-101/css-shapes-half-ellipses.jpg)
 
 ```css
 .half-ellipse1 { border-radius: 50% / 100% 100% 0 0; }
@@ -109,12 +103,10 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">QUARTER-ELLIPSES</h5>
-<p>To make quarter-ellipses, use combinations of 0 and 100% values.</p>
+## QUARTER-ELLIPSES
+To make quarter-ellipses, use combinations of 0 and 100% values.
 
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-quarter-ellipses.jpg" alt="Quarter-ellipse shape using css border-radius property">
-</div>
+![Quarter-ellipse shape using css border-radius property](/images/blog/css-shapes-101/css-shapes-quarter-ellipses.jpg)
 
 ```css
 .quarter-ellipse1 { border-radius: 100% 0 0 0; }
@@ -129,12 +121,10 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">CONE</h5>
-<p>And here is how you make a cone:</p>
+## CONE
+And here is how you make a cone:
 
-<div class="mb-3">
-  <img src="/images/blog/css-shapes-101/css-shapes-cone.jpg" alt="Cone shape using css border-radius property">
-</div>
+![Cone shape using css border-radius property](/images/blog/css-shapes-101/css-shapes-cone.jpg)
 
 ```css
 .cone {
@@ -147,12 +137,11 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">TRIANGLES</h5>
-<p>
-  CSS triangles are useful to create arrows, for example, in a select element or inside buttons.
-  <br>
+## TRIANGLES
+CSS triangles are useful to create arrows, for example, in a select element or inside buttons.
+
+
   To make a triangle, create a box with zero width and height.
-</p>
 
 ```css
 .triangle {
@@ -161,11 +150,9 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<p>The actual width and height of the arrow are determined by the width of the <code>border</code>. In an up arrow, for example, the <code>bottom-border</code> is colored while the left and right are transparent, which forms the triangle.</p>
+The actual width and height of the arrow are determined by the width of the `border`. In an up arrow, for example, the `bottom-border` is colored while the left and right are transparent, which forms the triangle.
 
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-triangles1.jpg" alt="Triangle shape using css border property">
-</div>
+![Triangle shape using css border property](/images/blog/css-shapes-101/css-shapes-triangles1.jpg)
 
 ```css
 .triangle .triangle-up {
@@ -193,11 +180,9 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<p>To make a right triangle (a right-angled triangle), make the top or bottom border colored and leave the right or left border transparent.</p>
+To make a right triangle (a right-angled triangle), make the top or bottom border colored and leave the right or left border transparent.
 
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-triangles2.jpg" alt="Triangle shape using css border property">
-</div>
+![Triangle shape using css border property](/images/blog/css-shapes-101/css-shapes-triangles2.jpg)
 
 ```css
 .triangle .triangle-top-left {
@@ -221,8 +206,8 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">ARROWS</h5>
-<p>To create a simple arrow without a tail, make a box with a width and height, border, as well as zero left and top borders.</p>
+## ARROWS
+To create a simple arrow without a tail, make a box with a width and height, border, as well as zero left and top borders.
 
 ```css
 .arrow {
@@ -234,22 +219,18 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-arrows1.jpg" alt="Arrow shape using css border property">
-</div>
+![Arrow shape using css border property](/images/blog/css-shapes-101/css-shapes-arrows1.jpg)
 
-<p>To make an up arrow, add the <code>transform: rotate(225deg);</code> property, and to make a down arrow, add the <code>transform: rotate(45deg);</code> property to rotate the arrow to <strong>225</strong> and <strong>45</strong> degrees respectively.</p>
+To make an up arrow, add the `transform: rotate(225deg);` property, and to make a down arrow, add the `transform: rotate(45deg);` property to rotate the arrow to **225** and **45** degrees respectively.
 
 ```css
 .arrow-up { transform: rotate(225deg); }
 .arrow-down { transform: rotate(45deg); }
 ```
 
-<p>You can also make a curved arrow with a tail:</p>
+You can also make a curved arrow with a tail:
 
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-arrows2.jpg" alt="Arrow shape using css border property">
-</div>
+![Arrow shape using css border property](/images/blog/css-shapes-101/css-shapes-arrows2.jpg)
 
 ```css
 .arrow-curved {
@@ -274,11 +255,9 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<p>And below is an example of how to create an arrow-pointer:</p>
+And below is an example of how to create an arrow-pointer:
 
-<div class="mb-3">
-  <img src="/images/blog/css-shapes-101/css-shapes-arrow-pointer.jpg" alt="Arrow-pointer shape using css border property">
-</div>
+![Arrow-pointer shape using css border property](/images/blog/css-shapes-101/css-shapes-arrow-pointer.jpg)
 
 ```css
 .arrow-pointer {
@@ -308,11 +287,9 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">DIAMONDS</h5>
+## DIAMONDS
 
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-diamonds.jpg" alt="Diamond shapes using css border property">
-</div>
+![Diamond shapes using css border property](/images/blog/css-shapes-101/css-shapes-diamonds.jpg)
 
 ```css
 .diamond1 {
@@ -395,13 +372,11 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">PENTAGON</h5>
+## PENTAGON
 
-<p>A pentagon is a five-sided polygon.</p>
+A pentagon is a five-sided polygon.
 
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-pentagon.jpg" alt="Pentagon shape using css border property">
-</div>
+![Pentagon shape using css border property](/images/blog/css-shapes-101/css-shapes-pentagon.jpg)
 
 ```css
 .pentagon {
@@ -425,13 +400,11 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">HEXAGON</h5>
+## HEXAGON
 
-<p>A hexagon is a six-sided polygon.</p>
+A hexagon is a six-sided polygon.
 
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-hexagon.jpg" alt="Hexagon shape using css border property">
-</div>
+![Hexagon shape using css border property](/images/blog/css-shapes-101/css-shapes-hexagon.jpg)
 
 ```css
 .hexagon {
@@ -464,13 +437,11 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">STARS</h5>
+## STARS
 
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-stars.jpg" alt="Star shapes using css border property">
-</div>
+![Star shapes using css border property](/images/blog/css-shapes-101/css-shapes-stars.jpg)
 
-<p class="mb-2">A five-pointed star:</p>
+A five-pointed star:
 
 ```css
 .star-five {
@@ -515,7 +486,7 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<p class="mb-2">A six-pointed star:</p>
+A six-pointed star:
 
 ```css
 .star-six {
@@ -539,7 +510,7 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<p class="mb-2">A eight-pointed star:</p>
+A eight-pointed star:
 
 ```css
 .star-eight {
@@ -562,7 +533,7 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<p class="mb-2">A twelve-pointed star:</p>
+A twelve-pointed star:
 
 ```css
 .star-twelve {
@@ -592,11 +563,9 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">BUBBLES</h5>
+## BUBBLES
 
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-bubbles1.jpg" alt="Bubble shapes using css border property">
-</div>
+![Bubble shapes using css border property](/images/blog/css-shapes-101/css-shapes-bubbles1.jpg)
 
 ```css
 // SASS styles
@@ -682,11 +651,9 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">BUBBLES WITH BORDERS</h5>
+## BUBBLES WITH BORDERS
 
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-bubbles2.jpg" alt="Bubble shapes with border using css border property">
-</div>
+![Bubble shapes with border using css border property](/images/blog/css-shapes-101/css-shapes-bubbles2.jpg)
 
 ```css
 .bubble5 {
@@ -721,7 +688,7 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<p class="mb-2">To make a bubble with a shadow, add an additional div element for the arrow.</p>
+To make a bubble with a shadow, add an additional div element for the arrow.
 
 ```markdown
 <div class="bubble6"> <div class="bubble6-arrow"></div> </div>
@@ -765,11 +732,9 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">BRACKETS</h5>
+## BRACKETS
 
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-brackets.jpg" alt="Brackets shapes with border using css border property">
-</div>
+![Brackets shapes with border using css border property](/images/blog/css-shapes-101/css-shapes-brackets.jpg)
 
 ```css
 .brackets {
@@ -782,11 +747,9 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">CROSS</h5>
+## CROSS
 
-<div class="mb-3">
-  <img src="/images/blog/css-shapes-101/css-shapes-cross.jpg" alt="Cross shape with border using css border property">
-</div>
+![Cross shape with border using css border property](/images/blog/css-shapes-101/css-shapes-cross.jpg)
 
 ```css
 .cross {
@@ -806,11 +769,9 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">EGG</h5>
+## EGG
 
-<div class="mb-3">
-  <img src="/images/blog/css-shapes-101/css-shapes-egg.jpg" alt="Egg shape with border using css border property">
-</div>
+![Egg shape with border using css border property](/images/blog/css-shapes-101/css-shapes-egg.jpg)
 
 ```css
 .egg {
@@ -822,11 +783,9 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">FLAG</h5>
+## FLAG
 
-<div class="mb-3">
-  <img src="/images/blog/css-shapes-101/css-shapes-flag.jpg" alt="Flag shape with border using css border property">
-</div>
+![Flag shape with border using css border property](/images/blog/css-shapes-101/css-shapes-flag.jpg)
 
 ```css
 .flag {
@@ -855,11 +814,9 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">HEART</h5>
+## HEART
 
-<div class="mb-3">
-  <img src="/images/blog/css-shapes-101/css-shapes-heart.jpg" alt="Heart shape with border using css border property">
-</div>
+![Heart shape with border using css border property](/images/blog/css-shapes-101/css-shapes-heart.jpg)
 
 ```css
 .heart {
@@ -887,11 +844,9 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">INFINITY SYMBOL</h5>
+## INFINITY SYMBOL
 
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-infinity.jpg" alt="Infinity shape with border using css border property">
-</div>
+![Infinity shape with border using css border property](/images/blog/css-shapes-101/css-shapes-infinity.jpg)
 
 ```css
 .infinity {
@@ -921,11 +876,9 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">LEAVES</h5>
+## LEAVES
 
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-leaves.jpg" alt="Leaves shape with border using css border property">
-</div>
+![Leaves shape with border using css border property](/images/blog/css-shapes-101/css-shapes-leaves.jpg)
 
 ```css
 // SASS styles
@@ -947,11 +900,9 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">LOCK</h5>
+## LOCK
 
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-lock.jpg" alt="Lock shape with border using css border property">
-</div>
+![Lock shape with border using css border property](/images/blog/css-shapes-101/css-shapes-lock.jpg)
 
 ```css
 .lock {
@@ -993,11 +944,9 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">MAGNIFYING GLASS</h5>
+## MAGNIFYING GLASS
 
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-magnifying-glass.jpg" alt="Magnifying Glass shape with border using css border property">
-</div>
+![Magnifying Glass shape with border using css border property](/images/blog/css-shapes-101/css-shapes-magnifying-glass.jpg)
 
 ```css
 .magnifying-glass {
@@ -1024,12 +973,9 @@ round the upper right and lower left corners. You can use <code>px</code>, <code
 }
 ```
 
-<h5 class="post-subheading">PAC-MAN</h5>
+## PAC-MAN
 
-<div class="mb-3">
-    <img src="/images/blog/css-shapes-101/css-shapes-pacman.jpg"
-        alt="PackMan shape with border using css border property">
-</div>
+![PackMan shape with border using css border property](/images/blog/css-shapes-101/css-shapes-pacman.jpg)
 
 ```css
 .pac-man {

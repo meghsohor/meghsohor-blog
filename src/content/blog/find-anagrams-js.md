@@ -11,12 +11,11 @@ tags:
 
 > An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once - from **Wikipedia**.
 
+## Challenge
 
-<h5 class="post-subheading">Challenge</h5>
+Given an array of words, we need to write a function which will take two parameters. First parameter is a word and the second parameter is the array of the words. The function will return an array consisting of the anagrams of the word passed as the first parameter from the array of words passed as the second parameter.
 
-<p>Given an array of words, we need to write a function which will take two parameters. First parameter is a word and the second parameter is the array of the words. The function will return an array consisting of the anagrams of the word passed as the first parameter from the array of words passed as the second parameter.</p>
-
-<h6>Example:</h6>
+### Example:
 
 ```javascript
 const words = ['mountain', 'anatomy', 'anemic', 'boldness', 'cinema',
@@ -35,27 +34,22 @@ console.log(findAnagrams('cinema', words));
 */
 ```
 
-<h6>Notes:</h6>
-<ol class="number-list">
-  <li>All the words in the returned result should have the same length as the given word. Example: <strong>iceman</strong> and <strong>icewoman</strong> are not anagrams. Even though <strong>iceman</strong> has every letter as in <strong>icewoman</strong> but <strong>icewoman</strong> has extra letters in it which <strong>iceman</strong> doesn't have.</li>
-  <li>The word passed as first parameter should not be included in the returned array. As in the code above you can see that <strong>cinema</strong> is not included in the expected output.</li>
-</ol>
+### Notes:
 
+1. All the words in the returned result should have the same length as the given word. Example: **iceman** and **icewoman** are not anagrams. Even though **iceman** has every letter as in **icewoman** but **icewoman** has extra letters in it which **iceman** doesn't have.
+2. The word passed as first parameter should not be included in the returned array. As in the code above you can see that **cinema** is not included in the expected output.
 
-<h5 class="post-subheading">Algorithm</h5>
+## Algorithm
 
-<ol class="number-list">
-  <li>First, we need to find the total count of each letter in the word. Example: in <strong>cinema</strong> each letter has a total count of 1</li>
-  <li>Then, we need to loop through each word in the array of words and follow the <strong>Step 1</strong> for each.</li>
-  <li>Then, we need compare the count of each letter between the given word and the current word in the iteration.</li>
-  <li>If the current word matches with the given word in terms of the letter and letter counts, we will push that word in the
-  result array.</li>
-  <li>Follow <strong>Step 2</strong> to <strong>Step 4</strong> until the end of the words array</li>
-</ol>
+1. First, we need to find the total count of each letter in the word. Example: in **cinema** each letter has a total count of 1
+2. Then, we need to loop through each word in the array of words and follow the **Step 1** for each.
+3. Then, we need compare the count of each letter between the given word and the current word in the iteration.
+4. If the current word matches with the given word in terms of the letter and letter counts, we will push that word in the result array.
+5. Follow **Step 2** to **Step 4** until the end of the words array
 
-<h5 class="post-subheading">Solution</h5>
+## Solution
 
-<p>First, we will write a <code>helper</code> function which takes a word converted to an array of letters and will give back an <code>object</code> consisting of each letter in the word as the <code>keys</code> and the total counts of each letter as the <code>value</code>:</p>
+First, we will write a `helper` function which takes a word converted to an array of letters and will give back an `object` consisting of each letter in the word as the `keys` and the total counts of each letter as the `value`:
 
 ```javascript
 const numberOfEachLetter = (letters) => {
@@ -66,11 +60,11 @@ const numberOfEachLetter = (letters) => {
 };
 ```
 
-<p>In the above function we are using <code>Array.reduce()</code> function to create an object of the letters and the count of each letter as the value. We are initiating the <code>.reduce()</code> function with an empty <code>object{}</code> which is provided as the second argument of the function. 
-<br>
-And, in each iteration we are using the ES6 <strong>spread</strong> operator to get the previous value from and set updated value to <code>accumulator</code>. And then, using a <code>ternary</code> operator, we are checking if the current letter is already in the <code>accumulator</code> or not. If it is, then we are incrementing the count, otherwise we are setting 1 as the count value.</p>
+In the above function we are using `Array.reduce()` function to create an object of the letters and the count of each letter as the value. We are initiating the `.reduce()` function with an empty `object{}` which is provided as the second argument of the function.
 
-<p>We can call the function like this:</p>
+And, in each iteration we are using the ES6 **spread** operator to get the previous value from and set updated value to `accumulator`. And then, using a `ternary` operator, we are checking if the current letter is already in the `accumulator` or not. If it is, then we are incrementing the count, otherwise we are setting 1 as the count value.
+
+We can call the function like this:
 
 ```javascript
 const word = 'cinema';
@@ -86,7 +80,7 @@ numberOfEachLetter(word.split(''));
 }
 ```
 
-<p>Now, we will write another function which can compare between two words using the above <code>numberOfEachLetter</code> function:</p>
+Now, we will write another function which can compare between two words using the above `numberOfEachLetter` function:
 
 ```javascript
 const hasSameLetterCount = (word1, word2) => {
@@ -99,14 +93,13 @@ const hasSameLetterCount = (word1, word2) => {
 };
 ```
 
+Firstly, here we are getting the objects of letter counts for both words using the `hasSameLetterCount` function. Then, we are comparing the length of the two words to make sure that they have exact number of letters.
 
-<p>Firstly, here we are getting the objects of letter counts for both words using the <code>hasSameLetterCount</code> function. Then, we are comparing the length of the two words to make sure that they have exact number of letters. 
-<br>
-And finally, we are, using the <code>Object.keys()</code>, iterating through each letter of the first word and comparing to the letters of second word to check if the letters are same and have the same number of occurrence. 
-<br>
-Using the <code>Array.every()</code> function we are checking that every letter and the count of the letters matches. Otherwise, the function will return <code>false</code>.</p>
+And finally, we are, using the `Object.keys()`, iterating through each letter of the first word and comparing to the letters of second word to check if the letters are same and have the same number of occurrence.
 
-<p>Okay, enough with the helper functions. Let's checkout the final function now:</p>
+Using the `Array.every()` function we are checking that every letter and the count of the letters matches. Otherwise, the function will return `false`.
+
+Okay, enough with the helper functions. Let's checkout the final function now:
 
 ```javascript
 const findAnagrams = (word, allWords) => {
@@ -117,9 +110,9 @@ const findAnagrams = (word, allWords) => {
 };
 ```
 
-<p>Here, using the <code>Array.filter()</code> function, we are iterating through each <strong>word</strong> in the <strong>words array</strong> and checking if the <strong>current word</strong> doesn't match with the given word and then sending the both words to the <code>hasSameLetterCount</code> function to check if they are matched to be <strong>anagrams</strong>. And finally returning the array of the <strong>filtered words</strong> that match with the criteria.</p>
+Here, using the `Array.filter()` function, we are iterating through each **word** in the **words array** and checking if the **current word** doesn't match with the given word and then sending the both words to the `hasSameLetterCount` function to check if they are matched to be **anagrams**. And finally returning the array of the **filtered words** that match with the criteria.
 
-<p>Does the final function look fat? Here is the slim version using the magic of <strong>ES6</strong>:</p>
+Does the final function look fat? Here is the slim version using the magic of **ES6**:
 
 ```javascript
 const findAnagrams = (word, allWords) => allWords

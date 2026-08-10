@@ -10,14 +10,9 @@ tags:
   - Regex
 ---
 
-Being able to accurately and efficiently filter search results based on a user’s input is vital for ensuring a
-  positive and effective user experience. In this post, we will create a search bar using JavaScript, HTML and CSS.
-  Given a list of names, we should be able to filter out names based on the user’s input.
+Being able to accurately and efficiently filter search results based on a user’s input is vital for ensuring a positive and effective user experience. In this post, we will create a search bar using JavaScript, HTML and CSS. Given a list of names, we should be able to filter out names based on the user’s input.
 
-<!-- <img src="../../images/post.jpg" /> -->
-
-<p>A common way to achieve this is simply to use JavaScript’s <code>.filter()</code> function and check if any of the
-  elements <code>.includes()</code> the user’s input.</p>
+A common way to achieve this is simply to use JavaScript’s `.filter()` function and check if any of the elements `.includes()` the user’s input.
 
 ```javascript
 filterFunction = (userInput) =>{
@@ -28,23 +23,13 @@ filterFunction = (userInput) =>{
 }
 ```
 
-<p>This function checks if the user’s input matches any part of any of the names in the array. If our array of names
-  contains ‘Tom’, ‘Jerry’, ‘Larry’, ‘Barry’, and the user types in <strong>‘T’</strong>, the filtered list will only
-  contain one name,
-  because <strong>‘Tom’</strong> is the only name in the list that contains the letter <strong>‘T’</strong>.</p>
+This function checks if the user’s input matches any part of any of the names in the array. If our array of names contains ‘Tom’, ‘Jerry’, ‘Larry’, ‘Barry’, and the user types in **‘T’**, the filtered list will only contain one name, because **‘Tom’** is the only name in the list that contains the letter **‘T’**.
 
-<p>This method is pretty effective, but it’s a bit restrictive because the user has to type the exact order of letters,
-  otherwise no results will be returned. Say the user wants to find <strong>Larry</strong> from our list of names, but
-  accidentally types
-  <strong>‘Lrary’</strong>. Despite the fact that the letters are correct and the order is only off by one letter, the
-  search results would
-  turn up empty.</p>
+This method is pretty effective, but it’s a bit restrictive because the user has to type the exact order of letters, otherwise no results will be returned. Say the user wants to find **Larry** from our list of names, but accidentally types **‘Lrary’**. Despite the fact that the letters are correct and the order is only off by one letter, the search results would turn up empty.
 
-<p>So in this post, we’re going to use <strong>regex</strong> in addition to <code>.includes()</code> in order to return more convenient
-  results without
-  compromising the search accuracy. First, let’s get our HTML and CSS ready.</p>
+So in this post, we’re going to use **regex** in addition to `.includes()` in order to return more convenient results without compromising the search accuracy. First, let’s get our HTML and CSS ready.
 
-<p>We are using Bootstrap to setup the layout of the page. See below for the HTML:</p>
+We are using Bootstrap to setup the layout of the page. See below for the HTML:
 
 ```markdown
 <div class="container">
@@ -62,7 +47,7 @@ filterFunction = (userInput) =>{
 </div>
 ```
 
-<p>And CSS:</p>
+And CSS:
 
 ```css
 .title {
@@ -102,10 +87,9 @@ filterFunction = (userInput) =>{
 }
 ```
 
-<p>Now, onto the JavaScript.
-  <br>
-  The array we are going to use contains the list of names of all <strong>432</strong> characters from one of the greatest Movie Series, <strong>Star Wars</strong>.
-</p>
+Now, onto the JavaScript.
+
+The array we are going to use contains the list of names of all **432** characters from one of the greatest Movie Series, **Star Wars**.
 
 ```javascript
 const heroes = ["2-1B","4-LOM","8D8","99","0-0-0","A'Koba","Admiral Gial Ackbar","Sim Aloo","Almec",
@@ -165,7 +149,7 @@ const heroes = ["2-1B","4-LOM","8D8","99","0-0-0","A'Koba","Admiral Gial Ackbar"
 "Joh Yowza","Wullf Yularen","Ziro the Hutt","Zuckuss","Constable Zuvio"];
 ```
 
-<p>Let’s take a look at the function that is going to render all of the results in the container, <code>showHeroes</code>.</p>
+Let’s take a look at the function that is going to render all of the results in the container, `showHeroes`.
 
 ```javascript
 showHeroes = (filteredHeroes) => {
@@ -186,14 +170,13 @@ showHeroes = (filteredHeroes) => {
 }
 ```
 
-<p>The function is passed an array as an argument. We iterate through the array and use JavaScript’s <code>createElement</code> function
-to create a <code>p</code> tag for each item in the array. Then we add the name at that iteration to the <code>innerText</code> of that <code>p</code> tag, which will represent the search results.</p>
+The function is passed an array as an argument. We iterate through the array and use JavaScript’s `createElement` function to create a `p` tag for each item in the array. Then we add the name at that iteration to the `innerText` of that `p` tag, which will represent the search results.
 
-<p>Once we’ve created the <code>p</code> tag and added the <code>innerText</code>, we can use JavaScript’s <code>appendChild</code> function to append the created <code>p</code> tag and its content to <strong>heroesContainer</strong>.</p>
+Once we’ve created the `p` tag and added the `innerText`, we can use JavaScript’s `appendChild` function to append the created `p` tag and its content to **heroesContainer**.
 
-<p>If there is no <strong>hero</strong> found which means the length of the <code>filteredHeroes</code> is <strong>0</strong>, then we are going to show the <strong>“No Results”</strong> text in <code>h6</code> tag.</p>
+If there is no **hero** found which means the length of the `filteredHeroes` is **0**, then we are going to show the **“No Results”** text in `h6` tag.
 
-<p>We also need to call this function with the <strong>heroes</strong> array in <code>document.onDOMContentLoaded</code> when the page loads for first time to initialize our results and show all the characters.</p>
+We also need to call this function with the **heroes** array in `document.onDOMContentLoaded` when the page loads for first time to initialize our results and show all the characters.
 
 ```javascript
 document.addEventListener("DOMContentLoaded", () => {
@@ -201,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 ```
 
-<p>Now, onto our filter function <code>searchHeroes()</code>.</p>
+Now, onto our filter function `searchHeroes()`.
 
 ```javascript
 searchHeroes = () => {
@@ -215,13 +198,15 @@ searchHeroes = () => {
 }
 ```
 
-<p>This function filters the <strong>heroes</strong> array based on whether or not any of the character names contains the user’s input. We also use <code>toLowerCase()</code> to improve input validation. Remember, <strong>‘Pam’</strong> is not equal to <strong>‘pam’</strong>, so without changing both the character name in the array and the user input to all lowercase, a user who types <strong>‘pam’</strong> will yield no search results.</p>
+This function filters the **heroes** array based on whether or not any of the character names contains the user’s input. We also use `toLowerCase()` to improve input validation. Remember, **‘Pam’** is not equal to **‘pam’**, so without changing both the character name in the array and the user input to all lowercase, a user who types **‘pam’** will yield no search results.
 
-<p>Even after converting the names and input to lowercase letters, this functionality falls short. If a user types <strong>‘apm’</strong> they will yield no search results. It’s the same case if a user types in <strong>‘mcihael’</strong>. Both of those inputs were more than likely meant to have been <strong>‘pam’</strong> and <strong>‘michael’</strong>. So how can we account for minor spelling mistakes like that and correct our search results accordingly?</p>
+Even after converting the names and input to lowercase letters, this functionality falls short. If a user types **‘apm’** they will yield no search results. It’s the same case if a user types in **‘mcihael’**. Both of those inputs were more than likely meant to have been **‘pam’** and **‘michael’**. So how can we account for minor spelling mistakes like that and correct our search results accordingly?
 
-<h5 class="post-subheading">Introducing, Regex!</h5>
-<p>Regex, short for ‘regular expression’, is a special text string for describing a search pattern. We are going to implement a search pattern using regex that takes the first three letters of a character’s name and compares it to the first three letters of the input.</p>
-<p>Check the <code>checkName()</code> function below:</p>
+## Introducing, Regex!
+
+Regex, short for ‘regular expression’, is a special text string for describing a search pattern. We are going to implement a search pattern using regex that takes the first three letters of a character’s name and compares it to the first three letters of the input.
+
+Check the `checkName()` function below:
 
 ```javascript
 checkName = (name, str) => {
@@ -233,26 +218,23 @@ checkName = (name, str) => {
 }
 ```
 
-<br />
-<h6>Let’s break this down:</h6>
-<ul class="point-list mb-3">
-  <li><code>?=</code> is a positive lookahead.</li>
-  <li><code>.</code> matches any character except line break.</li>
-  <li><code>*</code> matches zero or more instances of a character.</li>
-  <li><code>()</code> is a capturing group, which is used to group characters together in a regular expression so that we can apply other
-  operators <code>(?=.*)</code>.</li>
-  <li><code>g</code> is the global modifier which performs a global search of the string looking for matches. You could also add <code>i</code> to <code>g</code> to make it an insensitive (not case sensitive) search as well, but in this case I have already converted the input and character name to lowercase letters, so the <code>g</code> modifier is sufficient.</li>  
-</ul>
+### Let’s break this down:
 
-<p>This function splits our user input, iterates over the characters and uses string interpolation to add each letter to the <code>(?=.*)</code> regex after the asterisk(<code>*</code>). Once we have an array of regex patterns, we join all items in the array to create a larger regex pattern that encompasses all letters. From that we can use <code>new RegExp</code> to create a regular expression from the joined patterns.</p>
+- `?=` is a positive lookahead.
+- `.` matches any character except line break.
+- `*` matches zero or more instances of a character.
+- `()` is a capturing group, which is used to group characters together in a regular expression so that we can apply other operators `(?=.*)`.
+- `g` is the global modifier which performs a global search of the string looking for matches. You could also add `i` to `g` to make it an insensitive (not case sensitive) search as well, but in this case I have already converted the input and character name to lowercase letters, so the `g` modifier is sufficient.
 
-<p>The individual patterns we’ve created for each letter will match any strings that contain that letter. Combining them will apply all of the individual capturing groups to overall pattern, making them all matchable patterns for the string. This is will compensate for where <code>.includes(str)</code> falls short.</p>
+This function splits our user input, iterates over the characters and uses string interpolation to add each letter to the `(?=.*)` regex after the asterisk(`*`). Once we have an array of regex patterns, we join all items in the array to create a larger regex pattern that encompasses all letters. From that we can use `new RegExp` to create a regular expression from the joined patterns.
 
-<p>If the user is trying to find <strong>‘Kelly’</strong>, but types in <strong>‘e’</strong> as the first letter by mistake. <code>x.toLowerCase().includes(str)</code> will work, but then if the user continues typing and types <strong>‘k’</strong> next, the previous check won’t work.</p>
+The individual patterns we’ve created for each letter will match any strings that contain that letter. Combining them will apply all of the individual capturing groups to overall pattern, making them all matchable patterns for the string. This is will compensate for where `.includes(str)` falls short.
 
-<p>If we pass <strong>‘ek’</strong> to <code>checkName()</code>, we can create the regex <code>(?=.*e)(?=.*k)</code> which will match a string containing <strong>‘e’</strong> and <strong>‘k’</strong> regardless of order. We apply that regex to the first three letters of <strong>‘kelly’</strong>, which is also passed to the function as <code>name</code>. Then <code>.match()</code> will return true if the regex is met. Otherwise it will return false.</p>
+If the user is trying to find **‘Kelly’**, but types in **‘e’** as the first letter by mistake. `x.toLowerCase().includes(str)` will work, but then if the user continues typing and types **‘k’** next, the previous check won’t work.
 
-<p>Now that we know what we are trying to accomplish and how to do it, let’s look at our revised <code>searchHeroes()</code> function:</p>
+If we pass **‘ek’** to `checkName()`, we can create the regex `(?=.*e)(?=.*k)` which will match a string containing **‘e’** and **‘k’** regardless of order. We apply that regex to the first three letters of **‘kelly’**, which is also passed to the function as `name`. Then `.match()` will return true if the regex is met. Otherwise it will return false.
+
+Now that we know what we are trying to accomplish and how to do it, let’s look at our revised `searchHeroes()` function:
 
 ```javascript
 searchHeroes = () => {
@@ -265,16 +247,18 @@ searchHeroes = () => {
 }
 ```
 
-<p>We use <code>substring()</code> to take the first three letters of the input and the character’s name. Then we check if <code>hero.toLowerCase().includes(str)</code> is true. If it is, we skip the regex validation because <code>.includes()</code> is a more accurate match since its literally part of the character name, order and character wise.
-<br>
-If <code>hero.toLowerCase().includes(str)</code> is false, we use <code>checkName()</code> to apply our regex validation. This will improve the user’s search results without being too strict and without compromising the accuracy of the overall search.
-</p>
+We use `substring()` to take the first three letters of the input and the character’s name. Then we check if `hero.toLowerCase().includes(str)` is true. If it is, we skip the regex validation because `.includes()` is a more accurate match since its literally part of the character name, order and character wise.
 
-<br/>
-<p>Thank you for reading the post. Hope it will help you someday! Check below for live demo and git repo for this tutorial.</p>
+If `hero.toLowerCase().includes(str)` is false, we use `checkName()` to apply our regex validation. This will improve the user’s search results without being too strict and without compromising the accuracy of the overall search.
 
-<hr/>
-<h5 class="post-subheading">Git Repo</h5>
+Thank you for reading the post. Hope it will help you someday! Check below for live demo and git repo for this tutorial.
+
+---
+
+## Git Repo
+
 <p class="text-center"><a href="https://github.com/meghsohor/javascript-regex-search" target="_blank" rel="noopener noreferrer">github/javascript-regex-search</a></p>
-<h5 class="post-subheading">Live Demo</h5>
+
+## Live Demo
+
 <p class="text-center"><a href="https://meghsohor.github.io/javascript-regex-search/" target="_blank" rel="noopener noreferrer">meghsohor.github.io/javascript-regex-search/</a></p>

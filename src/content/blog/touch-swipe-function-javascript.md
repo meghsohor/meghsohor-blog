@@ -11,7 +11,7 @@ tags:
 
 When we need to implement **Swipe** functionality for touch devices, we usually use *_plugins_*. But we can write **touch-swipe** functionality in **Vanilla JS** which supports all the browsers without using any plugin.
 
-<p>First We will see the whole function and then we will break the function into small pieces and will talk about the pieces:</p>
+First We will see the whole function and then we will break the function into small pieces and will talk about the pieces:
 
 
 ```javascript
@@ -83,7 +83,7 @@ var  Swipe  = (function () {
 ```
 
 
-<p>Lets first discuss about the inner <code>Swipe</code> function</p>
+Lets first discuss about the inner `Swipe` function
 
 ```javascript
 function  Swipe(element) {
@@ -150,7 +150,7 @@ Swipe.prototype.handleTouchMove = function (evt) {
 };
 ```
 
-<p>In this function, we are tracking the <strong>swipe distance</strong> and the <strong>swipe direction</strong>. Based on the swipe <strong>direction</strong>, we are calling the respective <strong>swipe-direction</strong> function: <code>onLeft</code>, <code>onRight</code>, <code>onUp</code> and <code>onDown</code>.</p>
+In this function, we are tracking the **swipe distance** and the **swipe direction**. Based on the swipe **direction**, we are calling the respective **swipe-direction** function: `onLeft`, `onRight`, `onUp` and `onDown`.
 
 > **Note:** In the `if` conditions, we are checking if the **distance** is `> 2` or `< -2`, because it might happen that when the user _swipes_ on a **horizontal** direction, there might also be a slight **vertical** movement. And for this movement, the **vertical swipe** functions will be triggered. That is why, we are checking if the swipe distance is `> 2` or `< -2` for an extra bit of safety.
 
@@ -167,7 +167,7 @@ Swipe.prototype.run  =  function () {
 
 Here, we are adding an **event-listener** for `touchmove` event for the target element. The `handleTouchMove` function will be called once the `touchmove` event fires.
 
-<h5 class="post-subheading">How to use</h5>
+## How to use
 
 First, we will create a new **object** of the function and provide the **target element** as the `parameter`
 
@@ -183,7 +183,7 @@ swiper.onLeft(function() {
 });
 ```
 
-<h6>Finally run the function:</h6>
+### Finally run the function:
 
 ```javascript
 swiper.run();

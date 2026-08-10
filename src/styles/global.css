@@ -840,10 +840,6 @@ a.tag:active {
   padding-left: 0;
   margin-bottom: 0;
 }
-/* in career cards the list is last (job-skills adds the divider gap); in posts it needs the standard block gap */
-.prose .check-list {
-  margin-bottom: 1.5rem;
-}
 .check-list li {
   position: relative;
   margin: 0;
@@ -863,9 +859,8 @@ a.tag:active {
     no-repeat center / contain;
 }
 
-/*------- Post markdown helpers (class names referenced from blog content — do not rename) -------*/
-/* Bootstrap-era callouts restyled on an accent-bar look.
-   All four text/background pairs are WCAG AA (6.5:1–9.7:1). */
+/*------- Post markdown helpers (.alert* names are referenced from blog content — do not rename) -------*/
+/* Callouts on an accent-bar look. All four text/background pairs are WCAG AA (6.5:1–9.7:1). */
 .alert {
   margin: 0 0 1.5rem;
   padding: 1rem 1.25rem;
@@ -896,16 +891,17 @@ a.tag:active {
   color: #8fc7e8;
 }
 
-/* Section headings inside post markdown (h5.post-subheading, 46 uses) —
-   centered brand-blue with a short centered underline, as on the Gatsby site */
-.post-subheading {
+/* Markdown headings in posts — h2 carries the section-heading look (centered
+   brand-blue, short underline), h3 the minor-heading scale of the old h6s */
+.prose h2 {
   position: relative;
   color: var(--theme-primary);
+  font-size: 1.25rem;
   text-align: center;
   padding-bottom: 0.75rem;
   margin-bottom: 1rem;
 }
-.post-subheading::before {
+.prose h2::before {
   content: '';
   position: absolute;
   bottom: 0;
@@ -915,21 +911,24 @@ a.tag:active {
   margin-left: -18px;
   background: var(--theme-primary);
 }
+.prose h3 {
+  font-size: 1rem;
+}
 
-/* Bulleted lists inside post markdown — icon bullets instead of discs */
-.point-list {
+/* Markdown lists in posts — icon bullets instead of discs */
+.prose ul {
   list-style: none;
   padding-left: 0;
 }
-.point-list li {
+.prose ul li {
   position: relative;
   margin: 0 0 0.5rem;
   padding-left: 1.75rem;
 }
-.point-list li:last-child {
+.prose ul li:last-child {
   margin-bottom: 0;
 }
-.point-list li::before {
+.prose ul li::before {
   /* circle-play icon, Font Awesome Free 6 (CC BY 4.0) */
   content: '';
   position: absolute;
@@ -941,36 +940,38 @@ a.tag:active {
   mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c7.6-4.2 16.8-4.1 24.3 .5l144 88c7.1 4.4 11.5 12.1 11.5 20.5s-4.4 16.1-11.5 20.5l-144 88c-7.4 4.5-16.7 4.7-24.3 .5s-12.3-12.2-12.3-20.9l0-176c0-8.7 4.7-16.7 12.3-20.9z"/></svg>')
     no-repeat center / contain;
 }
-
-.number-list {
+.prose ol {
   padding-left: 1rem;
 }
-.number-list li {
+.prose ol li {
   padding-left: 0.25rem;
   margin: 0 0 0.5rem;
 }
-.number-list li:last-child {
+.prose ol li:last-child {
   margin-bottom: 0;
 }
 
-/* Bootstrap-era table classes used inside post markdown, on theme tokens */
-.table {
+/* Markdown tables in posts — bordered, on theme tokens */
+.prose table {
   width: 100%;
   margin: 0 0 1.5rem;
   border-collapse: collapse;
 }
-.table th,
-.table td {
+.prose th,
+.prose td {
   padding: 0.75rem;
+  border: 1px solid var(--theme-border-strong);
   vertical-align: top;
 }
-.table-bordered th,
-.table-bordered td {
-  border: 1px solid var(--theme-border-strong);
-}
-.thead-light th {
+.prose thead th {
   background-color: var(--theme-page);
   color: var(--theme-heading);
+  text-align: center;
+}
+
+.prose img {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /*------- Blog Card Styles ---------*/
