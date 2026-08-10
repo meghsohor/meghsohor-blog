@@ -12,14 +12,13 @@ tags:
 
 CRUD operations are fundamental features of any modern website or web application. Almost everyday we need to write code in the Front-End to communicate with the servers through the HTTP protocol (mostly consume data from REST Apis).
 
-To communicate with the servers we mostly use <strong>Fetch</strong> api or <strong>Axios</strong>.
+To communicate with the servers we mostly use **Fetch** api or **Axios**.
 
-<br>
-<h5 class="post-subheading">Fetch API</h5>
+## Fetch API
 
-<strong>Fetch</strong> is a built-in api of modern browsers and the problem with the <strong>Fetch</strong> api is that the HTTP request made through <strong>Fetch</strong> api isn't cancelable. There is a workaround though - we can use <code>AbortController</code> to cancel a request. But <code>AbortController</code> isn't still widely supported.
+**Fetch** is a built-in api of modern browsers and the problem with the **Fetch** api is that the HTTP request made through **Fetch** api isn't cancelable. There is a workaround though - we can use `AbortController` to cancel a request. But `AbortController` isn't still widely supported.
 
-Moreover, <strong>Fetch</strong> api doesn't have protection against <strong>XSRF</strong> attack.
+Moreover, **Fetch** api doesn't have protection against **XSRF** attack.
 
 ```javascript
 fetch('url') 
@@ -33,10 +32,9 @@ fetch('url')
   });
 ```
 
-<br>
-<h5 class="post-subheading">Axios</h5>
+## Axios
 
-<strong>Axios</strong> is a Javascript library used to make HTTP requests and it supports the ES6 <strong>Promise</strong> API. It also has client-side protection against <strong>XSRF</strong>. And we can cancel the HTTP requests using <strong>Axios</strong>.
+**Axios** is a Javascript library used to make HTTP requests and it supports the ES6 **Promise** API. It also has client-side protection against **XSRF**. And we can cancel the HTTP requests using **Axios**.
 
 ```javascript
 axios.get('url') 
@@ -50,23 +48,17 @@ axios.get('url')
   }) 
 ```
 
-<br>
+**RxJS** has a couple of operators that we can use to make HTTP requests. And the benefits of using RxJS operators are:
 
-<strong>RxJS</strong> has a couple of operators that we can use to make HTTP requests. And the benefits of using RxJS operators are:
+- **RxJS** operators return a stream of observables instead of a single promise
+- **RxJS** observables are lazy. So, no HTTP request will be made until we subscribe to the observables
+- The request is cancelable
+- Safe against XSRF
+- Tons of other powerful RxJS operators to customize the HTTP request or manipulate the data returned from the request
 
-<ul class="check-list">
-  <li><strong>RxJS</strong> operators return a stream of observables instead of a single promise</li>
-  <li><strong>RxJS</strong> observables are lazy. So, no HTTP request will be made until we subscribe to the observables</li>
-  <li>The request is cancelable</li>
-  <li>Safe against XSRF</li>
-  <li>Tons of other powerful RxJS operators to customize the HTTP request or manipulate the data returned from the request</li>
-</ul>
+## RxJS/ajax
 
-<br>
-
-<h5 class="post-subheading">RxJS/ajax</h5>
-
-<strong>RxJS/ajax</strong> creates an observable for an <strong>Ajax</strong> request with either a request object with url, headers, etc or a string for a URL.
+**RxJS/ajax** creates an observable for an **Ajax** request with either a request object with url, headers, etc or a string for a URL.
 
 ```javascript
 import { ajax } from 'rxjs/ajax';
@@ -91,10 +83,9 @@ const subscription = observable$.subscribe({
 subscription.unsubscribe();
 ```
 
-<br>
+## RxJS/fromFetch
 
-<h5 class="post-subheading">RxJS/fromFetch</h5>
-<strong>fromFetch</strong> uses the <strong>Fetch</strong> api to make an HTTP request.
+**fromFetch** uses the **Fetch** api to make an HTTP request.
 
 ```javascript
 import { of } from 'rxjs';

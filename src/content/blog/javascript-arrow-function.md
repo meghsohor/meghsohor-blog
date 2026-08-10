@@ -12,19 +12,19 @@ tags:
 
 **Arrow** function was introduced with **ES6** as a new syntax for writing JavaScript functions. There are a few differences between **arrow** functions and **regular** functions
 
-<h5 class="post-subheading">Arrow Function <em>vs</em> Regular Function</h5>
+## Arrow Function _vs_ Regular Function
 
-<table class="table table-bordered">
-  <thead class="thead-light">
+<table>
+  <thead>
     <tr>
-      <th class="text-center">Arrow Function</th>
-      <th class="text-center">Regular Function</th>
+      <th>Arrow Function</th>
+      <th>Regular Function</th>
     </tr>
   </thead>
   <tr>
     <td width="50%">The value of <code>this</code> will always be inherited from the outer function. If there is no outer function, <code>this</code> will refer to the global object. In other words, the arrow function resolves <code>this</code> lexically.</td>
     <td>The value of <code>this</code> depends how the function is invoked or who owns the function:
-      <ul class="point-list">
+      <ul>
       <li>1. Simple invocation - <code>this</code> refers to the global object</li>
       <li>2. Method invocation – <code>this</code> refers to the parent object</li>
       <li>3. Constructor invocation – <code>this</code> refers to the newly created instance</li>
@@ -45,23 +45,17 @@ tags:
   </tr>
 </table>
 
-<br>
-<h5 class="post-subheading">Arrow Functions should be used when</h5>
+## Arrow Functions should be used when
 
-<ul class="point-list">
-  <li>The value of <code>this</code> needs to be consistent and returns the same value always</li>
-  <li>The function has only one line of statement and which may be a simple <code>return expression</code></li>
-  <li>The function doesn't need to access its <code>arguments</code> object</li>
-  <li><strong>Callback</strong> functions with static context</li>
-</ul>
+- The value of `this` needs to be consistent and returns the same value always
+- The function has only one line of statement and which may be a simple `return expression`
+- The function doesn't need to access its `arguments` object
+- **Callback** functions with static context
 
-<h5 class="post-subheading">Arrow Functions shouldn't be used when</h5>
+## Arrow Functions shouldn't be used when
 
-<ul class="point-list">
-  <li>As an object property or object prototype (<code>this</code> inside the arrow function will refer to "window" object instead of the parent object/function)</li>
-  <li><strong>Callback</strong> functions with dynamic context</li>
-  <li>The function will be used as a <code>constructor</code></li>
-  <li>The <code>return expression</code> statement needs to be explicit</li>
-  <li>Need to access the <code>arguments</code> object of the function</li>
-</ul>
-
+- As an object property or object prototype (`this` inside the arrow function will refer to "window" object instead of the parent object/function)
+- **Callback** functions with dynamic context
+- The function will be used as a `constructor`
+- The `return expression` statement needs to be explicit
+- Need to access the `arguments` object of the function

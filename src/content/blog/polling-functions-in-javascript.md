@@ -11,17 +11,17 @@ tags:
 
 Sometimes we need to wait for something to be happened in a webpage or web application before we execute a code or call a function or do something else.
 
-<p>By something I mean:</p>
-<ul class="point-list">
-  <li>rendering of a HTML element</li>
-  <li>a JavaScript event</li>
-  <li>response from API</li>
-</ul>
+By something I mean:
 
-<p>and many other things.</p>
-<p>Let's see how to write a couple of functions to tackle these scenarios:</p>
+- rendering of a HTML element
+- a JavaScript event
+- response from API
 
-<h5>Poling function 1: <em>wait for HTML element</em></h5>
+and many other things.
+
+Let's see how to write a couple of functions to tackle these scenarios:
+
+## Poling function 1: _wait for HTML element_
 
 ```javascript
 var waitForElement = function(elem) {
@@ -40,9 +40,9 @@ var waitForElement = function(elem) {
 };
 ```
 
-<p>We can use the above poling function when we need to wait for a certain HTML element.</p>
+We can use the above poling function when we need to wait for a certain HTML element.
 
-<h6>Example:</h6>
+### Example:
 
 ```javascript
 waitForElement('button#addToCart').then(function(button) {
@@ -50,7 +50,7 @@ waitForElement('button#addToCart').then(function(button) {
 });
 ```
 
-<h5>Poling function 2: <em>wait until a function returns true</em></h5>
+## Poling function 2: _wait until a function returns true_
 
 ```javascript
 var waitUntil = function(callback) {
@@ -69,9 +69,9 @@ var waitUntil = function(callback) {
 };
 ```
 
-<p>We can use the above function to wait until one or more conditions meet the criteria before further execution of the code.</p>
+We can use the above function to wait until one or more conditions meet the criteria before further execution of the code.
 
-<h6>Example:</h6>
+### Example:
 
 ```javascript
   window.waitUntil(function () {
