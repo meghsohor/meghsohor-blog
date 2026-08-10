@@ -1,20 +1,10 @@
 ---
 import { getCollection } from 'astro:content'
 import BaseLayout from '../../components/BaseLayout.astro'
-import { slugify } from '../../utils'
+import { tagCounts } from '../../utils'
 
 const posts = await getCollection('blog')
-
-const tagMap = new Map<string, { name: string; count: number }>()
-for (const post of posts) {
-  for (const tag of post.data.tags) {
-    const slug = slugify(tag)
-    const entry = tagMap.get(slug)
-    if (entry) entry.count++
-    else tagMap.set(slug, { name: tag, count: 1 })
-  }
-}
-const tags = [...tagMap.entries()].sort((a, b) => b[1].count - a[1].count)
+const tags = tagCounts(posts)
 ---
 
 <BaseLayout title="All Tags">
