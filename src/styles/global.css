@@ -497,6 +497,9 @@ a.tag:active {
   box-shadow: var(--shadow-card);
   overflow: hidden;
 }
+.dark .card {
+  background-color: #1d232c;
+}
 .card-body {
   display: flex;
   flex-direction: column;
