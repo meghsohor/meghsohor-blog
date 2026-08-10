@@ -1003,14 +1003,13 @@ a.tag:active {
   transform: translateY(-2px);
 }
 
-.site-footer .footer-social-links a.github:hover {
-  color: #e95950;
-}
-.site-footer .footer-social-links a.twitter:hover {
-  color: #38a1f3;
+/* brand colors, theme-invariant; GitHub and X brands are near-black, so they use the heading token instead */
+.site-footer .footer-social-links a.github:hover,
+.site-footer .footer-social-links a.x-twitter:hover {
+  color: var(--theme-heading);
 }
 .site-footer .footer-social-links a.stack-overflow:hover {
-  color: #dd4b39;
+  color: #f48024;
 }
 .site-footer .footer-social-links a.linkedin:hover {
   color: #0077b5;
