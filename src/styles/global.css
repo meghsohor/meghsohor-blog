@@ -231,7 +231,7 @@
 
 /*------ Default Styles ---------*/
 body {
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 1.7;
   font-family: var(--font-serif);
   color: var(--theme-body);
