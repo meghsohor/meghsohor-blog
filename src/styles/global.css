@@ -338,18 +338,6 @@ h6 {
   border-color: var(--theme-accent);
 }
 
-.btn-outline-secondary {
-  color: var(--theme-muted);
-  border-color: var(--theme-muted);
-}
-
-.btn-outline-secondary:focus,
-.btn-outline-secondary:hover {
-  color: #fff;
-  background-color: var(--theme-muted);
-  border-color: var(--theme-muted);
-}
-
 .btn-outline-primary {
   color: var(--theme-primary);
   border-color: var(--theme-primary);
