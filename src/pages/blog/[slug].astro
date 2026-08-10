@@ -8,6 +8,7 @@ import PostShare from '../../components/PostShare.astro'
 import { site } from '../../config'
 import { slugify, formatDate } from '../../utils'
 import { publicImageDims } from '../../image-dims'
+import { cdnImage, ARTICLE_WIDTHS, ARTICLE_SIZES } from '../../image-cdn.mjs'
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection('blog')
@@ -20,6 +21,7 @@ export const getStaticPaths = (async () => {
 const { post } = Astro.props
 const { Content } = await post.render()
 const heroDims = post.data.image ? await publicImageDims(post.data.image) : null
+const heroImg = post.data.image ? cdnImage(post.data.image, heroDims?.width, ARTICLE_WIDTHS) : null
 
 const postURL = new URL(`/blog/${post.slug}/`, site.siteURL).toString()
 const postSchema = {
@@ -49,7 +51,21 @@ const postSchema = {
   <JsonLd slot="head" schema={postSchema} />
   <link slot="head" rel="alternate" type="text/markdown" href={`/blog/${post.slug}.md`} title="Plain markdown version" />
   <article class="single-post-card card">
-    {post.data.image && <img src={post.data.image} alt={post.data.title} class="w-full" width={heroDims?.width} height={heroDims?.height} decoding="async" />}
+    {
+      heroImg && (
+        <img
+          src={heroImg.src}
+          srcset={heroImg.srcset}
+          sizes={heroImg.srcset ? ARTICLE_SIZES : undefined}
+          alt={post.data.title}
+          class="w-full"
+          width={heroDims?.width}
+          height={heroDims?.height}
+          decoding="async"
+          fetchpriority="high"
+        />
+      )
+    }
 
     <div class="p-6 md:p-8">
       <h1 class="mb-4">{post.data.title}</h1>
