@@ -1,5 +1,7 @@
 [build]
-  command = "npm run build"
+  # node_modules/.astro survives Netlify's build cache, so rendered markdown can go
+  # stale when rehype plugins change — drop it and re-render (22 pages, ~2s)
+  command = "rm -rf .astro node_modules/.astro && npm run build"
   publish = "dist"
 
 [build.environment]

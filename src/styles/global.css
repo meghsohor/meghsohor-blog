@@ -612,11 +612,16 @@ a.tag:active {
 .hero-section {
   height: calc(100vh - 60px);
   min-height: 32rem;
-  background-image: url('/images/hero-banner.jpeg');
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-position: center;
+}
+/* viewport-fixed <img> replicates the old background-attachment: fixed parallax;
+   the sections after the hero are opaque and slide over it */
+.hero-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .hero-container {
   position: relative;

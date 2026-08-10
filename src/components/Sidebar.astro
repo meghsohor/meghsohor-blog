@@ -2,9 +2,15 @@
 import { getCollection } from 'astro:content'
 import { tagCounts } from '../utils'
 import { publicImageDims } from '../image-dims'
+import { cdnImage, CARD_WIDTHS, SIDEBAR_SIZES } from '../image-cdn.mjs'
 
 const posts = (await getCollection('blog')).sort((a, b) => b.data.postNumber - a.data.postNumber)
-const recentPosts = await Promise.all(posts.slice(0, 3).map(async post => ({ post, dims: await publicImageDims(post.data.image) })))
+const recentPosts = await Promise.all(
+  posts.slice(0, 3).map(async post => {
+    const dims = await publicImageDims(post.data.image)
+    return { post, dims, img: cdnImage(post.data.image, dims?.width, CARD_WIDTHS) }
+  }),
+)
 const tags = tagCounts(posts)
 ---
 
@@ -13,9 +19,19 @@ const tags = tagCounts(posts)
     <h5 class="card-title text-center uppercase font-bold">Recent Posts</h5>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4">
       {
-        recentPosts.map(({ post, dims }) => (
+        recentPosts.map(({ post, dims, img }) => (
           <a href={`/blog/${post.slug}/`} class="recent-post card">
-            <img src={post.data.image} alt={post.data.title} class="w-full" width={dims?.width} height={dims?.height} loading="lazy" decoding="async" />
+            <img
+              src={img.src}
+              srcset={img.srcset}
+              sizes={img.srcset ? SIDEBAR_SIZES : undefined}
+              alt={post.data.title}
+              class="w-full"
+              width={dims?.width}
+              height={dims?.height}
+              loading="lazy"
+              decoding="async"
+            />
             <div class="card-body">
               <h6 class="mb-0">{post.data.title}</h6>
             </div>
