@@ -10,7 +10,7 @@
 
 ***
 
-Hi, I am a Software Developer focused and specialized on the Front-End stacks. Experienced with HTML, CSS/SCSS, JavaScript, Typescript, jQuery, Angular, React, WordPress & PHP. I have created this blog to write posts on the Software Development things. I am also going to showcase my projects and my career here.
+Hi, I am an **AWS Certified Software Developer**. Since 2016 I have built enterprise applications and customer dashboards, A/B experiments for online shops, an audio streaming service, and event-driven backend services — working with HTML, CSS/SCSS, JavaScript/TypeScript, jQuery, Angular, React, Next.js, Node.js, PHP, Ruby on Rails, AWS, and more. Right now I am learning **Go** and building **agentic systems**. I created this blog to write posts on software development, and to showcase my projects and career.
 Checkout the live site here:
 ### [Live: MeghSohor Blog](https://meghsohor.dev/)
 
@@ -19,8 +19,8 @@ The site is developed in **Astro** with **Tailwind CSS** and here are some of th
 - **Blog page**: All the posts can be found in this page.
 - **Single Post page**: Clicking on a blog post will take to the single post page
 - **Post category page**: Clicking on a tag from a post will show the list of the posts under the same category
-- **Post search**: built into the blog listing — instant title and tag matching, no extra network requests
-- **Dark mode**: follows the system preference, with a manual light/system/dark toggle
+- **Post search**: built into the blog listing — client-side title and tag matching, no extra network requests
+- **Dark mode**: follows the device preference until you choose — a one-tap toggle, remembered across visits
 - **Agent friendly**: `/llms.txt`, `/llms-full.txt`, a `.md` version of every post, and JSON-LD structured data
 - **RSS feed** & **sitemap** generated on every build
 
@@ -29,7 +29,7 @@ The site is developed in **Astro** with **Tailwind CSS** and here are some of th
 ## The project is open!
 And I would like to help you if you want to use this project to build your personal blog and portfolio site. 
 
-### What are the benifits?
+### What are the benefits?
 
 - Multiple post types: blog, portfolio, job
 - Easy to create posts using **markdown** language (you can use this [**online editor**](https://pandao.github.io/editor.md/en.html) to write post in markdown language)
@@ -85,7 +85,7 @@ npm run preview
 * Github: [@meghsohor](https://github.com/meghsohor)
 * LinkedIn: [@meghsohor](https://linkedin.com/in/meghsohor)
 * StackOverflow: [@meghsohor](https://stackoverflow.com/users/7646942/shuvo)
-* Twitter: [@meghsohoror](https://twitter.com/meghsohor)
+* X (Twitter): [@meghsohor](https://twitter.com/meghsohor)
 
 ## 🤝 Contributing
 
