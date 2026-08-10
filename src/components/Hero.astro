@@ -1,8 +1,25 @@
 ---
 import Icon from './Icon.astro'
+import { publicImageDims } from '../image-dims'
+import { cdnImage } from '../image-cdn.mjs'
+
+const HERO_BG = '/images/hero-banner.jpeg'
+const bgDims = await publicImageDims(HERO_BG)
+const heroBg = cdnImage(HERO_BG, bgDims?.width, [768, 1080, 1440, 1920])
 ---
 
 <section class="hero-section">
+  <img
+    src={heroBg.src}
+    srcset={heroBg.srcset}
+    sizes={heroBg.srcset ? '100vw' : undefined}
+    alt=""
+    class="hero-bg"
+    width={bgDims?.width}
+    height={bgDims?.height}
+    fetchpriority="high"
+    decoding="async"
+  />
   <div class="hero-container">
     <div class="hero-header">
       <h1>
