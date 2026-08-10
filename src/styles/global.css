@@ -107,7 +107,6 @@
 
 /*---- Astro Code Snippet ----*/
 .astro-code {
-  position: relative;
   font-family: var(--font-mono);
   box-shadow: var(--shadow-card);
   border-radius: 0.75rem;
@@ -243,12 +242,6 @@ a:active {
   text-decoration: none;
 }
 
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6,
 h1,
 h2,
 h3,
@@ -277,40 +270,28 @@ img {
 hr {
   margin: 2rem 0;
 }
-.h1,
 h1 {
   font-size: 2.5rem;
 }
 
-.h2,
 h2 {
   font-size: 2rem;
 }
 
-.h3,
 h3 {
   font-size: 1.75rem;
 }
 
-.h4,
 h4 {
   font-size: 1.5rem;
 }
 
-.h5,
 h5 {
   font-size: 1.25rem;
 }
 
-.h6,
 h6 {
   font-size: 1rem;
-}
-
-/*------- Utility -------*/
-
-.text-muted {
-  color: var(--theme-muted) !important;
 }
 
 /*------- Buttons -------*/
@@ -333,10 +314,10 @@ h6 {
     box-shadow 0.15s ease-in-out,
     transform 0.15s ease-in-out;
 }
-.btn:not(:disabled):not(.disabled) {
+.btn:not(:disabled) {
   cursor: pointer;
 }
-.btn:not(:disabled):not(.disabled):hover {
+.btn:not(:disabled):hover {
   transform: translateY(-1px);
 }
 
@@ -345,7 +326,6 @@ h6 {
   background-color: var(--theme-primary);
   border-color: var(--theme-primary);
 }
-.btn-primary.focus,
 .btn-primary:focus,
 .btn-primary:hover {
   color: #fff;
@@ -358,7 +338,6 @@ h6 {
   border-color: var(--theme-muted);
 }
 
-.btn-outline-secondary.focus,
 .btn-outline-secondary:focus,
 .btn-outline-secondary:hover {
   color: #fff;
@@ -370,7 +349,6 @@ h6 {
   color: var(--theme-primary);
   border-color: var(--theme-primary);
 }
-.btn-outline-primary.focus,
 .btn-outline-primary:focus,
 .btn-outline-primary:hover {
   color: #fff;
@@ -556,7 +534,6 @@ a.tag:active {
 }
 .site-header .nav-link:hover,
 .site-header .nav-link.active {
-  font-weight: 600;
   color: var(--theme-primary);
 }
 .site-header .nav-link:hover:before,
@@ -774,7 +751,6 @@ a.tag:active {
 }
 .about-me-container h5 {
   color: var(--theme-heading);
-  font-size: 1.25rem;
   font-weight: 600;
 }
 
@@ -952,7 +928,6 @@ a.tag:active {
 }
 
 /* Bootstrap-era table classes used inside post markdown, on theme tokens */
-.prose .table,
 .table {
   width: 100%;
   margin: 0 0 1.5rem;
