@@ -20,7 +20,7 @@
     "@astrojs/sitemap": "^3.7.3",
     "@fontsource/domine": "^5.3.0",
     "@fontsource/fira-code": "^5.3.0",
-    "@tailwindcss/vite": "^4.1.17",
+    "@tailwindcss/vite": "^4.3.3",
     "astro": "^5.15.4",
     "tailwindcss": "^4.1.17"
   },
